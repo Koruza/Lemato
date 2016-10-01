@@ -1,41 +1,51 @@
+.navbar-brand {
+    width: 130px;
+    font-weight: bold;
+}
+
+img{
+  width: 30%;
+}
+
 body {
     padding-top: 60px;
-    background-image: url("../img/search.jpg");
+    background-image: url("../img/cherry.jpg");
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-.navbar{
-  background-color: #E6F9BA;
+.navbar {
+    background-color: #E6F9BA;
 }
 
 .lemato-search {
-    width: 400px !important;
+    width: 500px !important;
 }
 
-.pop{
-  padding-left: 5px;
-  background-color: #E6F9BA;
+.pop {
+    padding-left: 5px;
+    background-color: #E6F9BA;
 }
 
-.ing{
-  width: 330px ;
-  background-color : #505050;
+.ing {
+    width: 330px;
+    background-color: #505050;
 }
 
-.heart{
-  color: red;
+.heart {
+    color: red;
 }
 
-.moveee{
-  padding-left: 60px;
-  padding-top: 20px;
+.moveee {
+    padding-left: 60px;
+    padding-top: 20px;
 }
 
-.a-search{
-  color: 	#BAF9BC;
+.a-search {
+    font-weight:bold;
+    color: black;
 }
 
-.submit{
-  color: black;
+.submit {
+    color: black;
 }
