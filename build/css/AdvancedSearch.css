@@ -1,0 +1,41 @@
+body {
+    padding-top: 60px;
+    background-image: url("../img/search.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.navbar{
+  background-color: #E6F9BA;
+}
+
+.lemato-search {
+    width: 400px !important;
+}
+
+.pop{
+  padding-left: 5px;
+  background-color: #E6F9BA;
+}
+
+.ing{
+  width: 330px ;
+  background-color : #505050;
+}
+
+.heart{
+  color: red;
+}
+
+.moveee{
+  padding-left: 60px;
+  padding-top: 20px;
+}
+
+.a-search{
+  color: 	#BAF9BC;
+}
+
+.submit{
+  color: black;
+}

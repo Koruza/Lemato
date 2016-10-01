@@ -1,12 +1,31 @@
-body{
-padding-top: 200px;
-padding-left: 40px;
-padding-right: 40px;
-background-color: gold;
+body {
+    padding-top: 200px;
+    padding-left: 40px;
+    padding-right: 40px;
+    background-color: green;
+    height: 600px !important;
 }
-.input-group{
-width: 250px !important;
+
+.input-group {
+    width: 250px !important;
 }
-.panel-body-defaul{
-  padding: 40px;
+
+/*.panel-body-defaul {
+    padding: 40px;
+}*/
+
+.lemato-search {
+    width: 400px !important;
+}
+
+.navbar{
+  background-color: #E6F9BA;
+}
+
+.pop{
+  padding-left: 5px;
+}
+
+.heart{
+  color: red;
 }
