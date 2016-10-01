@@ -10,10 +10,22 @@ body {
     width: 250px !important;
 }
 
-.panel-body-defaul {
+/*.panel-body-defaul {
     padding: 40px;
+}*/
+
+.lemato-search {
+    width: 400px !important;
+}
+
+.navbar{
+  background-color: #E6F9BA;
 }
 
 .pop{
   padding-left: 5px;
+}
+
+.heart{
+  color: red;
 }
