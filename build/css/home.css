@@ -1,0 +1,12 @@
+body{
+padding-top: 200px;
+padding-left: 40px;
+padding-right: 40px;
+background-color: gold;
+}
+.input-group{
+width: 250px !important;
+}
+.panel-body-defaul{
+  padding: 40px;
+}
