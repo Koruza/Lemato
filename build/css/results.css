@@ -52,6 +52,20 @@
   width: 30%;
 }
 
+.user-comments .media-body {
+  padding-top: 5px;
+  padding-bottom: 10px;
+}
+
+.user-comments .media-header, .media-footer {
+  font-size: 12px;
+}
+
+.user-comments .media-footer {
+  padding-bottom: 10px;
+  border-bottom: 1px solid lightgrey;
+}
+
 body {
   padding-top: 60px;
   background-image: url("../img/cherry.jpg");
