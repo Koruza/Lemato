@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Search Results</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/AdvancedSearch.css" rel="stylesheet">
+    <link href="css/results.css" rel="stylesheet">
   </head>
   <body>
+    <!-- navbar -->
     <nav class="navbar navbar-fixed-top navbar-default">
       <div class="container">
         <div class="navbar-header">
@@ -19,13 +20,13 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="#">
-            <span><img src="img/lemato.png"/>Lemato</span>
+            <span><img class="brand-pic" src="img/lemato.png"/>Lemato</span>
           </a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <form class="navbar-form navbar-left" role="search">
             <div class="input-group">
-              <input type="text" class="form-control lemato-search" placeholder="Search Lemato">
+              <input type="text" class="form-control lemato-search" placeholder="Search Lemato" value="Brownie">
               <span class="input-group-btn">
                 <button type="submit" class="btn btn-default">
                   <span class="glyphicon glyphicon-search"></span>
@@ -53,10 +54,6 @@
                       <li><a href="#">Log out...</a></li>
                     </ul>
                   </div>
-                  <div class="btn-group" role="group">
-                    
-
-                  </div>
                 </div>
               </div>
             </div>
@@ -64,5 +61,194 @@
         </div>
       </div>
     </nav>
+
+    <!-- Results body -->
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+          <div class="panel panel-success">
+            <div class="panel-body">
+              <div class="media">
+                <div class="media-left">
+                  <a href="#">
+                    <img class="media-object result-pic" src="img/brownie-egg.jpg" alt="brownie-egg">
+                  </a>
+                </div>
+                <div class="media-body">
+                  <h4 class="media-heading">Egg Brownie</h4>
+                  A brownie but in the shape of an egg. Trick your friends with this delicious treat. Only 200 calories!
+                </div>
+                <div class="media-right recipe-vote">
+                  <a href="#"><span class="glyphicon glyphicon-arrow-up"></span></a>
+                  <div>5129</div>
+                  <a href="#"><span class="glyphicon glyphicon-arrow-down"></span></a>
+                </div>
+              </div>
+            </div>
+            <div class="panel-footer">
+              <ul class="media-list user-comments">
+                <li class="media">
+                  <div class="media-header">
+                    <a href="#">vegan4life2001</a> • 1,234 points • 10 hours ago
+                  </div>
+                  <div class="media-body">
+                    im vegan so i can't eat these :(
+                  </div>
+                  <div class="media-footer">
+                    <ul class="list-inline">
+                      <li>
+                        <a href="#"><span class="glyphicon glyphicon-arrow-up"></span> Upvote</a>
+                      </li>
+                      <li>
+                        <a href="#"><span class="glyphicon glyphicon-arrow-down"></span> Downvote</a>
+                      </li>
+                      <li>
+                        <a href="#"><span class="glyphicon glyphicon-share-alt"></span> Share</a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="media">
+                  <div class="media-header">
+                    <a href="#">foodlover99</a> • 1,101 points • 16 hours ago
+                  </div>
+                  <div class="media-body">
+                    wow i can't believe it's in the shape of an egg!
+                  </div>
+                  <div class="media-footer">
+                    <ul class="list-inline">
+                      <li>
+                        <a href="#"><span class="glyphicon glyphicon-arrow-up"></span> Upvote</a>
+                      </li>
+                      <li>
+                        <a href="#"><span class="glyphicon glyphicon-arrow-down"></span> Downvote</a>
+                      </li>
+                      <li>
+                        <a href="#"><span class="glyphicon glyphicon-share-alt"></span> Share</a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="media">
+                  <div class="media-body">
+                    <div class="input">
+                      <input type="text" class="form-control" placeholder="Write a comment...">
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="panel panel-success">
+            <div class="panel-body">
+              <div class="media">
+                <div class="media-left">
+                  <a href="#">
+                    <img class="media-object result-pic" src="img/brownie1.png" alt="brownie">
+                  </a>
+                </div>
+                <div class="media-body">
+                  <h4 class="media-heading">Double Fudge Brownie</h4>
+                  A delicious double fudge brownie. Even a monkey could bake these!
+                </div>
+                <div class="media-right recipe-vote">
+                  <a href="#"><span class="glyphicon glyphicon-arrow-up"></span></a>
+                  <div>4459</div>
+                  <a href="#"><span class="glyphicon glyphicon-arrow-down"></span></a>
+                </div>
+              </div>
+            </div>
+            <div class="panel-footer">
+              <ul class="media-list user-comments">
+                <li class="media">
+                  <div class="media-header">
+                    <a href="#">3michelinstarzz</a> • 1,614 points • 17 hours ago
+                  </div>
+                  <div class="media-body">
+                    not enough chocolate 0/5.
+                  </div>
+                  <div class="media-footer">
+                    <ul class="list-inline">
+                      <li>
+                        <a href="#"><span class="glyphicon glyphicon-arrow-up"></span> Upvote</a>
+                      </li>
+                      <li>
+                        <a href="#"><span class="glyphicon glyphicon-arrow-down"></span> Downvote</a>
+                      </li>
+                      <li>
+                        <a href="#"><span class="glyphicon glyphicon-share-alt"></span> Share</a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="media">
+                  <div class="media-body">
+                    <div class="input">
+                      <input type="text" class="form-control" placeholder="Write a comment...">
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="panel panel-success">
+            <div class="panel-body">
+              <div class="media">
+                <div class="media-left">
+                  <a href="#">
+                    <img class="media-object result-pic" src="img/brownie-sundae.jpg" alt="brownie-sundae">
+                  </a>
+                </div>
+                <div class="media-body">
+                  <h4 class="media-heading">Brownie Sundae</h4>
+                  What's more delicous than a brownie? A brownie with ice cream!
+                </div>
+                <div class="media-right recipe-vote">
+                  <a href="#"><span class="glyphicon glyphicon-arrow-up"></span></a>
+                  <div>3479</div>
+                  <a href="#"><span class="glyphicon glyphicon-arrow-down"></span></a>
+                </div>
+              </div>
+            </div>
+            <div class="panel-footer">
+              <ul class="media-list user-comments">
+                <li class="media">
+                  <div class="media-header">
+                    <a href="#">Chefmaster69</a> • 1,234 points • 20 hours ago
+                  </div>
+                  <div class="media-body">
+                    u forgot to add whipped cream to the top my 2 year old son can make a better brownie lol
+                  </div>
+                  <div class="media-footer">
+                    <ul class="list-inline">
+                      <li>
+                        <a href="#"><span class="glyphicon glyphicon-arrow-up"></span> Upvote</a>
+                      </li>
+                      <li>
+                        <a href="#"><span class="glyphicon glyphicon-arrow-down"></span> Downvote</a>
+                      </li>
+                      <li>
+                        <a href="#"><span class="glyphicon glyphicon-share-alt"></span> Share</a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="media">
+                  <div class="media-body">
+                    <div class="input">
+                      <input type="text" class="form-control" placeholder="Write a comment...">
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div> <!-- end of middle 8 columns -->
+        <div class="col-md-2"></div>
+      </div>
+    </div>
   </body>
 </html>
