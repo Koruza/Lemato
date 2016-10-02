@@ -6,6 +6,19 @@ body {
     padding-top: 60px;
 }
 
+.lemato-main-feed {
+
+}
+
+.lemato-main-feed img {
+	border: 1px solid #1B2631;
+	width: 50%;
+}
+
+.lemato-right-sidebar {
+
+}
+
 .lemato-search {
 	width: 500px !important;
 }
@@ -19,11 +32,15 @@ body {
 	font-weight: bold;
 }
 
+.page-title {
+	
+}
+
 #background {
 	position: fixed;
 	left: -50%;
 	width: 200%;
-	height: 40%;
+	height: 41%;
 }
 
 #background img {
