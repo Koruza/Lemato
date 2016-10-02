@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Search Results</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/AdvancedSearch.css" rel="stylesheet">
+    <link href="css/results.css" rel="stylesheet">
   </head>
   <body>
+    <!-- navbar -->
     <nav class="navbar navbar-fixed-top navbar-default">
       <div class="container">
         <div class="navbar-header">
@@ -19,13 +20,13 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="#">
-            <span><img src="img/lemato.png"/>Lemato</span>
+            <span><img class="brand-pic" src="img/lemato.png"/>Lemato</span>
           </a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <form class="navbar-form navbar-left" role="search">
             <div class="input-group">
-              <input type="text" class="form-control lemato-search" placeholder="Search Lemato">
+              <input type="text" class="form-control lemato-search" placeholder="Search Lemato" value="Brownie">
               <span class="input-group-btn">
                 <button type="submit" class="btn btn-default">
                   <span class="glyphicon glyphicon-search"></span>
@@ -53,10 +54,6 @@
                       <li><a href="#">Log out...</a></li>
                     </ul>
                   </div>
-                  <div class="btn-group" role="group">
-                    
-
-                  </div>
                 </div>
               </div>
             </div>
@@ -64,5 +61,32 @@
         </div>
       </div>
     </nav>
+
+    <!-- Results body -->
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+          <div class="panel panel-success">
+            <div class="panel-body">
+              <div class="media">
+                <div class="media-left">
+                  <a href="#">
+                    <img class="media-object result-pic" src="img/brownie1.png" alt="brownie">
+                  </a>
+                </div>
+                <div class="media-body">
+                  <h4 class="media-heading">Double Fudge Brownie</h4>
+                  A delicious double fudge brownie. Even a monkey could bake these!
+                </div>
+              </div>
+            </div>
+            <div class="panel-footer">Panel footer</div>
+          </div>
+
+
+
+        </div>
+        <div class="col-md-2"></div>
   </body>
 </html>
