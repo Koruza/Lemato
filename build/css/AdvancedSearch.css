@@ -45,7 +45,14 @@ body {
     font-weight:bold;
     color: black;
 }
+h4 {
+  font-weight: bold;
+}
 
 .submit {
     color: black;
+}
+
+.dropdown{
+    width: 130px;
 }
