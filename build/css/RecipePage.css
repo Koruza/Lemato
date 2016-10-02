@@ -4,14 +4,17 @@ img{
 
 body {
     padding-top: 60px;
+    padding-bottom: 50px;
 }
 
 .lemato-main-feed {
-
+	/*border: 1px solid #1B2631;	/** dark-gray 
+	background-color: #E5E7E9;	/** off-white 
+	padding-left: 15px;*/
 }
 
 .lemato-main-feed img {
-	border: 1px solid #1B2631;
+	border: 1px solid #1B2631;	/** dark-gray */
 	width: 50%;
 }
 
