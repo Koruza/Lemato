@@ -1,0 +1,48 @@
+body {
+    padding-top: 60px;
+    background-image: url("../img/back.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-size: 17px;
+}
+
+img {
+    width: 8%
+}
+
+.submit {
+    color: black;
+}
+
+.welcome {
+    color: white;
+}
+
+.sign {
+    color: white;
+}
+
+.p1 {
+    padding-top: 10px;
+}
+
+.p2 {
+    padding-top: 5px;
+}
+
+.left {
+    width: 30%;
+    float: left;
+    text-align: right;
+    color: white;
+}
+
+.right {
+    width: 65%;
+    margin-left: 10px;
+    float: left;
+}
+
+.moveit {
+    padding-left: 300px;
+}
