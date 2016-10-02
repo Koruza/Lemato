@@ -2,11 +2,39 @@ img{
   width: 30%;
 }
 
+body {
+    padding-top: 60px;
+}
+
 .lemato-search {
 	width: 500px !important;
+}
+
+.navbar {
+	background-color: #E6F9BA;
 }
 
 .navbar-brand {
 	width: 130px;
 	font-weight: bold;
+}
+
+#background {
+	position: fixed;
+	left: -50%;
+	width: 200%;
+	height: 40%;
+}
+
+#background img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	min-height: 50%;
+	min-width: 50%;
+	transform: rotateY(180deg);
+	opacity: 1.1;
 }
