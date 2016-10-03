@@ -4,6 +4,8 @@ body {
     padding-right: 40px;
     background-color: green;
     height: 600px !important;
+    background-image: url("../img/tilee.jpg");f
+    background-repeat: repeat;
 }
 
 .navbar-brand {
