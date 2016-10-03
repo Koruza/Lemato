@@ -4,22 +4,55 @@ img{
 
 body {
     padding-top: 60px;
-    padding-bottom: 50px;
+    padding-bottom: 40px;
+}
+
+.btn-clipboard {
+	position: absolute;
+    float: top;
+    right: 20px;
+    z-index: 10;
+    display: block;
+    font-size: 40px;
+    color: #767676;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+}
+
+.btn-clipboard button {
+	border: 1px solid lightgreen;
+	background-color: #ECF0F1; /** off-white */
+}
+
+.panel {
+	border: 1px solid lightgreen;
+}
+
+.side-padding {
+	padding-left: 40px;
+	padding-right: 40px;
 }
 
 .lemato-main-feed {
-	/*border: 1px solid #1B2631;	/** dark-gray 
-	background-color: #E5E7E9;	/** off-white 
-	padding-left: 15px;*/
+	border: 1px solid lightgreen;	/** dark-gray #1B2631 */
+	border-radius: 5px;
+	background-color: white;	/** off-white #E5E7E9 */
 }
 
 .lemato-main-feed img {
-	border: 1px solid #1B2631;	/** dark-gray */
+	border: 1px solid lightgreen;	/** dark-gray #1B2631 */
 	width: 50%;
 }
 
-.lemato-right-sidebar {
+.lemato-right-sidebar img {
+	width: 20%;
+	float: left;
+	padding-top: 5px;
+}
 
+.lemato-right-sidebar .media-body {
+	padding-left: 8px;
 }
 
 .lemato-search {
@@ -35,8 +68,42 @@ body {
 	font-weight: bold;
 }
 
+.no-border {
+	border: none;
+}
+
+.no-padding {
+	padding-top: 0px;
+	padding-bottom: 10px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
 .page-title {
 	
+}
+
+.panel-body button {
+	border: none;
+	border-radius: 0px;
+	padding: 10px 50px 10px 50px;
+}
+
+.panel-body hr {
+	border-top: 1px dotted lightgrey;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	width: 85%;
+}
+
+.panel-footer hr {
+	border-top: 1px solid lightgrey;
+	margin-top: 20px;
+	margin-bottom: 5px;
+}
+
+.small-bot-padding {
+	margin-bottom: 10px !important;
 }
 
 #background {
