@@ -6,6 +6,16 @@ body {
     height: 600px !important;
 }
 
+.navbar-brand {
+    width: 130px;
+    font-weight: bold;
+}
+
+img{
+  width: 30%;
+}
+
+
 .input-group {
     width: 250px !important;
 }
@@ -15,7 +25,7 @@ body {
 }*/
 
 .lemato-search {
-    width: 400px !important;
+    width: 500px !important;
 }
 
 .navbar{
