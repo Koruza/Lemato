@@ -7,24 +7,6 @@ body {
     padding-bottom: 40px;
 }
 
-.btn-clipboard {
-	position: absolute;
-    float: top;
-    right: 20px;
-    z-index: 10;
-    display: block;
-    font-size: 40px;
-    color: #767676;
-    cursor: pointer;
-    background-color: transparent;
-    border: none;
-}
-
-.btn-clipboard button {
-	border: 1px solid lightgreen;
-	background-color: #ECF0F1; /** off-white */
-}
-
 .panel {
 	border: 1px solid lightgreen;
 }
