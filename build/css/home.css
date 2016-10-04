@@ -2,10 +2,10 @@ body {
     padding-top: 200px;
     padding-left: 40px;
     padding-right: 40px;
-    background-color: green;
     height: 600px !important;
-    background-image: url("../img/tilee.jpg");f
-    background-repeat: repeat;
+    background-image: url("../img/signin.jpg");f
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .navbar-brand {
@@ -40,4 +40,9 @@ img{
 
 .heart{
   color: red;
+}
+.outline {
+outline-style: double;
+outline-color: gold;
+outline-width: thick;
 }
