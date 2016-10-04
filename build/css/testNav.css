@@ -1,0 +1,35 @@
+/*.navbar-brand {
+    width: 130px;
+    font-weight: bold;
+}*/
+
+img{
+  width: 30%;
+}
+
+.lemato-search {
+    width: 370px !important;
+    position: absolute;
+    top: 190px;
+    left: 380px;
+}
+/*
+.navbar{
+  background-color: #E6F9BA;
+}*/
+
+body{
+  background-repeat: repeat;
+  background-color: #0000AA;
+
+}
+
+.shit{
+  width: 70%;
+  padding-left: 100px;
+}
+
+.moreshit{
+  top: 190px;
+  left: 380px;
+}
