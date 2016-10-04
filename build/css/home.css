@@ -3,9 +3,10 @@ body {
     padding-left: 40px;
     padding-right: 40px;
     height: 600px !important;
-    background-image: url("../img/signin.jpg");f
+    background-image: url("../img/signin.jpg");
     background-repeat: no-repeat;
     background-size: cover;
+
 }
 
 .navbar-brand {
