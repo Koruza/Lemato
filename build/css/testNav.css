@@ -20,12 +20,16 @@ img{
 
 body{
   background-repeat: repeat;
-  background-color: #0000AA;
+  background-color: #0808ff;
 
 }
 
+.navbar-default{
+  background-color: #0808ff;
+}
+
 .shit{
-  width: 70%;
+  width: 80%;
   padding-left: 100px;
 }
 
