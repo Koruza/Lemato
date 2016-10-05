@@ -12,6 +12,8 @@
 	    <link href="css/RecipePage.css" rel="stylesheet">
 	</head>
 	<body>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
 		<nav class="navbar navbar-fixed-top navbar-default">
 			<div class="container">
 				<div class="navbar-header">
@@ -53,12 +55,12 @@
 								<button type="button" class="btn btn-default navbar-btn">
 									<span class="glyphicon glyphicon-lock"></span>
 								</button>
-								<div class="btn-group" role="group">
+								<div class="btn-group dropdown" role="group">
 									<button type="button" class="btn btn-default navbar-btn dropdown-toggle"
 										data-toggle="dropdown">
 										<span class="caret"></span>
 									</button>
-									<ul class="dropdown-menu">
+									<ul class="dropdown-menu" role="menu">
 										<li><a href="#">Log out...</a></li>
 									</ul>
 								</div>
