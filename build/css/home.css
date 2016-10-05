@@ -23,10 +23,6 @@ img{
     width: 250px !important;
 }
 
-/*.panel-body-defaul {
-    padding: 40px;
-}*/
-
 .lemato-search {
     width: 500px !important;
 }
@@ -46,4 +42,11 @@ img{
 outline-style: double;
 outline-color: gold;
 outline-width: thick;
+}
+
+.cookbook-button{
+background-color: gold;
+padding: 10px 30px;
+border: 2px;
+border-radius: 25px;
 }
