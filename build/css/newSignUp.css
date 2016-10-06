@@ -1,5 +1,5 @@
 body {
-    padding-top: 60px;
+    padding-top: 20px;
     background-image: url("../img/back.jpg");
     background-repeat: no-repeat;
     background-size: cover;
@@ -12,6 +12,10 @@ img {
 
 .submit {
     color: black;
+    width: 250px;
+    position: absolute;
+    top:470px;
+    left:520px;
 }
 
 .welcome {
@@ -43,6 +47,14 @@ img {
     float: left;
 }
 
+#moveAccount{
+  margin-top:50px;
+    padding-left: 42%;
+    color: white;
+}
+
 .moveit {
+    padding-top: 10px;
     padding-left: 300px;
+    margin-bottom: 40px;
 }

@@ -7,6 +7,10 @@ body {
     padding-bottom: 40px;
 }
 
+textarea{
+  resize: none;
+}
+
 .panel {
 	border: 1px solid lightgreen;
 }
@@ -88,15 +92,41 @@ body {
 	margin-bottom: 10px !important;
 }
 
-.pop-up{
-  z-index: 9999;
+.share-popup{
+  width: 675px;
+  position: fixed;
+  bottom: 35%;
+  right: 40%;
+  background-color: white;
+  /* Applies the given border style to all sides. */
+  border: 1px solid #000;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.btn-shift{
+  padding-right: 10px !important;
+  padding-left: 10px !important;
+}
+
+.button {
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+.btn:hover {
+    background-color: Red; /* Green */
+    color: white;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
 #background {
 	position: fixed;
+	top: -50%;
 	left: -50%;
 	width: 200%;
-	height: 41%;
+	height: 200%;
 }
 
 #background img {
