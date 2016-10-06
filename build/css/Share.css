@@ -95,8 +95,8 @@ textarea{
 .share-popup{
   width: 675px;
   position: fixed;
-  top: 100px;
-  right: 600px;
+  top: 25%;
+  right: 35%;
   background-color: white;
   /* Applies the given border style to all sides. */
   border: 1px solid #000;
