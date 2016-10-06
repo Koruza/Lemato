@@ -35,7 +35,9 @@ nav{
 
 body {
   padding-top: 80px;
-  background-color: #ffcc66; /* orange ish */
+  background-image: url("../img/signin.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 
@@ -51,15 +53,17 @@ body {
   font-size: 40px;
   height: 50px;
   padding-left: 10px;
+  border: none;
+  box-shadow: none;
 }
 
 .description-input {
   padding-top: 20px;
 }
 
-.description-input textarea, .title, .ingredient-input, .instruction-input {
+.description-input textarea, .ingredient-input, .instruction-input {
   box-shadow: none !important;
-  border: none;
+  /*border: none;*/
   resize: none;
 }
 
