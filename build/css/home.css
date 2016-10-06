@@ -31,8 +31,9 @@ nav{
     width: 130px;
 }
 /*END OF NAVBAR CSS*/
+
 html {
-  overflow: hidden;
+	overflow-x:hidden;
 }
 
 body {
