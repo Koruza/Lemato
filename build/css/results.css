@@ -1,3 +1,14 @@
+body {
+  padding-top: 60px;
+  background-image: url("../img/cherry.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+h4 {
+  font-weight: bold;
+}
+
 .navbar-brand {
   width: 130px;
   font-weight: bold;
@@ -9,38 +20,6 @@
 
 .lemato-search {
   width: 500px !important;
-}
-
-.pop {
-  padding-left: 5px;
-  background-color: #E6F9BA;
-}
-
-.ing {
-  width: 330px;
-  background-color: #505050;
-}
-
-.heart {
-  color: red;
-}
-
-.moveee {
-  padding-left: 60px;
-  padding-top: 20px;
-}
-
-.a-search {
-  font-weight:bold;
-  color: black;
-}
-
-.submit {
-  color: black;
-}
-
-.dropdown {
-  width: 130px;
 }
 
 .result-pic {
@@ -72,16 +51,5 @@
 
 .recipe-vote div {
   font-size: 16px;
-  font-weight: bold;
-}
-
-body {
-  padding-top: 60px;
-  background-image: url("../img/cherry.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-h4 {
   font-weight: bold;
 }
