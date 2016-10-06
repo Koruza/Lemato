@@ -95,8 +95,8 @@ textarea{
 .share-popup{
   width: 675px;
   position: fixed;
-  top: 25%;
-  right: 35%;
+  top: 100px;
+  right: 600px;
   background-color: white;
   /* Applies the given border style to all sides. */
   border: 1px solid #000;
@@ -115,7 +115,7 @@ textarea{
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
 }
-.btn:hover {
+.button:hover {
     background-color: Red; /* Green */
     color: white;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
