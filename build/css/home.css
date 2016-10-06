@@ -31,8 +31,9 @@ nav{
     width: 130px;
 }
 /*END OF NAVBAR CSS*/
+
 html {
-  overflow: hidden;
+	overflow-x:hidden;
 }
 
 body {
@@ -58,9 +59,9 @@ body {
   color: red;
 }
 .outline {
-outline-style: double;
-outline-color: gold;
-outline-width: thick;
+outline-style: solid;
+outline-color: lightgreen;
+outline-width: 1px;
 }
 
 .right-sidebar {

@@ -13,9 +13,9 @@ img {
 .submit {
     color: black;
     width: 250px;
-    position: absolute;
-    top:470px;
-    left:520px;
+    position:relative;
+    left: 41%;
+
 }
 
 .welcome {
@@ -48,8 +48,11 @@ img {
 }
 
 #moveAccount{
-  margin-top:50px;
-    padding-left: 42%;
+    /*margin-top:50px;*/
+    top: 10px;
+    /*padding-left: 42%;*/
+    margin-left: 43%;
+    position: relative;
     color: white;
 }
 
