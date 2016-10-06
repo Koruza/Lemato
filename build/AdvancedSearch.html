@@ -11,18 +11,19 @@
 </head>
 
 <body>
-  <script src="js/jquery.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-<script src="js/bundle.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bundle.js"></script>
+
     <nav class="navbar navbar-fixed-top navbar-default">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
                 <a class="navbar-brand" href="#">
                     <span><img src="img/lemato.png"/> Lemato</span>
                 </a>
@@ -32,9 +33,8 @@
                     <div class="input-group">
                         <input type="text" class="form-control lemato-search" placeholder="Search Lemato">
                         <span class="input-group-btn">
-              <button type="submit" class="btn btn-default">
-                <span class="glyphicon glyphicon-search"></span>
-                        </button>
+                          <button type="submit" class="btn btn-default">
+                          <span class="glyphicon glyphicon-search"></span></button>
                         </span>
                     </div>
                 </form>
@@ -42,30 +42,27 @@
                     <div class="nav navbar-nav navbar-right">
                         <div class="btn-toolbar pull-right" role="toolbar">
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-default navbar-btn">
-                  What's in your Fridge?
-                </button>
+                                <button type="button" class="btn btn-default navbar-btn">What's in your Fridge?</button>
                             </div>
+                            <button type="button" class="btn btn-default navbar-btn">
+                              <span class="glyphicon glyphicon-book"></span> Cookbook
+                            </button>
                             <div class="btn-group" role="group">
                                 <button type="button" class="btn btn-default navbar-btn navbar-btn">
-                  <span class="glyphicon glyphicon-lock"></span>
-                </button>
+                                  <span class="glyphicon glyphicon-lock"></span>
+                                </button>
                                 <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-default dropdown-toggle navbar-btn" data-toggle="dropdown">
-                    <span class="caret"></span>
-                  </button>
+                                    <button type="button" class="btn btn-default dropdown-toggle navbar-btn roundedCaret" data-toggle="dropdown">
+                                      <span class="caret"></span>
+                                    </button>
                                     <ul class="dropdown-menu">
                                         <li><a href="#">Log out...</a></li>
                                     </ul>
                                 </div>
-                                <div class="btn-group" role="group">
-                                </div>
                             </div>
                         </div>
-
-
+                    </div>
                 </ul>
-                </div>
             </div>
     </nav>
 
@@ -84,33 +81,38 @@
                       <option value="dinner">Dinner</option>
                       <option value="dessert">Dessert</option>
                     </select><br><br> Ingredient 1: <input type="text" name="ingredient" class="ing" maxlength="25"><br><br> Ingredient 2: <input type="text" name="ingredient" class="ing" maxlength="25"><br><br> Ingredient 3:
-                    <input
-                        type="text" name="ingredient" class="ing" maxlength="25">
-                        <span class="glyphicon glyphicon-plus-sign"></span><br>
-                        <br><h4>Allergies:</h4>
-                        <div class="col-md-12">
-                            <div class="col-md-4">
-                                <input type="checkbox" name="allergies" value="Nuts"> Nuts<br>
-                                <input type="checkbox" name="allergies" value="Shellfish"> Shellfish<br>
-                                <input type="checkbox" name="allergies" value="Dairy"> Dairy<br>
-                            </div>
-                            <div class="col-md-8">
-                                <input type="checkbox" name="allergies" value="Soy"> Soy<br>
-                                <input type="checkbox" name="allergies" value="Fish"> Fish<br>
-                                <input type="checkbox" name="allergies" value="Wheat"> Wheat<br>
-                                <br></div>
+                    <input type="text" name="ingredient" class="ing" maxlength="25">
+                    <span class="glyphicon glyphicon-plus-sign"></span><br>
+                    <br>
+                    <h4>Allergies:</h4>
+                    <div class="col-md-12">
+                        <div class="col-md-4">
+                            <input type="checkbox" name="allergies" value="Nuts"> Nuts<br>
+                            <input type="checkbox" name="allergies" value="Dairy"> Dairy<br>
+                            <input type="checkbox" name="allergies" value="Shellfish"> Shellfish<br>
+                            <input type="checkbox" name="allergies" value="Wheat"> Wheat<br>
                         </div>
-                        <h4>Dietary Restraints: </h4>
-                        <div class="col-md-12">
-                            <div class="col-md-4">
-                                <input type="checkbox" name="diet" value="Gluten"> Gluten<br>
-                                <input type="checkbox" name="diet" value="Vegetarian">Vegetarian<br>
-                                <input type="checkbox" name="diet" value="Vegan">Vegan<br><br>
-                            </div>
-                            <div class="col-md-8">
-                            </div>
+                        <div class="col-md-8">
+                            <input type="checkbox" name="allergies" value="Soy"> Soy<br>
+                            <input type="checkbox" name="allergies" value="Fish"> Fish<br>
+
+                            <input type="checkbox" name="allergies" value="Other"> Other
+                            <input type="text" name="ingredient" class="other" maxlength="25"><br><br>
+                            <br></div>
+                    </div>
+                    <h4>Dietary Restraints: </h4>
+                    <div class="col-md-12">
+                        <div class="col-md-4">
+                            <input type="checkbox" name="diet" value="Gluten"> Gluten<br>
+                            <input type="checkbox" name="diet" value="Vegetarian">Vegetarian<br>
                         </div>
-                        <input type="submit" value="Submit" class="submit">
+                        <div class="col-md-8">
+                            <input type="checkbox" name="diet" value="Vegan">Vegan<br>
+                            <input type="checkbox" name="allergies" value="Other"> Other
+                            <input type="text" name="ingredient" class="other" maxlength="25"><br><br>
+                        </div>
+                    </div>
+                    <input type="submit" value="Submit" class="submit">
 
             </div>
             </form>

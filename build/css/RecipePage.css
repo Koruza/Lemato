@@ -10,9 +10,27 @@
 	}
 }
 
-img{
-  width: 31%;
+.navbar-brand {
+    width: 130px;
+    font-weight: bold;
 }
+
+img{
+  width: 30%;
+}
+
+nav{
+  background-image: url("../img/back1.jpg")
+}
+
+.roundedCaret{
+      border-radius: 4px;
+}
+
+.dropdown{
+    width: 130px;
+}
+/*END OF NAVBAR CSS*/
 
 body {
     padding-top: 60px;
@@ -49,15 +67,6 @@ body {
 	padding-left: 8px;
 }
 
-.navbar {
-	background-color: #E6F9BA;
-}
-
-.navbar-brand {
-	width: 130px;
-	font-weight: bold;
-}
-
 .no-border {
 	border: none;
 }
@@ -70,7 +79,7 @@ body {
 }
 
 .page-title {
-	
+
 }
 
 .panel-body button {
