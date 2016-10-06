@@ -106,6 +106,21 @@ textarea{
   border-bottom-right-radius: 3px;
 }
 
+.btn-shift{
+  padding-right: 10px !important;
+  padding-left: 10px !important;
+}
+
+.button {
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+.btn:hover {
+    background-color: Red; /* Green */
+    color: white;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
 #background {
 	position: fixed;
 	top: -50%;
