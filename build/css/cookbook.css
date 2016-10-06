@@ -46,9 +46,30 @@ h1 {
 	font-size: 500%;
 }
 
-h4 {
+.media-body h4 {
 	font-weight: bold;
 }
+
+/* START OF LEFT SIDEBAR CSS ---------------ANH, SIDEBAR CODE STARTS HERE------------------ */
+.panel hr {
+	border-top: 1px solid lightgrey;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	width: 100%;
+}
+
+.lemato-left-nav h4 {
+	padding-left: 15px;
+}
+
+.lemato-left-nav li a {
+	color: #34495E;
+}
+
+.lemato-left-nav li a:hover {
+	color: green;
+}
+/* END OF LEFT SIDEBAR CSS ---------------ANH, SIDEBAR CODE ENDS HERE------------------ */
 
 .cookbook-header {
 	padding: 10px;
@@ -80,6 +101,8 @@ h4 {
 
 .panel-footer hr {
 	border-top: 1px solid lightgreen;
+	margin-top: 7px;
+	margin-bottom: 0px;
 }
 
 .pop {
