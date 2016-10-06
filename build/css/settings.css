@@ -1,0 +1,89 @@
+@media (min-width: 1200px) {
+	.lemato-search {
+		width: 500px !important;
+	}
+}
+
+@media (max-width: 991px) {
+	.lemato-search {
+		width: 160px !important;
+	}
+}
+
+.navbar-brand {
+    width: 130px;
+    font-weight: bold;
+}
+
+img{
+  width: 30%;
+}
+
+nav{
+  background-image: url("../img/back1.jpg")
+}
+
+.roundedCaret{
+      border-radius: 4px;
+}
+
+.dropdown{
+    width: 130px;
+}
+
+/*END OF NAVBAR CSS*/
+
+body {
+  padding-top: 80px;
+  background-image: url("../img/signin.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+.input-group {
+  width: 250px !important;
+}
+
+.pop {
+  padding-left: 5px;
+}
+
+.title {
+  font-size: 40px;
+  height: 50px;
+  padding-left: 10px;
+  border: none;
+  box-shadow: none;
+}
+
+.description-input {
+  padding-top: 20px;
+}
+
+.description-input textarea, .ingredient-input, .instruction-input {
+  box-shadow: none !important;
+  /*border: none;*/
+  resize: none;
+}
+
+.description-input span {
+  color: #555;
+}
+
+.user-info, .photo-input, .ingredient-title, .instruction-title {
+  padding-left: 10px;
+}
+
+.photo-input {
+  color: #555;
+  padding-left: 10px;
+}
+
+.publish-button {
+  background-color: #E6F9BA; /* greenish */
+}
+
+.panel-footer {
+  background-color: #FFF;
+}
