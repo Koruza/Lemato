@@ -41,7 +41,7 @@ body {
 }
 
 .hallo {
-  background-color: #82E0AA !important;
+  background-color: #82E0AA !important; /* bright green */
   font-weight: bold;
   font-size: 18px;
   /*color: #FFF !important;*/

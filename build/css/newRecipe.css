@@ -53,6 +53,14 @@ body {
   box-shadow: none;
 }
 
+.title:focus,
+.title:active,
+.title:active:focus,
+.title:hover {
+  outline: none;
+  box-shadow: none;
+}
+
 .description-input {
   padding-top: 20px;
 }
@@ -71,13 +79,29 @@ body {
   padding-left: 10px;
 }
 
-.photo-input {
+.photo-input,
+.photo-input:active,
+.photo-input:focus,
+.photo-input:active:focus,
+.photo-input:hover {
   color: #555;
-  padding-left: 10px;
+}
+
+.glyphicon-camera {
+  font-size: 20px;
 }
 
 .publish-button {
-  background-color: #E6F9BA; /* greenish */
+  background-color: #82E0AA; /* bright green */
+  font-weight: bold;
+}
+
+.publish-button:active,
+.publish-button:focus,
+.publish-button:active:focus,
+.publish-button:hover {
+  background-color: #777;
+  color: #82E0AA;
 }
 
 .panel-footer {
