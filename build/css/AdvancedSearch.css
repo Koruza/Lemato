@@ -23,6 +23,16 @@ nav{
   background-image: url("../img/back1.jpg")
 }
 
+.roundedCaret{
+      border-radius: 4px;
+}
+
+.dropdown{
+    width: 130px;
+}
+
+/*END OF NAVBAR CSS*/
+
 body {
     padding-top: 60px;
     background-image: url("../img/cherry.jpg");
@@ -35,9 +45,6 @@ body {
   background-color: #505050;
 }
 
-.roundedCaret{
-      border-radius: 4px;
-}
 /*.lemato-search {
     width: 500px !important;
 }*/
@@ -69,8 +76,4 @@ h4 {
 
 .submit {
     color: black;
-}
-
-.dropdown{
-    width: 130px;
 }
