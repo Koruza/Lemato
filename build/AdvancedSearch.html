@@ -14,6 +14,7 @@
   <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
 <script src="js/bundle.js"></script>
+
     <nav class="navbar navbar-fixed-top navbar-default">
         <div class="container">
             <div class="navbar-header">
@@ -41,6 +42,10 @@
                 <ul class="nav navbar-nav navbar-right">
                     <div class="nav navbar-nav navbar-right">
                         <div class="btn-toolbar pull-right" role="toolbar">
+                          <button type="button" class="btn btn-default navbar-btn">
+                            <span class="glyphicon glyphicon-book"></span>
+                            Cookbook
+                          </button>
                             <div class="btn-group" role="group">
                                 <button type="button" class="btn btn-default navbar-btn">
                   What's in your Fridge?
@@ -51,15 +56,14 @@
                   <span class="glyphicon glyphicon-lock"></span>
                 </button>
                                 <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-default dropdown-toggle navbar-btn" data-toggle="dropdown">
+                                    <button type="button" class="btn btn-default dropdown-toggle navbar-btn roundedCaret" data-toggle="dropdown">
                     <span class="caret"></span>
                   </button>
                                     <ul class="dropdown-menu">
                                         <li><a href="#">Log out...</a></li>
                                     </ul>
                                 </div>
-                                <div class="btn-group" role="group">
-                                </div>
+                                
                             </div>
                         </div>
 
@@ -91,13 +95,16 @@
                         <div class="col-md-12">
                             <div class="col-md-4">
                                 <input type="checkbox" name="allergies" value="Nuts"> Nuts<br>
-                                <input type="checkbox" name="allergies" value="Shellfish"> Shellfish<br>
                                 <input type="checkbox" name="allergies" value="Dairy"> Dairy<br>
+                                <input type="checkbox" name="allergies" value="Shellfish"> Shellfish<br>
+                              <input type="checkbox" name="allergies" value="Wheat"> Wheat<br>
                             </div>
                             <div class="col-md-8">
                                 <input type="checkbox" name="allergies" value="Soy"> Soy<br>
                                 <input type="checkbox" name="allergies" value="Fish"> Fish<br>
-                                <input type="checkbox" name="allergies" value="Wheat"> Wheat<br>
+
+                                <input type="checkbox" name="allergies" value="Other"> Other
+                                  <input type="text" name="ingredient" class="other" maxlength="25"><br><br>
                                 <br></div>
                         </div>
                         <h4>Dietary Restraints: </h4>
@@ -105,9 +112,11 @@
                             <div class="col-md-4">
                                 <input type="checkbox" name="diet" value="Gluten"> Gluten<br>
                                 <input type="checkbox" name="diet" value="Vegetarian">Vegetarian<br>
-                                <input type="checkbox" name="diet" value="Vegan">Vegan<br><br>
                             </div>
                             <div class="col-md-8">
+                              <input type="checkbox" name="diet" value="Vegan">Vegan<br>
+                              <input type="checkbox" name="allergies" value="Other"> Other
+                                <input type="text" name="ingredient" class="other" maxlength="25"><br><br>
                             </div>
                         </div>
                         <input type="submit" value="Submit" class="submit">
