@@ -73,7 +73,7 @@ h1 {
 
 .cookbook-header {
 	padding: 10px;
-	background-color: #82E0AA;
+	background-image: url("../img/back1.jpg");;
 	border: 1px solid lightgreen;
 	border-radius: 5px;
 	margin: -2px;
@@ -82,7 +82,7 @@ h1 {
 .cookbook-header span.glyphicon-cutlery {
 	padding: 10px;
 	font-size: 200%;
-	color: #196F3D;
+	color: #229954; /* Different green: #196F3D */
 }
 
 .tilt-left {
