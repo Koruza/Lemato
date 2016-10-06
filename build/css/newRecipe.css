@@ -1,3 +1,38 @@
+@media (min-width: 1200px) {
+	.lemato-search {
+		width: 500px !important;
+	}
+}
+
+@media (max-width: 991px) {
+	.lemato-search {
+		width: 160px !important;
+	}
+}
+
+.navbar-brand {
+    width: 130px;
+    font-weight: bold;
+}
+
+img{
+  width: 30%;
+}
+
+nav{
+  background-image: url("../img/back1.jpg")
+}
+
+.roundedCaret{
+      border-radius: 4px;
+}
+
+.dropdown{
+    width: 130px;
+}
+
+/*END OF NAVBAR CSS*/
+
 body {
   padding-top: 100px;
   /*padding-left: 40px;
@@ -8,26 +43,11 @@ body {
   background-size: cover;*/
 }
 
-.navbar-brand {
-  width: 130px;
-  font-weight: bold;
-}
-
-img {
-  width: 30%;
-}
 
 .input-group {
   width: 250px !important;
 }
 
-.lemato-search {
-    width: 500px !important;
-}
-
-.navbar{
-  background-color: #E6F9BA;
-}
 
 .pop {
   padding-left: 5px;
