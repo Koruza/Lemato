@@ -7,6 +7,10 @@ body {
     padding-bottom: 40px;
 }
 
+textarea{
+  resize: none;
+}
+
 .panel {
 	border: 1px solid lightgreen;
 }
@@ -88,9 +92,21 @@ body {
 	margin-bottom: 10px !important;
 }
 
-.pop-up{
-  z-index: 9999;
+.share-popup{
+  width: 675px;
+  position: fixed;
+  bottom: 50%;
+  right: 40%;
+  background-color: white;
+  /* Applies the given border style to all sides. */
+  border: 1px solid #000;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
 }
+
+
 
 #background {
 	position: fixed;
