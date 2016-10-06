@@ -11,7 +11,7 @@ textarea{
   resize: none;
 }
 
-.panel {
+.container .panel {
 	border: 1px solid lightgreen;
 }
 
@@ -95,8 +95,8 @@ textarea{
 .share-popup{
   width: 675px;
   position: fixed;
-  top: 100px;
-  right: 600px;
+  top: 10%;
+  left: 20%;
   background-color: white;
   /* Applies the given border style to all sides. */
   border: 1px solid #000;
@@ -104,6 +104,17 @@ textarea{
   border-top-right-radius: 3px;
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
+}
+
+.share-popup .panel {
+	border: none;
+	display: block;
+	margin: auto;
+	padding: 20px;
+}
+
+.panel button {
+	border: none;
 }
 
 .btn-shift{
