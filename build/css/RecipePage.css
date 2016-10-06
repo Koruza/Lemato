@@ -1,5 +1,17 @@
+@media (min-width: 1200px) {
+	.lemato-search {
+		width: 500px !important;
+	}
+}
+
+@media (max-width: 991px) {
+	.lemato-search {
+		width: 160px !important;
+	}
+}
+
 img{
-  width: 30%;
+  width: 31%;
 }
 
 body {
@@ -35,10 +47,6 @@ body {
 
 .lemato-right-sidebar .media-body {
 	padding-left: 8px;
-}
-
-.lemato-search {
-	width: 500px !important;
 }
 
 .navbar {
@@ -90,9 +98,10 @@ body {
 
 #background {
 	position: fixed;
+	top: -50%;
 	left: -50%;
 	width: 200%;
-	height: 41%;
+	height: 200%;
 }
 
 #background img {
