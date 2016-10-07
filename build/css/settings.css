@@ -35,16 +35,16 @@ nav{
 
 body {
   padding-top: 80px;
-  background-image: url("../img/signin.jpg");
+  background-image: url("../img/banana.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
 
-.hallo {
-  background-color: #82E0AA !important; /* bright green */
+.setting-label {
   font-weight: bold;
   font-size: 18px;
-  /*color: #FFF !important;*/
+	background-image: url("../img/back1.jpg");
+	height: 42px;
 }
 
 .input-group {
@@ -55,7 +55,11 @@ body {
   margin-top: 15px;
 }
 
-.form-control {
+.form-control,
+.form-control:hover,
+.form-control:focus,
+.form-control:active,
+.form-control:focus:active {
   width: 400px !important;
   box-shadow: none;
 }
@@ -76,7 +80,6 @@ body {
   background-color: #777;
   color: lightgreen !important;
   font-weight: bold;
-  color: #777; /* grey like our logo */
 }
 
 .update-button:hover,
@@ -113,6 +116,10 @@ body {
   font-weight: bold;
   outline: none;
   box-shadow: none;
+}
+
+.account-settings hr {
+	margin-top: 15px;
 }
 
 /* START OF LEFT SIDEBAR CSS */
