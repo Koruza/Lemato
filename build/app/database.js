@@ -6,7 +6,34 @@ var startupName = "Lemato";
 
 // Put your mock objects here, as in Workshop 4
 var initialData = {
-
+  "users": {
+        "1": {
+            "_id": 1,
+            "fullName": "Someone",
+            "feed": 1
+        },
+        "2": {
+            "_id": 2,
+            "fullName": "Someone Else",
+            "feed": 2
+        }
+    },
+    "recipes":{
+        "1":{
+          "name": "Brownie",
+          "chefPoints": 12,
+          "ingredients":[ 
+            "Flour", "Egg", "Cocoa Powder", "Sugar","Salt"
+           ]
+        },
+        "2":{
+          "name": "Brownie in an egg",
+          "chefPoints": 30,
+          "ingredients":[ 
+            "Flour", "Egg", "Cocoa Powder", "Sugar","Baking Powder"
+           ]
+          }
+      }
 };
 
 var data = JSON.parse(localStorage.getItem(startupName));
