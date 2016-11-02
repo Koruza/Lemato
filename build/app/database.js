@@ -10,12 +10,18 @@ var initialData = {
         "1": {
             "_id": 1,
             "fullName": "Someone",
-            "feed": 1
+            "feed": 1,
+            "username":"BrownieKing",
+            "password":"chocolate",
+            "cookbook":"Brownie in an egg"
         },
         "2": {
             "_id": 2,
             "fullName": "Someone Else",
-            "feed": 2
+            "feed": 2,
+            "username":"BrownieMaster",
+            "password":"fudge",
+            "cookbook":"Brownie"
         }
     },
     "recipes":{
@@ -23,17 +29,59 @@ var initialData = {
           "name": "Brownie",
           "chefPoints": 12,
           "ingredients":[ 
-            "Flour", "Egg", "Cocoa Powder", "Sugar","Salt"
-           ]
+            "Flour", "Egg", "Cocoa Powder", "Sugar","Butter"
+           ],
+           "pic":"None",
+           "instructions":[
+              "1. Combine the butter and sugar", 
+              "2. Mix the flour and cocoa powder together in a seperate bowl", 
+              "3. Whisk the egg into the flour and cocoa powder mixture", 
+              "4. Add the butter and sugar to the mix", 
+              "5. Pour it into a 9x9 tray"
+           ],
+           "description": "Homestyle brownies",
+           "allergies": ["dairy","gluten"]
         },
         "2":{
           "name": "Brownie in an egg",
           "chefPoints": 30,
           "ingredients":[ 
-            "Flour", "Egg", "Cocoa Powder", "Sugar","Baking Powder"
-           ]
+            "Flour", "Egg", "Cocoa Powder", "Sugar","Baking Powder"],
+           "pic":"None",
+           "instructions":[
+             "1. Mix dry ingredients together", 
+             "2. Mix wet ingredients together", 
+             "3. Combine the dry ingredients into the wet ones", 
+             "4. Pour the mixture into the empty eggshells"
+           ],
+           "description":"Brownies makes inside an egg shell!",
+           "allergies": ["dairy", "gluten"]
           }
-      }
+      },
+      "feed":{
+        "1": {
+          "contents": {
+                  "_id":1,
+                  "author": 1,
+                  "postDate": 1453668480000,
+                  "contents": "Browniesss."
+              },
+          "comments":
+            [
+              {
+                "author": 2,
+                "contents": "Omg have you tried the brownie in an egg?!",
+                "postDate": 1453690800000
+              },
+              {
+                "author": 1,
+                "contents": "Yes, I did. The idea of it blew my mind!!!",
+                "postDate": 1453790800000
+              }
+            ]
+          
+          }
+        }
 };
 
 var data = JSON.parse(localStorage.getItem(startupName));
