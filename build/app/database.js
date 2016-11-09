@@ -28,15 +28,15 @@ var initialData = {
         "1":{
           "name": "Brownie",
           "chefPoints": 12,
-          "ingredients":[ 
+          "ingredients":[
             "Flour", "Egg", "Cocoa Powder", "Sugar","Butter"
            ],
            "pic":"None",
            "instructions":[
-              "1. Combine the butter and sugar", 
-              "2. Mix the flour and cocoa powder together in a seperate bowl", 
-              "3. Whisk the egg into the flour and cocoa powder mixture", 
-              "4. Add the butter and sugar to the mix", 
+              "1. Combine the butter and sugar",
+              "2. Mix the flour and cocoa powder together in a seperate bowl",
+              "3. Whisk the egg into the flour and cocoa powder mixture",
+              "4. Add the butter and sugar to the mix",
               "5. Pour it into a 9x9 tray"
            ],
            "description": "Homestyle brownies",
@@ -45,13 +45,13 @@ var initialData = {
         "2":{
           "name": "Brownie in an egg",
           "chefPoints": 30,
-          "ingredients":[ 
+          "ingredients":[
             "Flour", "Egg", "Cocoa Powder", "Sugar","Baking Powder"],
            "pic":"None",
            "instructions":[
-             "1. Mix dry ingredients together", 
-             "2. Mix wet ingredients together", 
-             "3. Combine the dry ingredients into the wet ones", 
+             "1. Mix dry ingredients together",
+             "2. Mix wet ingredients together",
+             "3. Combine the dry ingredients into the wet ones",
              "4. Pour the mixture into the empty eggshells"
            ],
            "description":"Brownies makes inside an egg shell!",
@@ -79,7 +79,7 @@ var initialData = {
                 "postDate": 1453790800000
               }
             ]
-          
+
           }
         }
 };
