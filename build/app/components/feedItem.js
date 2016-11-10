@@ -6,6 +6,9 @@ import {postComment} from '../server';
 import {likeFeedItem} from '../server';
 import {unlikeFeedItem} from '../server';
 
+//TODO: Implement share in Server and here
+//import {share} from '../server';
+
 export default class FeedItem extends React.Component {
   constructor(props) {
   super(props);
