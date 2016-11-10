@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import feed from './components/feed';
 import {IndexRoute, Router, Route, browserHistory} from 'react-router'
 
 /**
