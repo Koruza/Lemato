@@ -3,12 +3,12 @@ import React from 'react';
 export default class results extends React.Component {
   constructor(props) {
     super(props)
-    this.state = props
+    this.state = props.data
   }
 
-  
-
   render() {
+    var data = this.state
+
     return (
       <div classNameName="container">
         <div className="row">
@@ -23,12 +23,12 @@ export default class results extends React.Component {
                     </a>
                   </div>
                   <div className="media-body">
-                    <h4 className="media-heading">Egg Brownie</h4>
-                    A brownie but in the shape of an egg. Trick your friends with this delicious treat. Only 200 calories!
+                    <h4 className="media-heading">{data.name}</h4>
+                    {data.description}
                   </div>
                   <div className="media-right recipe-vote">
                     <a href="#"><span className="glyphicon glyphicon-arrow-up"></span></a>
-                    <div>5129</div>
+                    <div>{data.chefPoints}</div>
                     <a href="#"><span className="glyphicon glyphicon-arrow-down"></span></a>
                   </div>
                 </div>
