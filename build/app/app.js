@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import feed from './components/feed';
 import {IndexRoute, Router, Route, browserHistory} from 'react-router'
+import {AdvancedSearch} from './components/advancedSearch'
 
 /**
 * The Feed page. We created a new component just
@@ -9,9 +10,10 @@ import {IndexRoute, Router, Route, browserHistory} from 'react-router'
 */
 class FeedPage extends React.Component {
     render() {
-        return <feed user={1}/>;
+        return <feed user={1}/> ;
     }
 }
+
 /**
 * The primary component in our application.
 * The Router will give it different child Components
@@ -21,6 +23,8 @@ class FeedPage extends React.Component {
 * also contain Component objects for the left and
 * right content panes.
 */
+
+
 class App extends React.Component {
     render() {
         return (
@@ -33,8 +37,9 @@ ReactDOM.render((
     <Router history={browserHistory}>
         <Route path="/" component={App}>
             {/* Show the Feed at / */}
+            //<IndexRoute component ={AdvancedSearch}/>
             <IndexRoute component={FeedPage}/>
+            <Route path="search" component={AdvancedSearch}/>
         </Route>
-
     </Router>
-), document.getElementById('recipe-share'));
+), document.getElementById('wholePage'));
