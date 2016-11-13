@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
 
-export default class advancedsearch extends React.Component {
+export default class AdvancedSearch extends React.Component {
 
 // <Link to={"/profile/" + this.props.author._id}>
 // {this.props.author.fullName}
@@ -12,6 +12,7 @@ export default class advancedsearch extends React.Component {
   }
 
   render() {
+    console.log("Hi");
          return (
            <div>
            <div className="container">

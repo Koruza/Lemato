@@ -7,9 +7,10 @@ export default class results extends React.Component {
   }
 
   render() {
-    var data = this.state
+  //  var data = this.state
 
     return (
+      <div>
       <div className="container">
         <div className="row">
           // Left Sidebar
@@ -58,9 +59,9 @@ export default class results extends React.Component {
               <div className="panel-heading setting-label">Account Settings</div>
               <div className="panel-body account-settings">
                 <label>Change password</label>
-                <input className="form-control old-password" placeholder="Old password">
-                <input className="form-control new-password" placeholder="New password">
-                <input className="form-control cf-new-password" placeholder="Confirm New password">
+                <input className="form-control old-password" placeholder="Old password" />
+                <input className="form-control new-password" placeholder="New password" />
+                <input className="form-control cf-new-password" placeholder="Confirm New password" />
                 <button type="button" className="btn btn-default update-button">Update password</button>
                 <hr />
                 <label>Delete account</label>
@@ -73,6 +74,7 @@ export default class results extends React.Component {
           </div>
         </div>
       </div>
+    </div>
 
     )
   }

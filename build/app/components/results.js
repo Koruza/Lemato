@@ -10,7 +10,8 @@ export default class results extends React.Component {
     var data = this.state
 
     return (
-      <div classNameName="container">
+      <div>
+      <div className="container">
         <div className="row">
           <div className="col-md-2"></div>
           <div className="col-md-8">
@@ -38,6 +39,7 @@ export default class results extends React.Component {
         <div className="col-md-2"></div>
       </div>
     </div>
+  </div>
     )
   }
 }
