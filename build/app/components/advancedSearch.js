@@ -6,10 +6,10 @@ export default class AdvancedSearch extends React.Component {
 // <Link to={"/profile/" + this.props.author._id}>
 // {this.props.author.fullName}
 // </Link>
-  constructor(props) {
-    super(props);
-    this.state = props.data;
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = props.data;
+  // }
 
   render() {
     console.log("Hi");

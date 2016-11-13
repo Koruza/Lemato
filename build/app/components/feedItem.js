@@ -87,6 +87,7 @@ export default class FeedItem extends React.Component {
                 throw new Error("Unknown FeedItem: " + data.type);
         }
         return (
+          <div>
             <div className="new-recipe panel panel-default">
                 <div className="panel-body">
                     {contents}
@@ -136,6 +137,7 @@ export default class FeedItem extends React.Component {
                     } < /CommentThread>
                </div >
              </div>
+           </div>
 
         )
     }
