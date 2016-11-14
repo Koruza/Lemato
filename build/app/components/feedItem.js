@@ -5,7 +5,7 @@ import Comment from './comment';
 import {postComment} from '../server';
 import {likeFeedItem} from '../server';
 import {unlikeFeedItem} from '../server';
-import {handleShareClick} from '../server';
+// import {handleShareClick} from '../server';
 
 export default class FeedItem extends React.Component {
     constructor(props) {
@@ -34,10 +34,9 @@ export default class FeedItem extends React.Component {
 
     //TODO: Change to Share
     handleShareClick(clickEvent) {
-        clickEvent.preventDefault();
-            clickEvent.preventDefault();
-            var popup = document.getElementById('myPopup');
-            popup.classList.toggle('show');
+      clickEvent.preventDefault();
+      var popup = document.getElementById('myPopup');
+      popup.classList.toggle('show');
     }
 
     didUserLike() {
@@ -85,7 +84,7 @@ export default class FeedItem extends React.Component {
                     <hr/>
                     <div className="row">
                         <div className="col-md-12">
-                            <ul className="list-inline">
+                            <ul className="list-inline pagination">
                                 <li>
                                     <a href="#" onClick={(e) => this.handleLikeClick(e)}>
                                         <span className="glyphicon glyphicon-cutlery"></span>

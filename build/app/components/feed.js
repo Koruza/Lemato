@@ -13,6 +13,8 @@ export default class Feed extends React.Component {
     }
 
     //TODO Oscar pls change statusUpdate Entry
+    //Done
+
     render() {
         // return (
         //     <div>
