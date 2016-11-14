@@ -10,18 +10,21 @@ import {AdvancedSearch} from './components/advancedSearch'
 * to fix the userId at 4.
 */
 class FeedPage extends React.Component {
-    render() {
-        return <Feed user={1}/> ;
-    }
+	render() {
+		return <Feed user={1}/> ;
+	}
 }
 
-class ProfilePage extends React.Component {
-  render() {
-    return (
-      <p>This is the profile page for a user
-      with ID {this.props.params.id}.</p>
-    );
-  }
+/**
+* The Feed page. We created a new component just
+* to fix the userId at 4.
+*/
+class RecipePage extends React.Component {
+	render() {
+		return (
+			
+		);
+	}
 }
 
 /**
@@ -35,11 +38,11 @@ class ProfilePage extends React.Component {
 */
 
 class App extends React.Component {
-    render() {
-        return (
-            <div>{this.props.children}</div>
-        )
-    }
+	render() {
+		return (
+			<div>{this.props.children}</div>
+		)
+	}
 }
 //         return (
 //             <div>{this.props.children}</div>
@@ -70,12 +73,12 @@ class App extends React.Component {
 // }
 
 ReactDOM.render((
-    <Router history={browserHistory}>
-        <Route path="/" component={App}>
-            {/* Show the Feed at / */}
-            //<IndexRoute component ={AdvancedSearch}/>
-            <IndexRoute component={FeedPage}/>
-            <Route path="search" component={AdvancedSearch}/>
-        </Route>
-    </Router>
+	<Router history={browserHistory}>
+		<Route path="/" component={App}>
+			{/* Show the Feed at / */}
+			//<IndexRoute component ={AdvancedSearch}/>
+			<IndexRoute component={FeedPage}/>
+			<Route path="search" component={AdvancedSearch}/>
+		</Route>
+	</Router>
 ), document.getElementById('wholePage'));
