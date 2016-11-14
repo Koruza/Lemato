@@ -1,5 +1,4 @@
 import React from 'react';
-import {unixTimeToString} from '../util.js';
 import {Link} from 'react-router';
 
 
