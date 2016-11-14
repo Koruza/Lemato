@@ -1,6 +1,6 @@
 import React from 'react';
-// import StatusUpdate from './statusupdate';
-// import CommentThread from './commentthread';
+import StatusUpdate from './statusupdate';
+import CommentThread from './commentthread';
 import Comment from './comment';
 import {postComment} from '../server';
 import {likeFeedItem} from '../server';
