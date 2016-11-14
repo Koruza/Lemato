@@ -15,8 +15,14 @@ import AdvancedSearch from './components/advancedSearch';
 */
 class FeedPage extends React.Component {
 	render() {
-		return <Feed user={1}/>;
+		return <Feed/>;
 	}
+}
+
+class Cookiebook extends React.Component{
+  render(){
+    return(<cookbook user = {1}/>);
+  }
 }
 
 /**
@@ -88,7 +94,7 @@ ReactDOM.render((
 			<Route path="recipe" component={recipePage}>
 				<Route path="/recipe/:recipeID" component={recipePage}/>
 			</Route>
-			<Route path="cookbook" component={cookbook}/>
+			<Route path="cookbook" component={Cookiebook}/>
 		</Route>
 	</Router>
 ), document.getElementById('wholePage'));
