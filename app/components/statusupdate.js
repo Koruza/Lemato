@@ -2,6 +2,9 @@ import React from 'react';
 import {unixTimeToString} from '../util.js';
 import {Link} from 'react-router';
 
+
+//PLACEHOLDER FOR NEW RECIPE PAGE
+
 export default class StatusUpdate extends React.Component {
   render() {
     return (
@@ -25,7 +28,7 @@ export default class StatusUpdate extends React.Component {
           <span className="caret pull-right"></span>
           </div>
         </div>
-        
+
         <div className="row">
           <div className="col-md-12">
           {this.props.children}
