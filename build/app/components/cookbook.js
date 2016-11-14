@@ -98,7 +98,7 @@ export default class cookbook extends React.Component {
 										</a>
 									</div>
 									<div className="media-body">
-										<h4 className="media-heading">Egg Brownie</h4>
+										<h4 className="media-heading"><Link to="/recipePage">Egg Brownie</Link></h4>
 										A brownie but in the shape of an egg. Trick your friends with this delicious treat. Only 200 calories!
 									</div>
 									<div className="media-right recipe-vote">

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 export default class results extends React.Component {
   constructor(props) {
@@ -22,12 +23,12 @@ export default class results extends React.Component {
               <hr />
               <ul className="nav nav-pills nav-stacked">
                 <li role="presentation">
-                  <a href="#"><span className="glyphicon glyphicon-book"></span>
-                  Cookbook</a>
+                  <Link to="/cookbook"><span className="glyphicon glyphicon-book"></span>
+                  Cookbook</Link>
                 </li>
                 <li role="presentation">
-                  <a href="#"><span className="glyphicon glyphicon-cog"></span>
-                  Account Settings</a>
+                  <Link to="/settings"><span className="glyphicon glyphicon-cog"></span>
+                  Account Settings</Link>
                 </li>
               </ul>
             </div>
