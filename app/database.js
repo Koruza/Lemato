@@ -13,7 +13,7 @@ var initialData = {
             "feed": 1,
             "username":"BrownieKing",
             "password":"chocolate",
-            "cookbook":["Brownie in an egg"]
+            "cookbook":[1]
         },
         "2": {
             "_id": 2,
@@ -21,7 +21,7 @@ var initialData = {
             "feed": 2,
             "username":"BrownieMaster",
             "password":"fudge",
-            "cookbook":["Brownie"]
+            "cookbook":[2]
         }
     },
     "recipes":{
