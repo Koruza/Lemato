@@ -1,7 +1,7 @@
 import React from 'react';
-import StatusUpdate from './statusupdate';
-import CommentThread from './commentthread';
-import Comment from './comment';
+import StatusUpdate from './Statusupdate';
+import CommentThread from './Commentthread';
+import Comment from './Comment';
 import {postComment} from '../server';
 import {likeFeedItem} from '../server';
 import {unlikeFeedItem} from '../server';
@@ -10,8 +10,16 @@ import {unlikeFeedItem} from '../server';
 export default class FeedItem extends React.Component {
     constructor(props) {
         super(props);
-        this.state = props.data;
+        this.state = {
+          contents: []
+        };
     }
+
+    componentDidMount() {
+    this.refresh();
+  }
+
+  
     handleCommentPost(commentText) {
         postComment(this.state._id, 1, commentText, (updatedFeedItem) => {
             this.setState(updatedFeedItem);
