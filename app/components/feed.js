@@ -3,6 +3,7 @@ import FeedItem from './feeditem';
 //import newRecipe from './newRecipe';
 import {getFeedData} from '../server';
 import {postStatusUpdate} from '../server';
+import { Link } from 'react-router';
 
 export default class Feed extends React.Component {
     constructor(props) {
@@ -37,7 +38,7 @@ export default class Feed extends React.Component {
                       <div className="col-md-10">
                         <b>Someone</b>
                           <br/> Yesterday at 3:48pm
-                          <br/> <br/> <a href="#">Pumpkin Spice Brownie</a>
+                          <br/> <br/> <Link to="/recipePage">Pumpkin Spice Brownie</Link>
                       </div>
 
                     </div>

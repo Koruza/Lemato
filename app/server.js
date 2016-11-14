@@ -9,3 +9,12 @@ function emulateServerReturn(data, cb) {
     cb(data);
   }, 4);
 }
+
+export function update(feedItemId, userId, cb) {
+  var user = readDocument('Users', user.fullName);
+  user.fullName.push(userId);
+  writeDocument('users', userId);
+  // Return a resolved version of fullName
+  emulateServerReturn(user.fullName.map((userId) =>
+                        readDocument('users', userId)), cb);
+}

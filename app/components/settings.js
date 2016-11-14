@@ -49,11 +49,12 @@ export default class results extends React.Component {
                   </div>
                 </div>
                 <label className="profile-label">Name</label>
-                <input className="form-control name-input" value="Somebody's Name" />
+                <input className="form-control name-input" value={this.props.fullName} />
                 <label className="profile-label">Bio</label>
                 <textarea className="form-control bio-input" rows="3"
                 placeholder="Tell a little bit about yourself"></textarea>
-                <button type="button" className="btn btn-default update-button">Update Profile</button>
+              <button type="button" className="btn btn-default update-button" onClick={(e) => this.handleUpdate(e)}>
+                  Update Profile</button>
               </div>
             </div>
             <div className="panel panel-default">
@@ -63,7 +64,7 @@ export default class results extends React.Component {
                 <input className="form-control old-password" placeholder="Old password" />
                 <input className="form-control new-password" placeholder="New password" />
                 <input className="form-control cf-new-password" placeholder="Confirm New password" />
-                <button type="button" className="btn btn-default update-button">Update password</button>
+                <button type="button" className="btn btn-default update-button" onClick={(e) => this.handlePasswordChange(e)}>Update password</button>
                 <hr />
                 <label>Delete account</label>
                 <br />Once you delete your account, there is no going back.
