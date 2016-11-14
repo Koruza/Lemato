@@ -76,7 +76,7 @@ export default class Feed extends React.Component {
                                   </li>
                                   <li className="media">
                                     <div className="media-body">
-                                      <b>Different Someone Else</b> Can't wait to try this recipe
+                                      <b>Different Someone Else</b> Can&#x0027t wait to try this recipe
                                         <br/> <a href="#"><span className="glyphicon glyphicon-thumbs-up"></span> Like</a> · 19 hrs </div>
                                   </li>
                                   <li className="media">
