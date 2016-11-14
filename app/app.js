@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Feed from './components/feed';
+import {Feed} from './components/feed';
 import {IndexRoute, Router, Route, browserHistory} from 'react-router'
 import {AdvancedSearch} from './components/advancedSearch'
 import {Link} from 'react-router';
@@ -11,7 +11,7 @@ import {Link} from 'react-router';
 */
 class FeedPage extends React.Component {
     render() {
-        return <feed user={1}/> ;
+        return <Feed user={1}/> ;
     }
 }
 
@@ -70,8 +70,8 @@ ReactDOM.render((
         <Route path="/" component={App}>
             {/* Show the Feed at / */}
             //<IndexRoute component ={AdvancedSearch}/>
-            <IndexRoute component={Feed}/>
-             <Route path="search" component={AdvancedSearch}/>
+            <IndexRoute component={FeedPage}/>
+            <Route path="search" component={AdvancedSearch}/>
             //<Route path="profile/:id" component={ProfilePage} />
         </Route>
     </Router>
