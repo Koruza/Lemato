@@ -97,9 +97,36 @@ export default class FeedItem extends React.Component {
                                     </a>
                                 </li>
                                 <li>
-                                    //Handle click of share
-                                    <a href="#" onClick={(e) => this.handleShareClick(e)}>
-                                        <span className="glyphicon glyphicon-share-alt"></span>&nbsp; Share</a>
+                                    //button
+                                    <a href="#" onClick="document.getElementById('id01').style.display='block'" style="width:auto;">
+                                        <span className="glyphicon glyphicon-share-alt"></span>&nbsp; Share
+                                    </a>
+                                    //Box form
+                                    <div id="id01" className="modal">
+                                      <form className="modal-content animate" action="action_page.php">
+                                        <div className="imgcontainer">
+                                          <span onClick="document.getElementById('id01').style.display='none'" className="close" title="Close Modal">&times;</span>
+                                          <img src="img_avatar2.png" alt="Avatar" className="avatar"/>
+                                        </div>
+
+                                        <div className="container">
+                                          <label><b>Username</b></label>
+                                          <input type="text" placeholder="Enter Username" name="uname" required/>
+
+                                          <label><b>Password</b></label>
+                                          <input type="password" placeholder="Enter Password" name="psw" required/>
+
+                                          <button type="submit">Login</button>
+                                          <input type="checkbox" checked="checked"/> Remember me
+                                        </div>
+
+                                        <div className="container" style="background-color:#f1f1f1">
+                                          <button type="button" onClick="document.getElementById('id01').style.display='none'" className="cancelbtn">Cancel</button>
+                                          <span className="psw">Forgot <a href="#">password?</a></span>
+                                        </div>
+                                      </form>
+                                    </div>
+
                                 </li>
                             </ul>
                         </div>
