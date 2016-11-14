@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-export default class recipePage extends React.Component {
+export default class RecipePage extends React.Component {
   render() {
     return (
     <div>
