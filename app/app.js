@@ -1,8 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Feed} from './components/feed';
+import Feed from './components/feed';
+import cookbook from './component/cookbook';
+import Results from './component/results';
+import Settings from './component/settings';
+import recipePage from './component/recipePage';
 import {IndexRoute, Router, Route, browserHistory} from 'react-router'
-import {AdvancedSearch} from './components/advancedSearch'
+import AdvancedSearch from './components/advancedSearch'
 // import {Link} from 'react-router';
 
 /**
@@ -11,7 +15,7 @@ import {AdvancedSearch} from './components/advancedSearch'
 */
 class FeedPage extends React.Component {
 	render() {
-		return <Feed user={1}/> ;
+		return <Feed user={1}/>;
 	}
 }
 
@@ -77,9 +81,14 @@ ReactDOM.render((
 	<Router history={browserHistory}>
 		<Route path="/" component={App}>
 			{/* Show the Feed at / */}
-			//<IndexRoute component ={AdvancedSearch}/>
-			<IndexRoute component={FeedPage}/>
+			<IndexRoute component ={FeedPage}/>
+			<Route path="results" component={Results}/>
+			<Route path="settings" component={Settings}/>
 			<Route path="search" component={AdvancedSearch}/>
+			<Route path="recipe" component={recipePage}>
+				<Route path="/recipe/:recipeID" component={recipePage}/>
+			</Route>
+			<Route path="cookbook" component={cookbook}/>
 		</Route>
 	</Router>
 ), document.getElementById('wholePage'));
