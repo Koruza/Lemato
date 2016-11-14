@@ -1,6 +1,6 @@
 import React from 'react';
 import FeedItem from './feeditem';
-import newRecipe from './newRecipe';
+//import newRecipe from './newRecipe';
 import {getFeedData} from '../server';
 import {postStatusUpdate} from '../server';
 
