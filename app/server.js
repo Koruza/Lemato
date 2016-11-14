@@ -9,3 +9,8 @@ function emulateServerReturn(data, cb) {
     cb(data);
   }, 4);
 }
+
+function pullData(){
+   document.getElementByID("formy").submit();
+}
+

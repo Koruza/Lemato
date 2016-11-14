@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router';
+import {pullData} from '../server';
 
 export default class AdvancedSearch extends React.Component {
 
@@ -11,6 +12,7 @@ export default class AdvancedSearch extends React.Component {
   //   this.state = props.data;
   // }
 
+
   render() {
     console.log("Hi");
          return (
@@ -20,7 +22,7 @@ export default class AdvancedSearch extends React.Component {
                    <div className="col-md-5">
                    </div>
                    <div className="col-md-7 moveee">
-                       <form className="a-search">
+                       <form className="a-search" id="formy">
                              Category:
                            <select className="dropdown">
                              <option value="breakfast">Breakfast</option>
@@ -61,7 +63,7 @@ export default class AdvancedSearch extends React.Component {
                                    <input type="text" name="ingredient" className="other" maxLength="25"/><br/><br/>
                                </div>
                            </div>
-                           <input type="submit" value="Submit" className="submit" id="subm"/>
+                           <input type="submit" value="Submit" className="submit" id="subm" onClick="pullData()"/>
                          </form>
                    </div>
 
