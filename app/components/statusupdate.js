@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router';
-import {unixTimeToString} from './util.js';
+import {unixTimeToString} from '../util.js';
 
 
 //PLACEHOLDER FOR NEW RECIPE PAGE
