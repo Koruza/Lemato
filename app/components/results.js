@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
 
-export default class results extends React.Component {
+export default class Results extends React.Component {
   constructor(props) {
     super(props)
     this.state = props.data
