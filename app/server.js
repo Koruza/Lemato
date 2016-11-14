@@ -11,7 +11,7 @@ function emulateServerReturn(data, cb) {
 }
 
 
-export function update(feedItemId, userId, cb) {
+export function updateSettings(feedItemId, userId, cb) {
   var user = readDocument('Users', user.fullName);
   user.fullName.push(userId);
   writeDocument('users', userId);
@@ -20,6 +20,6 @@ export function update(feedItemId, userId, cb) {
                         readDocument('users', userId)), cb);
 }
 
-function pullData(){
+export function pullData(){
    document.getElementByID("formy").submit();
 }

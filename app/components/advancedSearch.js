@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router';
+// import {Link} from 'react-router';
 import {pullData} from '../server';
 
 export default class AdvancedSearch extends React.Component {
@@ -14,7 +14,6 @@ export default class AdvancedSearch extends React.Component {
 
 
   render() {
-    console.log("Hi");
          return (
            <div>
            <div className="container">

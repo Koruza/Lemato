@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import {Feed} from './components/feed';
 import {IndexRoute, Router, Route, browserHistory} from 'react-router'
 import {AdvancedSearch} from './components/advancedSearch'
-import {Link} from 'react-router';
+// import {Link} from 'react-router';
 
 /**
 * The Feed page. We created a new component just
@@ -34,9 +34,13 @@ class ProfilePage extends React.Component {
 * right content panes.
 */
 
-
 class App extends React.Component {
     render() {
+        return (
+            <div>{this.props.children}</div>
+        )
+    }
+}
 //         return (
 //             <div>{this.props.children}</div>
 //         )
@@ -46,24 +50,24 @@ class App extends React.Component {
 //
 // const App = React.createClass({
 //   render() {
-    return (
-      <div>
-        <h1>App</h1>
-        {/* change the <a>s to <Link>s */}
-        <ul>
-          <li><Link to="/search">About</Link></li>
-          // <li><Link to="/inbox">Inbox</Link></li>
-        </ul>
-
-        {/*
-          next we replace `<Child>` with `this.props.children`
-          the router will figure out the children for us
-        */}
-        {this.props.children}
-      </div>
-    )
-  }
-}
+//     return (
+//       <div>
+//         <h1>App</h1>
+//         {/* change the <a>s to <Link>s */}
+//         <ul>
+//           <li><Link to="/search">About</Link></li>
+//           // <li><Link to="/inbox">Inbox</Link></li>
+//         </ul>
+//
+//         {/*
+//           next we replace `<Child>` with `this.props.children`
+//           the router will figure out the children for us
+//         */}
+//         {this.props.children}
+//       </div>
+//     )
+//   }
+// }
 
 ReactDOM.render((
     <Router history={browserHistory}>
@@ -72,7 +76,6 @@ ReactDOM.render((
             //<IndexRoute component ={AdvancedSearch}/>
             <IndexRoute component={FeedPage}/>
             <Route path="search" component={AdvancedSearch}/>
-            //<Route path="profile/:id" component={ProfilePage} />
         </Route>
     </Router>
 ), document.getElementById('wholePage'));
