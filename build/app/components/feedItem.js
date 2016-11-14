@@ -5,9 +5,7 @@ import Comment from './comment';
 import {postComment} from '../server';
 import {likeFeedItem} from '../server';
 import {unlikeFeedItem} from '../server';
-
-//TODO: Implement share in Server and here
-//import {share} from '../server';
+import {handleShareClick} from '../server';
 
 export default class FeedItem extends React.Component {
     constructor(props) {
@@ -37,16 +35,9 @@ export default class FeedItem extends React.Component {
     //TODO: Change to Share
     handleShareClick(clickEvent) {
         clickEvent.preventDefault();
-        if (clickEvent.button === 0) {
-            var callbackFunction = (updatedLikeCounter) => {
-                this.setState({likeCounter: updatedLikeCounter});
-            };
-            if (this.didUserLike()) {
-                unlikeFeedItem(this.state._id, 1, callbackFunction);
-            } else {
-                likeFeedItem(this.state._id, 1, callbackFunction);
-            }
-        }
+            clickEvent.preventDefault();
+            var popup = document.getElementById('myPopup');
+            popup.classList.toggle('show');
     }
 
     didUserLike() {
@@ -106,11 +97,17 @@ export default class FeedItem extends React.Component {
                                         <span className="glyphicon glyphicon-comment"></span>&nbsp; Comment
                                     </a>
                                 </li>
-                                <li>
-                                    //Handle click of share
-                                    <a href="#" onClick={(e) => this.handleShareClick(e)}>
-                                        <span className="glyphicon glyphicon-share-alt"></span>&nbsp; Share</a>
-                                </li>
+                                <div className="dropdown">
+                                <button className="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Share...
+                                <span className="caret"></span></button>
+                                <ul className="dropdown-menu">
+                                  //Add onClick event
+                                  <li><a href="#">Facebook</a></li>
+                                  <li><a href="#">Twitter</a></li>
+                                  <li><a href="#">Pintrest</a></li>
+                                  <li><a href="#">Lemato</a></li>
+                                </ul>
+                              </div>
                             </ul>
                         </div>
                     </div>

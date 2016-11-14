@@ -12,12 +12,11 @@ export default class Feed extends React.Component {
         };
     }
 
-    //TODO Oscar pls change statusUpdate Entry
+    //TODO change to posting from cook book
     render() {
         return (
             <div>
                 <StatusUpdateEntry onPost={(postContents) => this.onPost(postContents)}/> {this.state.contents.map((feedItem) => {
-
                     return (<FeedItem key={feedItem._id} data={feedItem}/>)
                 })}
             </div>
