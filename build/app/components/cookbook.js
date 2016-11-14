@@ -133,7 +133,7 @@ export default class cookbook extends React.Component {
 									</div>
 									<div className="media-body">
 										<h4 className="media-heading">Brownie Sundae</h4>
-										What's more delicous than a brownie? A brownie with ice cream!
+										What&#x0027s more delicous than a brownie? A brownie with ice cream!
 									</div>
 									<div className="media-right recipe-vote">
 										<a href="#"><span className="glyphicon glyphicon-arrow-up"></span></a>
