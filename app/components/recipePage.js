@@ -133,7 +133,7 @@ export default class recipePage extends React.Component {
                                  className=""
                                  alt="" />
                             <div className="media-body">
-                              <a href="#">Double Fudge Brownie</a>: A delicious double fudge brownie. Even a monkey could bake these!
+                              <Link to="/recipePage">Double Fudge Brownie</Link>: A delicious double fudge brownie. Even a monkey could bake these!
                             </div>
                           </li>
                           <li className="media">
@@ -142,7 +142,7 @@ export default class recipePage extends React.Component {
                                  className=""
                                  alt="" />
                             <div className="media-body">
-                              <a href="#">Brownie Sundae</a>: What's more delicous than a brownie? A brownie with ice cream!
+                              <Link to="/recipePage">Brownie Sundae</Link>: What's more delicous than a brownie? A brownie with ice cream!
                             </div>
                           </li>
                           <li className="media">
