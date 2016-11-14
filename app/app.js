@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Feed from './components/feed';
-import cookbook from './component/cookbook';
-import Results from './component/results';
-import Settings from './component/settings';
-import recipePage from './component/recipePage';
-import {IndexRoute, Router, Route, browserHistory} from 'react-router'
-import AdvancedSearch from './components/advancedSearch'
+import cookbook from './components/cookbook';
+import Results from './components/results';
+import Settings from './components/settings';
+import recipePage from './components/recipePage';
+import {IndexRoute, Router, Route, browserHistory} from 'react-router';
+import AdvancedSearch from './components/advancedSearch';
 // import {Link} from 'react-router';
 
 /**
