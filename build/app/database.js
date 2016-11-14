@@ -58,7 +58,7 @@ var initialData = {
            "allergies": ["dairy", "gluten"]
           }
       },
-      "feed":{
+      "feedItems":{
         "1": {
           "contents": {
                   "_id":1,
