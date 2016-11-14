@@ -22,7 +22,8 @@ class FeedPage extends React.Component {
 class RecipePage extends React.Component {
 	render() {
 		return (
-			
+			<p>This is the profile page for a user
+					with ID {this.props.params.id}.</p>
 		);
 	}
 }
