@@ -20,6 +20,6 @@ export function update(feedItemId, userId, cb) {
                         readDocument('users', userId)), cb);
 }
 
-function pullData(){
+export function pullData(){
    document.getElementByID("formy").submit();
 }
