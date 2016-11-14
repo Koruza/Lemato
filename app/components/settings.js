@@ -7,6 +7,17 @@ export default class Settings extends React.Component {
     this.state = props.data
   }
 
+
+  handleUpdate(e){
+    e.preventDefault();
+    this.setState({fullName: e.target.value});
+  }
+
+  handlePasswordChange(e){
+    e.preventDefault();
+    this.setState({password: e.target.value});
+  }
+
   render() {
   //  var data = this.state
 

@@ -10,16 +10,6 @@ function emulateServerReturn(data, cb) {
   }, 4);
 }
 
-
-export function updateSettings(feedItemId, userId, cb) {
-  var user = readDocument('Users', user.fullName);
-  user.fullName.push(userId);
-  writeDocument('users', userId);
-  // Return a resolved version of fullName
-  emulateServerReturn(user.fullName.map((userId) =>
-                        readDocument('users', userId)), cb);
-}
-
 export function pullData(){
    document.getElementByID("formy").submit();
 }
