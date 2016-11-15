@@ -2,22 +2,20 @@ import React from 'react';
 import StatusUpdate from './Statusupdate';
 import CommentThread from './Commentthread';
 import Comment from './Comment';
+import {postComment} from '../server';
 import {likeFeedItem} from '../server';
 import {unlikeFeedItem} from '../server';
 // import {handleShareClick} from '../server';
 
 export default class FeedItem extends React.Component {
     constructor(props) {
-        super(props);
-        this.state = {
-          contents: []
-        };
+      super(props);
+      this.state = props.data;
     }
 
     componentDidMount() {
-    this.refresh();
-  }
-
+      this.refresh();
+    }
 
     handleCommentPost(commentText) {
         postComment(this.state._id, 1, commentText, (updatedFeedItem) => {
@@ -109,30 +107,30 @@ export default class FeedItem extends React.Component {
                                         <span className="glyphicon glyphicon-share-alt"></span>&nbsp; Share
                                     </a>
                                     //Box form
-                                    <div id="id01" className="modal">
-                                      <form className="modal-content animate" action="action_page.php">
-                                        <div className="imgcontainer">
-                                          <span onClick="document.getElementById('id01').style.display='none'" className="close" title="Close Modal">&times;</span>
-                                          <img src="img_avatar2.png" alt="Avatar" className="avatar"/>
-                                        </div>
-
-                                        <div className="container">
-                                          <label><b>Username</b></label>
-                                          <input type="text" placeholder="Enter Username" name="uname" required/>
-
-                                          <label><b>Password</b></label>
-                                          <input type="password" placeholder="Enter Password" name="psw" required/>
-
-                                          <button type="submit">Login</button>
-                                          <input type="checkbox" checked="checked"/> Remember me
-                                        </div>
-
-                                        <div className="container" style="background-color:#f1f1f1">
-                                          <button type="button" onClick="document.getElementById('id01').style.display='none'" className="cancelbtn">Cancel</button>
-                                          <span className="psw">Forgot <a href="#">password?</a></span>
-                                        </div>
-                                      </form>
-                                    </div>
+                                    // <div id="id01" className="modal">
+                                    //   <form className="modal-content animate" action="action_page.php">
+                                    //     <div className="imgcontainer">
+                                    //       <span onClick="document.getElementById('id01').style.display='none'" className="close" title="Close Modal">&times;</span>
+                                    //       <img src="img_avatar2.png" alt="Avatar" className="avatar"/>
+                                    //     </div>
+                                    //
+                                    //     <div className="container">
+                                    //       <label><b>Username</b></label>
+                                    //       <input type="text" placeholder="Enter Username" name="uname" required/>
+                                    //
+                                    //       <label><b>Password</b></label>
+                                    //       <input type="password" placeholder="Enter Password" name="psw" required/>
+                                    //
+                                    //       <button type="submit">Login</button>
+                                    //       <input type="checkbox" checked="checked"/> Remember me
+                                    //     </div>
+                                    //
+                                    //     <div className="container" style="background-color:#f1f1f1">
+                                    //       <button type="button" onClick="document.getElementById('id01').style.display='none'" className="cancelbtn">Cancel</button>
+                                    //       <span className="psw">Forgot <a href="#">password?</a></span>
+                                    //     </div>
+                                    //   </form>
+                                    // </div>
 
                                 </li>
                             </ul>
@@ -153,8 +151,14 @@ export default class FeedItem extends React.Component {
                         {data.comments.map((comment, i) => {
                             // i is comment's index in comments array
                             return (
-                                <Comment key={i} commentIdx={i} data={comment} feedItemID={data._id} author={comment.author} postDate={comment.postDate}>
-                                    {comment.contents}
+                                <Comment key={i}
+                                        commentIdx={i}
+                                        data={comment}
+                                        feedItemID={data._id}
+                                        likeCounter = {comment.likeCounter}
+                                        author={comment.author}
+                                        postDate={comment.postDate}>
+                                  {comment.contents}
                                 </Comment>
                             );
                         })
