@@ -24,6 +24,12 @@ class Cookiebook extends React.Component {
 	}
 }
 
+class Result extends React.Component{
+	render(){
+		return <Results/>
+	}
+}
+
 
 // class RecipePage extends React.Component {
 // 	render() {
@@ -52,11 +58,11 @@ ReactDOM.render((
 		<Route path="/" component={App}>
 			{/* Show the Feed at / */}
 			<IndexRoute component={FeedPage}/>
-			<Route path="/home" component={FeedPage}/>
-			<Route path="/results" component={Results}/>
+			<Route path="/" component={FeedPage}/>
+			<Route path="/results" component={Result}/>
 			<Route path="/settings" component={Settings}/>
 			<Route path="/search" component={AdvancedSearch}/>
-			<Route path="/recipePage" component={RecipePage}/>
+			<Route path="/recipePage/:id" component={RecipePage}/>
 			<Route path="/cookbook" component={Cookiebook} />
 		</Route>
 	</Router>

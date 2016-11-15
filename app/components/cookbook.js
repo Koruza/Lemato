@@ -20,7 +20,6 @@ export default class Cookbook extends React.Component {
 
   render() {
     this.refresh();
-    console.log(cookbook._id);
     return (
     <div>
       <div className="container">
