@@ -48,7 +48,6 @@ export default class NewRecipe extends React.Component {
                 </div>
                 <div className="col-md-3">
                   <div className="pull-right">
-                    <button type="button" className="btn btn-default">Save</button>
                     <button type="button" className="btn btn-default publish-button">Publish</button>
                   </div>
                 </div>
