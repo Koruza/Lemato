@@ -1,8 +1,5 @@
 import React from 'react';
-import FeedItem from './Feeditem';
 //import newRecipe from './newRecipe';
-import { getFeedData } from '../server';
-import { postStatusUpdate } from '../server';
 import {Link} from 'react-router';
 
 export default class Feed extends React.Component {
@@ -218,22 +215,6 @@ export default class Feed extends React.Component {
       </div>
     </div>
     )
-  }
-
-  refresh() {
-    getFeedData( this.props.user, (feedData) => {
-      this.setState( feedData );
-    } );
-  }
-
-  onPost( postContents ) {
-    postStatusUpdate( 1, "Amherst, MA", postContents, () => {
-      this.refresh();
-    } );
-  }
-
-  componentDidMount() {
-    this.refresh();
   }
 
 }
