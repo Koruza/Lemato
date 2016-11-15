@@ -8,6 +8,7 @@ import RecipePage from './components/recipePage';
 import {IndexRoute, Router, Route, browserHistory,hashHistory} from 'react-router';
 import AdvancedSearch from './components/advancedSearch';
 import NavBar from './components/navbar';
+import NewRecipe from './components/newRecipe';
 
 
 class FeedPage extends React.Component {
@@ -63,6 +64,7 @@ ReactDOM.render((
 			<Route path="/settings" component={Settings}/>
 			<Route path="/search" component={AdvancedSearch}/>
 			<Route path="/recipePage/:id" component={RecipePage}/>
+			<Route path="/newRecipe" component={NewRecipe}/>
 			<Route path="/cookbook" component={Cookiebook} />
 		</Route>
 	</Router>

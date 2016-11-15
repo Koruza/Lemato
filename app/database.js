@@ -28,6 +28,7 @@ var initialData = {
     },
     "recipes":{
         "1":{
+          "_id": 1,
           "name": "Brownie",
           "chefPoints": 12,
           "ingredients":[
@@ -45,6 +46,7 @@ var initialData = {
            "allergies": ["dairy","gluten"]
         },
         "2":{
+          "_id": 2,
           "name": "Brownie in an egg",
           "chefPoints": 30,
           "ingredients":[
