@@ -18,7 +18,7 @@ export default class Cookbook extends React.Component {
                   <Link to="cookbook"><span className="glyphicon glyphicon-book"></span> Cookbook</Link>
                 </li>
                 <li role="presentation">
-                  <Link to="cookbook"><span className="glyphicon glyphicon-cog"></span> Account Settings</Link>
+                  <Link to="settings"><span className="glyphicon glyphicon-cog"></span> Account Settings</Link>
                 </li>
               </ul>
             </div>
@@ -79,7 +79,7 @@ export default class Cookbook extends React.Component {
                                          alt="brownie-sundae" /></Link>
                       </div>
                       <div className="media-body">
-                        <h4 className="media-heading">Brownie Sundae</h4> What&#x0027s more delicous than a brownie? A brownie with ice cream!
+                        <h4 className="media-heading">Brownie Sundae</h4> What's more delicous than a brownie? A brownie with ice cream!
                       </div>
                       <div className="media-right recipe-vote">
                         <a href="#"><span className="glyphicon glyphicon-arrow-up"></span></a>

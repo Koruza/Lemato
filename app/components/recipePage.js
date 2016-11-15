@@ -91,7 +91,7 @@ export default class RecipePage extends React.Component {
                         cold water and let dry.
                       </li>
                       <li>
-                        Preheat oven to 175 &#x2103 / 350 &#x2109.
+                        Preheat oven to 175 Celsius (350 Fahrenheit).
                       </li>
                       <li>
                         Melt butter and then mix ingredients together in a bowl in the order given.
@@ -100,7 +100,7 @@ export default class RecipePage extends React.Component {
                         Add about 1 teaspoon sunflower oil inside shells. Turn shell until inside is completely covered and remove excess oil.
                       </li>
                       <li>
-                        Fill each shell until it&#x0027s about 2/3 full.
+                        Fill each shell until it is about 2/3 full.
                       </li>
                       <li>
                         Bake for 25 to 30 minutes.
