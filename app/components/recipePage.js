@@ -150,6 +150,7 @@ export default class RecipePage extends React.Component {
                               <span className="caret"></span>
                             </div>
                             <div className="media-body">
+                              //See more link here
                               <a href="#">See More</a>
                             </div>
                           </li>

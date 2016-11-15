@@ -10,60 +10,60 @@ export default class NavBar extends React.Component {
     };
   }
 
-  refresh() {
-    getUserData(this.props.user, (userData) => {
-      this.setState(userData);
-    });
-  }
+  // refresh() {
+  //   getUserData(this.props.user, (userData) => {
+  //     this.setState(userData);
+  //   });
+  // }
 
   render() {
     return (
       <div>
-          <nav class="navbar navbar-fixed-top navbar-default">
-      <div class="container">
-          <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
+          <nav className="navbar navbar-fixed-top navbar-default">
+      <div className="container">
+          <div className="navbar-header">
+              <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span className="sr-only">Toggle navigation</span>
+                <span className="icon-bar"></span>
+                <span className="icon-bar"></span>
+                <span className="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="#">
+              <a className="navbar-brand" Link to="home">
                   <span><img src="img/lemato.png"/> Lemato</span>
               </a>
           </div>
-          <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
-              <form class="navbar-form navbar-left" role="search">
-                  <div class="input-group">
-                      <input type="text" class="form-control lemato-search" placeholder="Search Lemato">
-                      <span class="input-group-btn">
-                        <button type="submit" class="btn btn-default">
-                        <span class="glyphicon glyphicon-search"></span></button>
+          <div className="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
+              <form className="navbar-form navbar-left" role="search">
+                  <div className="input-group">
+                      <input type="text" className="form-control lemato-search" placeholder="Search Lemato"/>
+                      <span className="input-group-btn">
+                        <button type="submit" className="btn btn-default">
+                        <span className="glyphicon glyphicon-search"></span></button>
                       </span>
                   </div>
               </form>
-              <ul class="nav navbar-nav navbar-right">
-                  <div class="nav navbar-nav navbar-right">
-                      <div class="btn-toolbar pull-right" role="toolbar">
-                          <div class="btn-group" role="group">
-                              <button type="button" class="btn btn-default navbar-btn">What's in your Fridge?</button>
+              <ul className="nav navbar-nav navbar-right">
+                  <div className="nav navbar-nav navbar-right">
+                      <div className="btn-toolbar pull-right" role="toolbar">
+                          <div className="btn-group" role="group">
+                              <button type="button" className="btn btn-default navbar-btn">What's in your Fridge?</button>
                           </div>
-                          <div class="btn-group" role="group">
-                              <button type="button" class="btn btn-default navbar-btn">Add a Recipe</button>
+                          <div className="btn-group" role="group">
+                              <button type="button" className="btn btn-default navbar-btn">Add a Recipe</button>
                           </div>
-                          <button type="button" class="btn btn-default navbar-btn">
-                            <span class="glyphicon glyphicon-book"></span> Cookbook
+                          <button type="button" className="btn btn-default navbar-btn">
+                            <span className="glyphicon glyphicon-book"></span> Cookbook
                           </button>
-                          <div class="btn-group" role="group">
-                              <button type="button" class="btn btn-default navbar-btn navbar-btn">
-                                <span class="glyphicon glyphicon-lock"></span>
+                          <div className="btn-group" role="group">
+                              <button type="button" className="btn btn-default navbar-btn navbar-btn">
+                                <span className="glyphicon glyphicon-lock"></span>
                               </button>
-                              <div class="btn-group" role="group">
-                                  <button type="button" class="btn btn-default dropdown-toggle navbar-btn roundedCaret" data-toggle="dropdown">
-                                    <span class="caret"></span>
+                              <div className="btn-group" role="group">
+                                  <button type="button" className="btn btn-default dropdown-toggle navbar-btn roundedCaret" data-toggle="dropdown">
+                                    <span className="caret"></span>
                                   </button>
-                                  <ul class="dropdown-menu">
-                                      <li><a href="#">Log out...</a></li>
+                                  <ul className="dropdown-menu">
+                                      <li><Link to="home">Log out...</Link></li>
                                   </ul>
                               </div>
                           </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 //import newRecipe from './newRecipe';
+//import feedItem from './feedItem';
 import {Link} from 'react-router';
 
 export default class Feed extends React.Component {
@@ -38,16 +39,16 @@ export default class Feed extends React.Component {
                     <br/> Yesterday at 3:48pm
                     <br/>
                     <br/>
-                    <Link to="/recipePage"> Pumpkin Spice Brownie
+                    <Link to="/recipe/:recipeID"> Pumpkin Spice Brownie
                     </Link>
                   </div>
                 </div>
                 <div className="row">
                   <div className="col-md-12">
                     <br/>
-                    <a href="#"><img
+                    <Link to="/recipe/:recipeID"><img
                                      src="img/brownie1.png"
-                                     width="30%" /></a>
+                                     width="30%" /></Link>
                     <br/>
                     <br/> These brownies are amazing and so easy to make!
                   </div>
@@ -78,7 +79,7 @@ export default class Feed extends React.Component {
               <div className="panel-footer">
                 <div className="row">
                   <div className="col-md-12">
-                    <a href="#"><span className="glyphicon glyphicon-thumbs-up"></span> Like</a> · 12 people like this
+                    <a href="#"><span className="glyphicon glyphicon-thumbs-up"></span> </a> · 12 chef points!
                   </div>
                 </div>
                 <hr/>
@@ -86,13 +87,13 @@ export default class Feed extends React.Component {
                   <li className="media">
                     <div className="media-body">
                       <b>Someone Else</b> Wow looks good!
-                      <br/> <a href="#"><span className="glyphicon glyphicon-thumbs-up"></span> Like</a> · 20 hrs
+                      <br/> 20 hrs
                     </div>
                   </li>
                   <li className="media">
                     <div className="media-body">
                       <b>Different Someone Else</b> Can&#x0027t wait to try this recipe
-                      <br/> <a href="#"><span className="glyphicon glyphicon-thumbs-up"></span> Like</a> · 19 hrs
+                      <br/> 19 hrs
                     </div>
                   </li>
                   <li className="media">
@@ -124,7 +125,7 @@ export default class Feed extends React.Component {
                       <span className="glyphicon glyphicon-heart-empty"></span>
                     </div>
                     <div className="media-body">
-                      <a href="#">Mac and Cheese</a>: Three cheese mac and cheese
+                      <Link to="/recipe/:recipeID">Mac and Cheese</Link>: Three cheese mac and cheese
                       <br/> Avg. Rating:
                       <span
                             className="glyphicon glyphicon-star"
@@ -148,7 +149,7 @@ export default class Feed extends React.Component {
                       <span className="glyphicon glyphicon-heart-empty"></span>
                     </div>
                     <div className="media-body">
-                      <a href="#">Brownie</a>: Pumpkin spice brownie
+                      <Link to="/recipe/:recipeID">Brownie</Link>: Pumpkin spice brownie
                       <br/> Avg. Rating:
                       <span
                             className="glyphicon glyphicon-star"
@@ -172,7 +173,7 @@ export default class Feed extends React.Component {
                       <span className="glyphicon glyphicon-heart-empty"></span>
                     </div>
                     <div className="media-body">
-                      <a href="#">Pasta</a>: Shrimp scampi
+                      <Link to="/recipePage">Pasta</Link>: Shrimp scampi
                       <br/> Avg. Rating:
                       <span
                             className="glyphicon glyphicon-star"
@@ -196,6 +197,7 @@ export default class Feed extends React.Component {
                       <span className="caret"></span>
                     </div>
                     <div className="media-body">
+                      //Where does ths lead to???
                       <a href="#">See More</a>
                     </div>
                   </li>
