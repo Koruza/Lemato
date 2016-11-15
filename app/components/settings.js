@@ -13,6 +13,8 @@ export default class Settings extends React.Component {
       newBio: props.bio,
       newPassword: props.password
     }
+    //the User ID
+    console.log(props);
   }
 
   handleNameChange(e){
