@@ -62,7 +62,7 @@ function getFeedItemSync(feedItemId) {
     return feedItem;
 }
 
-export function getFeedData(user,type, cb) {
+export function getFeedData(user, type, cb) {
     var userData = readDocument('users', user);
     var feedData = readDocument('feeds', userData.feed);
     feedData.contents = feedData.contents.map(getFeedItemSync);

@@ -46,7 +46,7 @@ export default class NavBar extends React.Component {
                   <div className="nav navbar-nav navbar-right">
                       <div className="btn-toolbar pull-right" role="toolbar">
                           <div className="btn-group" role="group">
-                              <Link to="/search" className="btn btn-default navbar-btn">What's in your Fridge?</Link>
+                              <Link to="/search" className="btn btn-default navbar-btn">Advanced Search</Link>
                           </div>
                           <div className="btn-group" role="group">
                               <Link to="/newRecipe" className="btn btn-default navbar-btn">Add a Recipe</Link>
