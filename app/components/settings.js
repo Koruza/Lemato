@@ -8,10 +8,10 @@ export default class Settings extends React.Component {
     super(props)
     this.state = {
       data: props.data,
-      user: this._id,
-      newName: this.fullName,
-      newBio: this.bio,
-      newPassword: this.password
+      user: props._id,
+      newName: props.fullName,
+      newBio: props.bio,
+      newPassword: props.password
     }
     //the User ID
     console.log(props);
@@ -28,8 +28,8 @@ export default class Settings extends React.Component {
   }
 
 
-  handleUpdate(e){
-    e.preventDefault();
+  handleUpdate(clickEvent){
+    clickEvent.preventDefault();
     updateSettings(this.state.user, this.state.newName, this.state.newBio);
   }
 
@@ -39,8 +39,8 @@ export default class Settings extends React.Component {
     this.setState({password: e.target.value});
   }
 
-  handlePasswordUpdate(e){
-    e.preventDefault();
+  handlePasswordUpdate(clickEvent){
+    clickEvent.preventDefault();
     updatePassword(this.state.user, this.state.newPassword);
   }
 

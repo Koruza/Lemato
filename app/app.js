@@ -5,7 +5,7 @@ import Cookbook from './components/cookbook';
 import Results from './components/results';
 import Settings from './components/settings';
 import RecipePage from './components/recipePage';
-import {IndexRoute, Router, Route, browserHistory,hashHistory} from 'react-router';
+import {IndexRoute, Router, Route, browserHistory, hashHistory} from 'react-router';
 import AdvancedSearch from './components/advancedSearch';
 import NavBar from './components/navbar';
 import NewRecipe from './components/newRecipe';
