@@ -56,7 +56,7 @@ export default class NavBar extends React.Component {
                           </Link>
                           <div className="btn-group" role="group">
                               <Link to="/settings" className="btn btn-default navbar-btn navbar-btn">
-                                <span className="glyphicon glyphicon-lock"></span>
+                                <span className="glyphicon glyphicon-cog"></span>
                               </Link>
                               <div className="btn-group" role="group">
                                   <button type="button" className="btn btn-default dropdown-toggle navbar-btn roundedCaret" data-toggle="dropdown">
