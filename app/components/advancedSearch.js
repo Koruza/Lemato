@@ -1,12 +1,10 @@
 import React from 'react';
-// import {Link} from 'react-router';
+import {Link} from 'react-router';
 import {pullData} from '../server';
+import Results from "./results";
 
 export default class AdvancedSearch extends React.Component {
 
-// <Link to={"/profile/" + this.props.author._id}>
-// {this.props.author.fullName}
-// </Link>
   constructor(props) {
     super(props);
     this.state = props.data;
@@ -28,25 +26,34 @@ export default class AdvancedSearch extends React.Component {
         var aller = ["allergies1","allergies2","allergies3","allergies4","allergies5","allergies6","allergies7","allergies8"];
         for (i=0;i<aller.length-1;i++){
           if (document.getElementById("formy").elements.namedItem(aller[i]).checked){
+            if (i === 6)
+              allerg.push(document.getElementById("formy").elements.namedItem(aller[i+1]).value);
+            else
             allerg.push(document.getElementById("formy").elements.namedItem(aller[i]).value);
           }
         }
 
         var diety =[];
         var diet = ["diet1","diet2","diet3","diet4","diet5"];
-        for (i=0;i<diet.length;i++){
+        for (i=0;i<diet.length-1;i++){
           if (document.getElementById("formy").elements.namedItem(diet[i]).checked){
-            diety.push(document.getElementById("formy").elements.namedItem(diet[i]).value);
+            if (i===3)
+              diety.push(document.getElementById("formy").elements.namedItem(diet[i+1]).value);
+            else
+              diety.push(document.getElementById("formy").elements.namedItem(diet[i]).value);
           }
         }
 
+        var e = document.getElementById("opt");
+        var strUser = e.options[e.selectedIndex].value;
 
         var searchObj = {
+            "meal":strUser,
             "ingredient": ingred,
-            "alergies": allerg,
-            "dieraryRestrcition": diety
+            "allergies": allerg,
+            "dietaryRestriction": diety
           };
-          pullData(searchObj);
+        pullData(searchObj);
       }
   }
 
@@ -60,15 +67,15 @@ export default class AdvancedSearch extends React.Component {
                    <div className="col-md-7 moveee">
                        <form className="a-search" id="formy">
                              Category:
-                           <select className="dropdown">
+                           <select className="dropdown" id="opt">
                              <option value="breakfast">Breakfast</option>
                              <option value="lunch">Lunch</option>
                              <option value="dinner">Dinner</option>
                              <option value="dessert">Dessert</option>
                            </select><br/><br/>
-                         Ingredient 1: <input type="text" name="ingredient1" className="ing" maxLength="25"/><br/><br/>
-                       Ingredient 2: <input type="text" name="ingredient2" className="ing" maxLength="25"/><br/><br/>
-                     Ingredient 3: <input type="text" name="ingredient3" className="ing" maxLength="25"/>
+                          Ingredient 1: <input type="text" name="ingredient1" className="ing" maxLength="25"/><br/><br/>
+                          Ingredient 2: <input type="text" name="ingredient2" className="ing" maxLength="25"/><br/><br/>
+                          Ingredient 3: <input type="text" name="ingredient3" className="ing" maxLength="25"/>
                            <span className="glyphicon glyphicon-plus-sign"></span><br/>
                            <br/>
                            <h4>Allergies:</h4>
@@ -106,6 +113,7 @@ export default class AdvancedSearch extends React.Component {
                </div>
 
            </div>
+
            </div>
          )
      }

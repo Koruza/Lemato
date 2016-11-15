@@ -28,7 +28,7 @@ export default class NavBar extends React.Component {
                 <span className="icon-bar"></span>
                 <span className="icon-bar"></span>
               </button>
-              <Link to="/home" className="navbar-brand">
+              <Link to="/" className="navbar-brand">
                   <span><img src="img/lemato.png"/> Lemato</span>
               </Link>
           </div>
@@ -49,14 +49,14 @@ export default class NavBar extends React.Component {
                               <Link to="/search" className="btn btn-default navbar-btn">What's in your Fridge?</Link>
                           </div>
                           <div className="btn-group" role="group">
-                              <Link to="placeholder" className="btn btn-default navbar-btn">Add a Recipe</Link>
+                              <Link to="/newRecipe" className="btn btn-default navbar-btn">Add a Recipe</Link>
                           </div>
                           <Link to="/cookbook" className="btn btn-default navbar-btn">
                             <span className="glyphicon glyphicon-book"></span> Cookbook
                           </Link>
                           <div className="btn-group" role="group">
                               <Link to="/settings" className="btn btn-default navbar-btn navbar-btn">
-                                <span className="glyphicon glyphicon-lock"></span>
+                                <span className="glyphicon glyphicon-cog"></span>
                               </Link>
                               <div className="btn-group" role="group">
                                   <button type="button" className="btn btn-default dropdown-toggle navbar-btn roundedCaret" data-toggle="dropdown">

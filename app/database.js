@@ -12,6 +12,7 @@ var initialData = {
             "fullName": "Someone",
             "feed": 1,
             "username":"BrownieKing",
+            "bio": "brownie enthusiast",
             "password":"chocolate",
             "cookbook":[1]
         },
@@ -19,6 +20,7 @@ var initialData = {
             "_id": 2,
             "fullName": "Someone Else",
             "feed": 2,
+            "bio": "brownie hater",
             "username":"BrownieMaster",
             "password":"fudge",
             "cookbook":[2]
@@ -26,6 +28,7 @@ var initialData = {
     },
     "recipes":{
         "1":{
+          "_id": 1,
           "name": "Brownie",
           "chefPoints": 12,
           "ingredients":[
@@ -40,9 +43,11 @@ var initialData = {
               "5. Pour it into a 9x9 tray"
            ],
            "description": "Homestyle brownies",
-           "allergies": ["dairy","gluten"]
+           "allergies": ["dairy","gluten"],
+           "meal": "dessert"
         },
         "2":{
+          "_id": 2,
           "name": "Brownie in an egg",
           "chefPoints": 30,
           "ingredients":[
@@ -55,7 +60,8 @@ var initialData = {
              "4. Pour the mixture into the empty eggshells"
            ],
            "description":"Brownies makes inside an egg shell!",
-           "allergies": ["dairy", "gluten"]
+           "allergies": ["dairy", "gluten"],
+           "meal": "dessert"
           }
       },
       "feedItems":{

@@ -1,21 +1,45 @@
 import React from 'react';
 import { Link } from 'react-router';
+import {updateSettings} from '../server';
+import {updatePassword} from '../server';
 
 export default class Settings extends React.Component {
   constructor(props) {
     super(props)
-    this.state = props.data;
+    this.state = {
+      data: props.data,
+      user: this._id,
+      newName: this.fullName,
+      newBio: this.bio,
+      newPassword: this.password
+    }
+  }
+
+  handleNameChange(e){
+    e.preventDefault();
+    this.setState({newName: e.target.value});
+  }
+
+  handleBioChange(e){
+    e.preventDefault();
+    this.setState({newBio: e.target.value});
   }
 
 
   handleUpdate(e){
     e.preventDefault();
-    this.setState({fullName: e.target.value});
+    updateSettings(this.state.user, this.state.newName, this.state.newBio);
   }
+
 
   handlePasswordChange(e){
     e.preventDefault();
     this.setState({password: e.target.value});
+  }
+
+  handlePasswordUpdate(e){
+    e.preventDefault();
+    updatePassword(this.state.user, this.state.newPassword);
   }
 
   render() {
@@ -25,7 +49,7 @@ export default class Settings extends React.Component {
       <div>
       <div className="container">
         <div className="row">
-          // Left Sidebar
+
           <div className="col-md-2">
             <div className="panel lemato-left-nav">
               <div className="">
@@ -45,7 +69,7 @@ export default class Settings extends React.Component {
             </div>
           </div>
 
-          //Settings
+
           <div className="col-md-7">
             <div className="panel panel-default">
               <div className="panel-heading setting-label">Profile Settings</div>
@@ -60,26 +84,32 @@ export default class Settings extends React.Component {
                   </div>
                 </div>
                 <label className="profile-label">Name</label>
-                <input className="form-control name-input" value={this.props.fullName} />
+                <input className="form-control name-input" value={this.props.fullName} onKey={(e) => this.handleNameChange(e)}/>
+                <br />
                 <label className="profile-label">Bio</label>
                 <textarea className="form-control bio-input" rows="3"
-                placeholder="Tell a little bit about yourself"></textarea>
-              <button type="button" className="btn btn-default update-button" onClick={(e) => this.handleUpdate(e)}>
+                placeholder="Tell a little bit about yourself" onKey={(e) => this.handleUpdate(e)}></textarea>
+              <br />
+              <button type="button" className="btn btn-default update-button" onClick={(e) => this.handleBioChange(e)}>
                   Update Profile</button>
-              </div>
+                </div>
             </div>
             <div className="panel panel-default">
               <div className="panel-heading setting-label">Account Settings</div>
               <div className="panel-body account-settings">
                 <label>Change password</label>
                 <input className="form-control old-password" placeholder="Old password" />
-                <input className="form-control new-password" placeholder="New password" />
+                <br />
+                <input className="form-control new-password" placeholder="New password" onKey={(e) => this.handlePasswordChange(e)}/>
+                <br />
                 <input className="form-control cf-new-password" placeholder="Confirm New password" />
-                <button type="button" className="btn btn-default update-button" onClick={(e) => this.handlePasswordChange(e)}>Update password</button>
+                <br />
+                <button type="button" className="btn btn-default update-button" onClick={(e) => this.handlePasswordUpdate(e)}>Update password</button>
                 <hr />
                 <label>Delete account</label>
                 <br />Once you delete your account, there is no going back.
-                  Please be certain.<br />
+                  Please be certain. <br />
+                <br />
                 <button type="button" className="btn btn-default delete-button">
                   Delete your account</button>
               </div>

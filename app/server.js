@@ -14,16 +14,19 @@ export function pullData(searchObject){
   /*
     searchObject will look like this:
     {
-      "ingredient1": emi,
-      "ingeredient2": poop,
-      "ingredient3": kawo,
+      "ingredient1": ing1,
+      "ingeredient2": ing2,
+      "ingredient3": ing3,
       "alergies": "nuts, ..",
       "dieraryRestrcition": "..."
     }
   */
   //  document.getElementByID("formy").submit();
   console.log(searchObject);
+  // emulateServerReturn(searchObject,cb);
 }
+
+
 
 export function postNewRecipe(user, location, contents, cb) {
     var time = new Date().getTime();
@@ -57,6 +60,13 @@ function getFeedItemSync(feedItemId) {
         comment.author = readDocument('users', comment.author);
     });
     return feedItem;
+}
+
+export function getFeedData(user,type, cb) {
+    var userData = readDocument('users', user);
+    var feedData = readDocument('feeds', userData.feed);
+    feedData.contents = feedData.contents.map(getFeedItemSync);
+    emulateServerReturn(feedData, cb);
 }
 
 export function postComment(feedItemId, author, contents, cb) {
@@ -103,5 +113,18 @@ function getRecipePageSync(recipeID) {
 export function getCookbookData(user, cb) {
 	var userData = readDocument('users', user);
 	userData.cookbook = userData.cookbook.map(getRecipePageSync);
+	emulateServerReturn(userData, cb);
+}
+
+export function updateSettings(user, newName, newBio, cb) {
+	var userData = readDocument('users', user);
+	userData.fullName = newName;
+  userData.bio = newBio;
+	emulateServerReturn(userData, cb);
+}
+
+export function updatePassword(user, newPassword, cb) {
+	var userData = readDocument('users', user);
+	userData.password = newPassword;
 	emulateServerReturn(userData, cb);
 }
