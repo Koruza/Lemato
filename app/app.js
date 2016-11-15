@@ -27,7 +27,7 @@ class Cookiebook extends React.Component {
 
 class Result extends React.Component{
 	render(){
-		return <Results/>
+		return <Results recipe={1}/>
 	}
 }
 

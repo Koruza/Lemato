@@ -34,7 +34,7 @@ var initialData = {
           "ingredients":[
             "Flour", "Egg", "Cocoa Powder", "Sugar","Butter"
            ],
-           "pic":"None",
+           "pic":"../../img/brownie-egg.jpg",
            "instructions":[
               "1. Combine the butter and sugar",
               "2. Mix the flour and cocoa powder together in a seperate bowl",
