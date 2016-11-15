@@ -91,6 +91,22 @@ export function unlikeFeedItem(feedItemId, userId, cb) {
   readDocument('users', userId)), cb);
 }
 
+export function likeRecipe(recipeId, userId, cb) {
+  var recipeItem = readDocument('recipe', recipeId);
+  recipeItem.chefPoints.push(userId);
+  writeDocument('recipe', recipeItem);
+  emulateServerReturn(recipeItem.chefPoints.map((userId) =>
+  readDocument('recipe', recipeId)), cb);
+}
+
+export function dislikeRecipe(recipeId, userId, cb) {
+  var recipeItem = readDocument('recipe', recipeId);
+  recipeItem.chefPoints.splice(userIndex, 1);
+  writeDocument('recipe', recipeItem);
+  emulateServerReturn(recipeItem.chefPoints.map((userId) =>
+  readDocument('recipe', recipeId)), cb);
+}
+
 function getRecipePageSync(recipeID) {
 	var recipe = readDocument('recipes', recipeID);
 	return recipe;//placeholder

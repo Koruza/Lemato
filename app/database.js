@@ -29,7 +29,7 @@ var initialData = {
     "recipes":{
         "1":{
           "name": "Brownie",
-          "chefPoints": 12,
+          "chefPoints": [1],
           "ingredients":[
             "Flour", "Egg", "Cocoa Powder", "Sugar","Butter"
            ],
@@ -46,7 +46,7 @@ var initialData = {
         },
         "2":{
           "name": "Brownie in an egg",
-          "chefPoints": 30,
+          "chefPoints": [2],
           "ingredients":[
             "Flour", "Egg", "Cocoa Powder", "Sugar","Baking Powder"],
            "pic":"None",

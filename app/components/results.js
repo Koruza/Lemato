@@ -23,7 +23,7 @@ export default class Results extends React.Component {
       var callbackFunction = (updatedChefPointsCounter) => {
           this.setState({chefPoints: updatedChefPointsCounter});
       };
-      unlikeRecipe(this.state._id, 1, callbackFunction);
+      dislikeRecipe(this.state._id, 1, callbackFunction);
     }
   }
 
@@ -54,7 +54,7 @@ export default class Results extends React.Component {
                       <a href="#" onClick={(e) => this.handleLikeClick(e)}>
                         <span className="glyphicon glyphicon-arrow-up"></span>
                       </a>
-                      <div>{data.chefPoints}</div>
+                      <div>{data.chefPoints.length}</div>
                       <a href="#" onClick={(e) => this.handleDislikeClick(e)}>
                         <span className="glyphicon glyphicon-arrow-down"></span>
                       </a>
