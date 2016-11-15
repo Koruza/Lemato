@@ -17,6 +17,7 @@ export default class Feed extends React.Component {
   //Done
 
   render() {
+    console.log("feedRendah :p");
     return (
         <div>
             <FeedItem />

@@ -10,6 +10,17 @@ function emulateServerReturn(data, cb) {
   }, 4);
 }
 
-export function pullData(){
-   document.getElementByID("formy").submit();
+export function pullData(searchObject){
+  /*
+    searchObject will look like this:
+    {
+      "ingredient1": emi,
+      "ingeredient2": poop,
+      "ingredient3": kawo,
+      "alergies": "nuts, ..",
+      "dieraryRestrcition": "..."
+    }
+  */
+  //  document.getElementByID("formy").submit();
+  console.log(searchObject); 
 }

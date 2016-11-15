@@ -5,13 +5,14 @@ import Cookbook from './components/cookbook';
 import Results from './components/results';
 import Settings from './components/settings';
 import RecipePage from './components/recipePage';
-import {IndexRoute, Router, Route, browserHistory} from 'react-router';
+import {IndexRoute, Router, Route, browserHistory,hashHistory} from 'react-router';
 import AdvancedSearch from './components/advancedSearch';
 
 
 class FeedPage extends React.Component {
 	render() {
-		return <Feed user = {1}/>;
+		console.log("feedpageRendah :3");
+		return <Feed user={1}/>;
 	}
 }
 
@@ -35,25 +36,25 @@ class Cookiebook extends React.Component{
 
 class App extends React.Component {
 	render() {
+		console.log("apprandeh :3");
 		return (
 			<div>{this.props.children}</div>
-		)
+		);
 	}
 }
 
 
 ReactDOM.render((
-	<Router history={browserHistory}>
+	<Router history={hashHistory}>
 		<Route path="/" component={App}>
 			{/* Show the Feed at / */}
-			<IndexRoute component ={FeedPage}/>
+			<IndexRoute component={FeedPage}/>
+			<Route path="home" component={FeedPage}/>
 			<Route path="results" component={Results}/>
 			<Route path="settings" component={Settings}/>
 			<Route path="search" component={AdvancedSearch}/>
-			<Route path="recipe" component={RecipePage}>
-				<Route path="/recipe/:recipeID" component={RecipePage}/>
-			</Route>
-			<Route path="cookbook" component={Cookiebook}/>
+			<Route path="/recipe/:recipeID" component={RecipePage}/>
+			<Route path="cookbook" component={Cookiebook} />
 		</Route>
 	</Router>
-), document.getElementById('wholePage'));
+), document.getElementById('wholeFoods'));

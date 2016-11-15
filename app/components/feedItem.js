@@ -2,7 +2,6 @@ import React from 'react';
 import StatusUpdate from './Statusupdate';
 import CommentThread from './Commentthread';
 import Comment from './Comment';
-import {postComment} from '../server';
 import {likeFeedItem} from '../server';
 import {unlikeFeedItem} from '../server';
 // import {handleShareClick} from '../server';
@@ -19,7 +18,7 @@ export default class FeedItem extends React.Component {
     this.refresh();
   }
 
-  
+
     handleCommentPost(commentText) {
         postComment(this.state._id, 1, commentText, (updatedFeedItem) => {
             this.setState(updatedFeedItem);
