@@ -16,7 +16,12 @@ class FeedPage extends React.Component {
 	}
 }
 
-
+class Cookiebook extends React.Component {
+	render() {
+		console.log(">.< (╯°□°）╯︵ ┻━┻");
+		return <Cookbook user ={1}/>;
+	}
+}
 
 
 // class RecipePage extends React.Component {
