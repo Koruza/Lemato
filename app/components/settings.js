@@ -8,7 +8,7 @@ export default class Settings extends React.Component {
     super(props)
     this.state = {
       data: props.data,
-      user: props.data._id,
+      user: this._id,
       newName: this.fullName,
       newBio: this.bio,
       newPassword: this.password
