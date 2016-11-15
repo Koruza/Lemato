@@ -16,11 +16,7 @@ class FeedPage extends React.Component {
 	}
 }
 
-class Cookiebook extends React.Component{
-  render(){
-    return(<Cookbook user = {1}/>);
-  }
-}
+
 
 
 // class RecipePage extends React.Component {
