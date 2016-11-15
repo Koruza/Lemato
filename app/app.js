@@ -33,8 +33,6 @@ class Cookiebook extends React.Component {
 // 	}
 // }
 
-
-
 class App extends React.Component {
 	render() {
 		console.log("apprandeh :3");
