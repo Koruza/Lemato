@@ -1,15 +1,15 @@
 import React from 'react';
-// import {Link} from 'react-router';
+import {Link} from 'react-router';
 import {pullData} from '../server';
+import Results from "./results";
 
 export default class AdvancedSearch extends React.Component {
 
-// <Link to={"/profile/" + this.props.author._id}>
-// {this.props.author.fullName}
-// </Link>
   constructor(props) {
     super(props);
-    this.state = props.data;
+    this.state = {
+      contents: []
+    };
   }
 
   handleSubmitClick(clickEvent) {
@@ -55,7 +55,12 @@ export default class AdvancedSearch extends React.Component {
             "allergies": allerg,
             "dietaryRestriction": diety
           };
-          pullData(searchObj);
+
+        this.state.contents.map(() => {
+           return (
+             <Results data={searchObj} />
+           );
+       })
       }
   }
 
@@ -64,8 +69,8 @@ export default class AdvancedSearch extends React.Component {
            <div>
            <div className="container">
                <div className="row">
-                   <div className="col-md-5">
-                   </div>
+                 <div className="col-md-1">
+                 </div>
                    <div className="col-md-7 moveee">
                        <form className="a-search" id="formy">
                              Category:
@@ -111,10 +116,13 @@ export default class AdvancedSearch extends React.Component {
                            <input type="submit" value="Submit" className="submit" id="subm" onClick={(e) => this.handleSubmitClick(e)}/>
                          </form>
                    </div>
+                   <div className="col-md-4">
+                   </div>
 
                </div>
 
            </div>
+
            </div>
          )
      }

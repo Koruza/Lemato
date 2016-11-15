@@ -13,6 +13,8 @@ export default class Settings extends React.Component {
       newBio: this.bio,
       newPassword: this.password
     }
+    //the User ID
+    console.log(props);
   }
 
   handleNameChange(e){
@@ -84,13 +86,13 @@ export default class Settings extends React.Component {
                   </div>
                 </div>
                 <label className="profile-label">Name</label>
-                <input className="form-control name-input" value={this.props.fullName} onKey={(e) => this.handleNameChange(e)}/>
+                <input className="form-control name-input" placeholder={this.props.fullName} onKey={(e) => this.handleNameChange(e)}/>
                 <br />
                 <label className="profile-label">Bio</label>
                 <textarea className="form-control bio-input" rows="3"
-                placeholder="Tell a little bit about yourself" onKey={(e) => this.handleUpdate(e)}></textarea>
+                placeholder="Tell a little bit about yourself" onKey={(e) => this.handleBioChange(e)}></textarea>
               <br />
-              <button type="button" className="btn btn-default update-button" onClick={(e) => this.handleBioChange(e)}>
+              <button type="button" className="btn btn-default update-button" onClick={(e) => this.handleUpdate(e)}>
                   Update Profile</button>
                 </div>
             </div>

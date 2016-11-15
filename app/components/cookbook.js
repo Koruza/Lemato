@@ -20,7 +20,6 @@ export default class Cookbook extends React.Component {
 
   render() {
     this.refresh();
-    console.log(cookbook._id);
     return (
     <div>
       <div className="container">
@@ -53,7 +52,7 @@ export default class Cookbook extends React.Component {
                   <div className="panel-footer">
                     <div className="media">
                       <div className="media-left">
-                        <Link to="/recipe/:recipeID"><img
+                        <Link to="/recipe/recipeID"><img
                                          className="media-object result-pic"
                                          src="img/brownie-egg.jpg"
                                          alt="brownie-egg" /></Link>

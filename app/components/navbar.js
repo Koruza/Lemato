@@ -28,7 +28,7 @@ export default class NavBar extends React.Component {
                 <span className="icon-bar"></span>
                 <span className="icon-bar"></span>
               </button>
-              <Link to="/home" className="navbar-brand">
+              <Link to="/" className="navbar-brand">
                   <span><img src="img/lemato.png"/> Lemato</span>
               </Link>
           </div>
@@ -46,10 +46,10 @@ export default class NavBar extends React.Component {
                   <div className="nav navbar-nav navbar-right">
                       <div className="btn-toolbar pull-right" role="toolbar">
                           <div className="btn-group" role="group">
-                              <Link to="/search" className="btn btn-default navbar-btn">What's in your Fridge?</Link>
+                              <Link to="/search" className="btn btn-default navbar-btn">Advanced Search</Link>
                           </div>
                           <div className="btn-group" role="group">
-                              <Link to="placeholder" className="btn btn-default navbar-btn">Add a Recipe</Link>
+                              <Link to="/newRecipe" className="btn btn-default navbar-btn">Add a Recipe</Link>
                           </div>
                           <Link to="/cookbook" className="btn btn-default navbar-btn">
                             <span className="glyphicon glyphicon-book"></span> Cookbook

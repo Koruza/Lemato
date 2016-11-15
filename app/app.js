@@ -8,6 +8,7 @@ import RecipePage from './components/recipePage';
 import {IndexRoute, Router, Route, browserHistory,hashHistory} from 'react-router';
 import AdvancedSearch from './components/advancedSearch';
 import NavBar from './components/navbar';
+import NewRecipe from './components/newRecipe';
 
 
 class FeedPage extends React.Component {
@@ -21,6 +22,18 @@ class Cookiebook extends React.Component {
 	render() {
 		console.log(">.< (╯°□°）╯︵ ┻━┻");
 		return <Cookbook user ={1}/>;
+	}
+}
+
+class Result extends React.Component{
+	render(){
+		return <Results/>
+	}
+}
+
+class Setting extends React.Component{
+	render(){
+		return <Settings user = {1}/>
 	}
 }
 
@@ -52,11 +65,12 @@ ReactDOM.render((
 		<Route path="/" component={App}>
 			{/* Show the Feed at / */}
 			<IndexRoute component={FeedPage}/>
-			<Route path="/home" component={FeedPage}/>
-			<Route path="/results" component={Results}/>
-			<Route path="/settings" component={Settings}/>
+			<Route path="/" component={FeedPage}/>
+			<Route path="/results" component={Result}/>
+			<Route path="/settings" component={Setting}/>
 			<Route path="/search" component={AdvancedSearch}/>
-			<Route path="/recipePage" component={RecipePage}/>
+			<Route path="/recipePage/:id" component={RecipePage}/>
+			<Route path="/newRecipe" component={NewRecipe}/>
 			<Route path="/cookbook" component={Cookiebook} />
 		</Route>
 	</Router>
