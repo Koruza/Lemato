@@ -196,10 +196,11 @@ export default class Feed extends React.Component {
                     <div className="media-left media-top">
                       <span className="caret"></span>
                     </div>
+                    // Where does ths lead to???
                     <div className="media-body">
-                      //Where does ths lead to???
                       <a href="#">See More</a>
                     </div>
+                    
                   </li>
                 </ul>
               </div>
