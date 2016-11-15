@@ -1,12 +1,10 @@
 import React from 'react';
 import {Link} from 'react-router';
 import {pullData} from '../server';
+import Results from "./results";
 
 export default class AdvancedSearch extends React.Component {
 
-// <Link to={"/profile/" + this.props.author._id}>
-// {this.props.author.fullName}
-// </Link>
   constructor(props) {
     super(props);
     this.state = props.data;
@@ -55,7 +53,7 @@ export default class AdvancedSearch extends React.Component {
             "allergies": allerg,
             "dietaryRestriction": diety
           };
-          pullData(searchObj);
+        pullData(searchObj);
       }
   }
 
@@ -115,6 +113,7 @@ export default class AdvancedSearch extends React.Component {
                </div>
 
            </div>
+
            </div>
          )
      }

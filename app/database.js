@@ -43,7 +43,8 @@ var initialData = {
               "5. Pour it into a 9x9 tray"
            ],
            "description": "Homestyle brownies",
-           "allergies": ["dairy","gluten"]
+           "allergies": ["dairy","gluten"],
+           "meal": "dessert"
         },
         "2":{
           "_id": 2,
@@ -59,7 +60,8 @@ var initialData = {
              "4. Pour the mixture into the empty eggshells"
            ],
            "description":"Brownies makes inside an egg shell!",
-           "allergies": ["dairy", "gluten"]
+           "allergies": ["dairy", "gluten"],
+           "meal": "dessert"
           }
       },
       "feedItems":{
