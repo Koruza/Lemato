@@ -28,7 +28,7 @@ export default class NavBar extends React.Component {
                 <span className="icon-bar"></span>
                 <span className="icon-bar"></span>
               </button>
-              <Link to="/home" className="navbar-brand">
+              <Link to="/" className="navbar-brand">
                   <span><img src="img/lemato.png"/> Lemato</span>
               </Link>
           </div>
