@@ -28,9 +28,9 @@ export default class NavBar extends React.Component {
                 <span className="icon-bar"></span>
                 <span className="icon-bar"></span>
               </button>
-              <a className="navbar-brand" Link to="home">
+              <Link to="/home" className="navbar-brand">
                   <span><img src="img/lemato.png"/> Lemato</span>
-              </a>
+              </Link>
           </div>
           <div className="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
               <form className="navbar-form navbar-left" role="search">
@@ -46,18 +46,18 @@ export default class NavBar extends React.Component {
                   <div className="nav navbar-nav navbar-right">
                       <div className="btn-toolbar pull-right" role="toolbar">
                           <div className="btn-group" role="group">
-                              <button type="button" className="btn btn-default navbar-btn">What's in your Fridge?</button>
+                              <Link to="/search" className="btn btn-default navbar-btn">What's in your Fridge?</Link>
                           </div>
                           <div className="btn-group" role="group">
-                              <button type="button" className="btn btn-default navbar-btn">Add a Recipe</button>
+                              <Link to="placeholder" className="btn btn-default navbar-btn">Add a Recipe</Link>
                           </div>
-                          <button type="button" className="btn btn-default navbar-btn">
+                          <Link to="/cookbook" className="btn btn-default navbar-btn">
                             <span className="glyphicon glyphicon-book"></span> Cookbook
-                          </button>
+                          </Link>
                           <div className="btn-group" role="group">
-                              <button type="button" className="btn btn-default navbar-btn navbar-btn">
+                              <Link to="/settings" className="btn btn-default navbar-btn navbar-btn">
                                 <span className="glyphicon glyphicon-lock"></span>
-                              </button>
+                              </Link>
                               <div className="btn-group" role="group">
                                   <button type="button" className="btn btn-default dropdown-toggle navbar-btn roundedCaret" data-toggle="dropdown">
                                     <span className="caret"></span>
