@@ -1,14 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router';
+import {getCookbookData} from '../server';
 
 export default class Cookbook extends React.Component {
   constructor(props) {
     super(props)
     this.state = props.data;
+    this.state = {
+      contents: []
+    };
+    console.log(this.props.user);
+  }
+
+  refresh() {
+    getCookbookData(this.props.user, (cookbook) => {
+      this.setState(cookbook);
+    });
   }
 
   render() {
-    console.log(this.props.user);
+    this.refresh();
+    console.log(cookbook._id);
     return (
     <div>
       <div className="container">
