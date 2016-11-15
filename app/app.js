@@ -56,8 +56,8 @@ ReactDOM.render((
 			<Route path="/results" component={Results}/>
 			<Route path="/settings" component={Settings}/>
 			<Route path="/search" component={AdvancedSearch}/>
-			<Route path="/recipe/:recipeID" component={RecipePage}/>
-			<Route path="/cookbook/:userID" component={Cookiebook} />
+			<Route path="/recipePage" component={RecipePage}/>
+			<Route path="/cookbook" component={Cookiebook} />
 		</Route>
 	</Router>
 ), document.getElementById('wholeFoods'));

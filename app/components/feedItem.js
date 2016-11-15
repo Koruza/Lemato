@@ -69,7 +69,10 @@ export default class FeedItem extends React.Component {
         switch (data.type) {
             case "statusUpdate":
                 contents = (
-                    <StatusUpdate key={data._id} author={data.contents.author} postDate={data.contents.postDate} location={data.contents.location}>
+                    <StatusUpdate key={data._id}
+                        author={data.contents.author}
+                        postDate={data.contents.postDate}
+                        location={data.contents.location}>
                         {data.contents.contents.split("\n").map((line, i) => {
                             return (
                                 <p key={"line" + i}>{line}</p>
@@ -98,7 +101,8 @@ export default class FeedItem extends React.Component {
                                 </li>
                                 <li>
                                     <a href="#">
-                                        <span className="glyphicon glyphicon-comment"></span>&nbsp; Comment
+                                        <span className="glyphicon glyphicon-comment">
+                                        </span>&nbsp; Comment
                                     </a>
                                 </li>
                                 <li>

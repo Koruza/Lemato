@@ -89,3 +89,19 @@ export function unlikeFeedItem(feedItemId, userId, cb) {
   emulateServerReturn(feedItem.likeCounter.map((userId) =>
   readDocument('users', userId)), cb);
 }
+
+function getRecipePageSync(recipeID) {
+	var recipe = readDocument('recipes', recipeID);
+	return recipe;//placeholder
+}
+
+/**
+  * Emulates a REST call to get the cookbook data for a particular user.
+  * @param user The ID of the user whose cookbook we are requesting.
+  * @param cb A Function object, which we will invoke when the Cookbook's data is available.
+  */
+export function getCookbookData(user, cb) {
+	var userData = readDocument('users', user);
+	userData.cookbook = userData.cookbook.map(getRecipePageSync);
+	emulateServerReturn(userData, cb);
+}

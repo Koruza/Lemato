@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 export default class Settings extends React.Component {
   constructor(props) {
     super(props)
-    this.state = props.data
+    this.state = props.data;
   }
 
 
@@ -34,7 +34,7 @@ export default class Settings extends React.Component {
               <hr />
               <ul className="nav nav-pills nav-stacked">
                 <li role="presentation">
-                  <Link to="/cookbook"><span className="glyphicon glyphicon-book"></span>
+                  <Link to={"/cookbook"}><span className="glyphicon glyphicon-book"></span>
                   Cookbook</Link>
                 </li>
                 <li role="presentation">
