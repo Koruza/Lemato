@@ -105,3 +105,16 @@ export function getCookbookData(user, cb) {
 	userData.cookbook = userData.cookbook.map(getRecipePageSync);
 	emulateServerReturn(userData, cb);
 }
+
+export function updateSettings(user, newName, newBio, cb) {
+	var userData = readDocument('users', user);
+	userData.fullName = newName;
+  userData.bio = newBio;
+	emulateServerReturn(userData, cb);
+}
+
+export function updatePassword(user, newPassword, cb) {
+	var userData = readDocument('users', user);
+	userData.password = newPassword;
+	emulateServerReturn(userData, cb);
+}

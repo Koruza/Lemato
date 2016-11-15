@@ -12,6 +12,7 @@ var initialData = {
             "fullName": "Someone",
             "feed": 1,
             "username":"BrownieKing",
+            "bio": "brownie enthusiast",
             "password":"chocolate",
             "cookbook":[1]
         },
@@ -19,6 +20,7 @@ var initialData = {
             "_id": 2,
             "fullName": "Someone Else",
             "feed": 2,
+            "bio": "brownie hater",
             "username":"BrownieMaster",
             "password":"fudge",
             "cookbook":[2]
