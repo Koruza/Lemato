@@ -31,6 +31,12 @@ class Result extends React.Component{
 	}
 }
 
+class Setting extends React.Component{
+	render(){
+		return <Settings user = {1}/>
+	}
+}
+
 
 // class RecipePage extends React.Component {
 // 	render() {
@@ -61,7 +67,7 @@ ReactDOM.render((
 			<IndexRoute component={FeedPage}/>
 			<Route path="/" component={FeedPage}/>
 			<Route path="/results" component={Result}/>
-			<Route path="/settings" component={Settings}/>
+			<Route path="/settings" component={Setting}/>
 			<Route path="/search" component={AdvancedSearch}/>
 			<Route path="/recipePage/:id" component={RecipePage}/>
 			<Route path="/newRecipe" component={NewRecipe}/>
