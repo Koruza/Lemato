@@ -26,6 +26,8 @@ export function pullData(searchObject){
   // emulateServerReturn(searchObject,cb);
 }
 
+
+
 export function postNewRecipe(user, location, contents, cb) {
     var time = new Date().getTime();
     var newStatusUpdate = {
@@ -58,6 +60,13 @@ function getFeedItemSync(feedItemId) {
         comment.author = readDocument('users', comment.author);
     });
     return feedItem;
+}
+
+export function getFeedData(user,type, cb) {
+    var userData = readDocument('users', user);
+    var feedData = readDocument('feeds', userData.feed);
+    feedData.contents = feedData.contents.map(getFeedItemSync);
+    emulateServerReturn(feedData, cb);
 }
 
 export function postComment(feedItemId, author, contents, cb) {
