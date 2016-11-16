@@ -1,7 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router';
+import {readDocument} from '../database';
 
 export default class RecipePage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = readDocument('recipes', this.props.recipe);
+  }
+
   render() {
     return (
     <div>
@@ -13,7 +19,7 @@ export default class RecipePage extends React.Component {
                 <div className="row">
                   <div className="col-md-12">
                     <div className="media">
-                      <h1 className="text-center">Easter Egg Brownies!</h1>
+                      <h1 className="text-center">{this.state.name}</h1>
                     </div>
                   </div>
                 </div>
@@ -40,7 +46,7 @@ export default class RecipePage extends React.Component {
                 <div className="row">
                   <div className="col-md-12">
                     <img
-                         src="img/brownie-egg.jpg"
+                         src={this.state.pic}
                          className="center-block"
                          alt="" />
                   </div>
@@ -50,65 +56,14 @@ export default class RecipePage extends React.Component {
                 <div className="row">
                   <div className="col-md-12 side-padding">
                     <h2>Ingredients</h2>
-                    <ul>
-                      <li>
-                        2 cups white sugar
-                      </li>
-                      <li>
-                        1 cup butter
-                      </li>
-                      <li>
-                        1/2 cup cocoa powder
-                      </li>
-                      <li>
-                        1 teaspoon vanilla extract
-                      </li>
-                      <li>
-                        4 eggs
-                      </li>
-                      <li>
-                        1 1/2 cups all-purpose flour
-                      </li>
-                      <li>
-                        1/2 teaspoon baking powder
-                      </li>
-                      <li>
-                        1/2 teaspoon salt
-                      </li>
-                    </ul>
+                    {this.state.ingredients}
                   </div>
                 </div>
                 <hr />
                 <div className="row no-padding">
                   <div className="col-md-12 side-padding">
                     <h2>Instructions</h2>
-                    <ol>
-                      <li>
-                        Poke a 1cm hole in the bottom of the eggs. Drain eggs out.
-                      </li>
-                      <li>
-                        Clean shells in cold water and prepare a bowl with salt water (11g salt and 100g water). Completely submerge shells in saltwater for 30 minutes, then rinse with
-                        cold water and let dry.
-                      </li>
-                      <li>
-                        Preheat oven to 175 Celsius (350 Fahrenheit).
-                      </li>
-                      <li>
-                        Melt butter and then mix ingredients together in a bowl in the order given.
-                      </li>
-                      <li>
-                        Add about 1 teaspoon sunflower oil inside shells. Turn shell until inside is completely covered and remove excess oil.
-                      </li>
-                      <li>
-                        Fill each shell until it is about 2/3 full.
-                      </li>
-                      <li>
-                        Bake for 25 to 30 minutes.
-                      </li>
-                      <li>
-                        Let cool and then enjoy!
-                      </li>
-                    </ol>
+                    {this.state.instructions}
                   </div>
                 </div>
               </div>
