@@ -7,14 +7,12 @@ export default class Settings extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      data: props.data,
-      user: props._id,
-      newName: props.fullName,
-      newBio: props.bio,
-      newPassword: props.password
+      data: props.user.data,
+      user: props.user._id,
+      newName: props.user.fullName,
+      newBio: props.user.bio,
+      newPassword: props.user.password
     }
-    //the User ID
-    console.log(props);
   }
 
   handleNameChange(e){
@@ -46,6 +44,7 @@ export default class Settings extends React.Component {
 
   render() {
   //  var data = this.state
+
 
     return (
       <div>
@@ -86,7 +85,7 @@ export default class Settings extends React.Component {
                   </div>
                 </div>
                 <label className="profile-label">Name</label>
-                <input className="form-control name-input" placeholder={this.props.fullName} onKey={(e) => this.handleNameChange(e)}/>
+                <input className="form-control name-input" placeholder={this.props.user.fullName} onKey={(e) => this.handleNameChange(e)}/>
                 <br />
                 <label className="profile-label">Bio</label>
                 <textarea className="form-control bio-input" rows="3"
