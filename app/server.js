@@ -10,24 +10,6 @@ function emulateServerReturn(data, cb) {
   }, 4);
 }
 
-export function pullData(searchObject){
-  /*
-    searchObject will look like this:
-    {
-      "ingredient1": ing1,
-      "ingeredient2": ing2,
-      "ingredient3": ing3,
-      "alergies": "nuts, ..",
-      "dieraryRestrcition": "..."
-    }
-  */
-  //  document.getElementByID("formy").submit();
-  console.log(searchObject);
-  // emulateServerReturn(searchObject,cb);
-}
-
-
-
 export function postNewRecipe(user, location, contents, cb) {
     var time = new Date().getTime();
     var newStatusUpdate = {
