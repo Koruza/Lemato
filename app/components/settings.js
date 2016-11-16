@@ -2,17 +2,14 @@ import React from 'react';
 import { Link } from 'react-router';
 import {updateSettings} from '../server';
 import {updatePassword} from '../server';
+import {readDocument} from '../database'
 
 export default class Settings extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      data: props.data,
-      user: props._id,
-      fullName: props.fullName,
-      bio: props.bio,
-      password: props.password
-    }
+    var user = readDocument('users', this.props.user);
+    this.state = user;
+    console.log(this.state._id);
   }
 
   handleNameChange(e){
@@ -43,7 +40,7 @@ export default class Settings extends React.Component {
   }
 
   render() {
-
+    console.log(this.state._id + " :)");
     return (
       <div>
       <div className="container">
@@ -83,11 +80,11 @@ export default class Settings extends React.Component {
                   </div>
                 </div>
                 <label className="profile-label">Name</label>
-                <input className="form-control name-input" placeholder={this.state.fullName} onKey={(e) => this.handleNameChange(e)}/>
+                <input type="text" className="form-control name-input" value={this.state.fullName} onKey={(e) => this.handleNameChange(e)}/>
                 <br />
                 <label className="profile-label">Bio</label>
                 <textarea className="form-control bio-input" rows="3"
-                placeholder="Tell a little bit about yourself" onKey={(e) => this.handleBioChange(e)}></textarea>
+                value={this.state.bio} onKey={(e) => this.handleBioChange(e)}></textarea>
               <br />
               <button type="button" className="btn btn-default update-button" onClick={(e) => this.handleUpdate(e)}>
                   Update Profile</button>
