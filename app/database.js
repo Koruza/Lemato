@@ -10,16 +10,14 @@ var initialData = {
         "1": {
             "_id": 1,
             "fullName": "Someone",
-            "feed": 1,
-            "username":"BrownieKing",
             "bio": "brownie enthusiast",
+            "username":"BrownieKing",
             "password":"chocolate",
             "cookbook":[1]
         },
         "2": {
             "_id": 2,
             "fullName": "Someone Else",
-            "feed": 2,
             "bio": "brownie hater",
             "username":"BrownieMaster",
             "password":"fudge",
