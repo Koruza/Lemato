@@ -1,6 +1,7 @@
 import React from 'react';
 // import { Link } from 'react-router';
 
+
 export default class NewRecipe extends React.Component {
   constructor(props) {
     super(props)
@@ -8,6 +9,15 @@ export default class NewRecipe extends React.Component {
     this.state = {
       contents: []
     };
+  }
+
+  handlePublishClick(clickEvent) {
+    clickEvent.preventDefault();
+    var recipeName = document.getElementById("recipeName").value
+    var description = document.getElementById("descriptionText").value
+    var ingredients = document.getElementById("ingredientsText").value
+    var instructions = document.getElementById("instructionsText").value
+    this.state;
   }
 
   render() {
@@ -18,7 +28,7 @@ export default class NewRecipe extends React.Component {
         <div className="col-md-8 col-md-offset-2">
           <div className="panel panel-default">
             <div className="panel-body">
-              <input type="text" className="form-control title" placeholder="New Recipe"/>
+              <input type="text" className="form-control title" id="recipeName" placeholder="New Recipe"/>
               <div className="media user-info">
                 <div className="media-left">
                   PIC
@@ -30,16 +40,16 @@ export default class NewRecipe extends React.Component {
                 <span className="glyphicon glyphicon-camera"></span> &nbsp;Add Photo
               </a>
               <div className="description-input">
-                <textarea type="text" className="form-control" rows="2"
+                <textarea type="text" className="form-control" rows="2" id="descriptionText"
                     placeholder="Give a brief description"></textarea>
                 <span className="description-count pull-right">Character Limit: 140<br/></span>
               </div>
               <h3 className="ingredient-title">Ingredients</h3>
-              <textarea type="text" className="form-control ingredient-input" rows="8"
-              placeholder="What are the ingredients?"></textarea>
+              <textarea type="text" className="form-control ingredient-input" rows="8" id="ingredientsText"
+                placeholder="What are the ingredients?"></textarea>
               <h3 className="instruction-title">Instructions</h3>
-              <textarea type="text" className="form-control instruction-input" rows="12"
-              placeholder="How do you make it?"></textarea>
+              <textarea type="text" className="form-control instruction-input" rows="12" id="instructionsText"
+                placeholder="How do you make it?"></textarea>
             </div>
             <div className="panel-footer">
               <div className="row">
@@ -48,7 +58,9 @@ export default class NewRecipe extends React.Component {
                 </div>
                 <div className="col-md-3">
                   <div className="pull-right">
-                    <button type="button" className="btn btn-default publish-button">Publish</button>
+                    <button type="button" className="btn btn-default publish-button" onClick={(e) => this.handlePublishClick(e)}>
+                      Publish
+                    </button>
                   </div>
                 </div>
               </div>
