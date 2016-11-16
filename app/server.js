@@ -100,9 +100,6 @@ export function unlikeFeedItem(feedItemId, userId, cb) {
   readDocument('users', userId)), cb);
 }
 
-<<<<<<< HEAD
-function getRecipePageSync(recipeID) {
-=======
 export function likeRecipe(recipeId, userId, cb) {
   var recipeItem = readDocument('recipes', recipeId);
   recipeItem.chefPoints.push(userId);
@@ -121,9 +118,8 @@ export function dislikeRecipe(recipeId, userId, cb) {
 }
 
 export function getRecipePageSync(recipeID) {
->>>>>>> d7c2b34057673e9ec7a0d3a787054256f041966d
 	var recipe = readDocument('recipes', recipeID);
-	return recipe;//placeholder
+	return recipe;
 }
 
 /**
