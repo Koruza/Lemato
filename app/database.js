@@ -85,7 +85,6 @@ var initialData = {
                 "postDate": 1453790800000
               }
             ]
-
           },
 
           "2": {
@@ -108,8 +107,8 @@ var initialData = {
                   "postDate": 1453790800000
                 }
               ]
-
             }
+          }
         }
 };
 

@@ -7,11 +7,11 @@ export default class Settings extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      data: props.user.data,
-      user: props.user._id,
-      newName: props.user.fullName,
-      newBio: props.user.bio,
-      newPassword: props.user.password
+      data: props.data,
+      user: props._id,
+      fullName: props.fullName,
+      bio: props.bio,
+      password: props.password
     }
   }
 
@@ -28,7 +28,7 @@ export default class Settings extends React.Component {
 
   handleUpdate(clickEvent){
     clickEvent.preventDefault();
-    updateSettings(this.state.user, this.state.newName, this.state.newBio);
+    updateSettings(this.state.user, this.state.fullName, this.state.Bio);
   }
 
 
@@ -39,12 +39,10 @@ export default class Settings extends React.Component {
 
   handlePasswordUpdate(clickEvent){
     clickEvent.preventDefault();
-    updatePassword(this.state.user, this.state.newPassword);
+    updatePassword(this.state.user, this.state.Password);
   }
 
   render() {
-  //  var data = this.state
-
 
     return (
       <div>
@@ -85,7 +83,7 @@ export default class Settings extends React.Component {
                   </div>
                 </div>
                 <label className="profile-label">Name</label>
-                <input className="form-control name-input" placeholder={this.props.user.fullName} onKey={(e) => this.handleNameChange(e)}/>
+                <input className="form-control name-input" placeholder={this.state.fullName} onKey={(e) => this.handleNameChange(e)}/>
                 <br />
                 <label className="profile-label">Bio</label>
                 <textarea className="form-control bio-input" rows="3"
