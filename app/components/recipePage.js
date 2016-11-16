@@ -5,7 +5,8 @@ import {readDocument} from '../database';
 export default class RecipePage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = readDocument('recipes', this.props.recipe);
+    this.state = props.data;
+    console.log(props.recipe);
   }
 
   render() {

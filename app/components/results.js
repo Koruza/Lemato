@@ -6,6 +6,7 @@ export default class Results extends React.Component {
   constructor(props) {
     super(props)
     this.state = getRecipePageSync(props.recipe)
+    console.log(props);
   }
 
   didUserLike() {
@@ -63,7 +64,7 @@ export default class Results extends React.Component {
                     </div>
                     <div className="media-body">
                       <h4 className="media-heading">
-                        <Link to={"/recipes/" + data.name}>{data.name}</Link>
+                        <Link to={"/recipePage/" + data._id}>{data.name}</Link>
                       </h4>
                       {data.description}
                     </div>
