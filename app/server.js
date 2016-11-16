@@ -34,19 +34,17 @@ export function postNewRecipe(user, location, contents, cb) {
 
 function getFeedItemSync(feedItemId) {
     var feedItem = readDocument('feedItems', feedItemId);
-    feedItem.likeCounter =
-        feedItem.likeCounter.map((id) => readDocument('users', id));
-    feedItem.contents.author =
-        readDocument('users', feedItem.contents.author);
-    feedItem.comments.forEach((comment) => {
-        comment.author = readDocument('users', comment.author);
-    });
+    feedItem._id = feedItemId
+    feedItem.contents.author = readDocument('users', feedItem.contents.author);
+    feedItem.comments.forEach((comment) => {comment.author = readDocument('users', comment.author)});
+    feedItem.recipe = readDocument('recipes', feedItem.contents._id)
     return feedItem;
 }
 
 export function getFeedData(user, cb) {
     var userData = readDocument('users', user);
-    var feedData = readDocument('feedItems', userData);
+    var feedData = readDocument('feeds', userData.feed);
+    emulateServerReturn(feedData, cb);
     feedData.contents = feedData.contents.map(getFeedItemSync);
     emulateServerReturn(feedData, cb);
 }
@@ -119,6 +117,7 @@ export function updateSettings(user, newName, newBio, cb) {
 	var userData = readDocument('users', user);
 	userData.fullName = newName;
   userData.bio = newBio;
+  writeDocument('users', userData);
 	emulateServerReturn(userData, cb);
 }
 

@@ -25,7 +25,11 @@ export default class Settings extends React.Component {
 
   handleUpdate(clickEvent){
     clickEvent.preventDefault();
-    updateSettings(this.state._id, this.state.fullName, this.state.bio);
+    var callbackFunction = (updatedState) => {
+      this.setState({fullName: updatedState.fullName})
+      this.setState({bio: updatedState.bio})
+    }
+    updateSettings(this.state._id, this.state.fullName, this.state.bio, callbackFunction);
   }
 
 
