@@ -86,6 +86,29 @@ var initialData = {
               }
             ]
 
+          },
+
+          "2": {
+          "contents": {
+                  "_id":2,
+                  "author": 2,
+                  "postDate": 1459668480000,
+                  "contents": "Browniesss."
+              },
+          "comments":
+            [
+              {
+                "author": 2,
+                "contents": "Omg have you tried the brownie in an egg?!",
+                "postDate": 1453690800000
+              },
+              {
+                "author": 1,
+                "contents": "Yes, I did. The idea of it blew my mind!!!",
+                "postDate": 1453790800000
+              }
+            ]
+
           }
         }
 };

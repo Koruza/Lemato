@@ -44,7 +44,7 @@ export function postNewRecipe(user, location, contents, cb) {
     };
     newStatusUpdate = addDocument('feedItems', newStatusUpdate);
     var userData = readDocument('users', user);
-    var feedData = readDocument('feeds', userData.feed);
+    var feedData = readDocument('feedItems', userData.feed);
     feedData.contents.unshift(newStatusUpdate._id);
     writeDocument('feeds', feedData);
     emulateServerReturn(newStatusUpdate, cb);
@@ -64,7 +64,7 @@ function getFeedItemSync(feedItemId) {
 
 export function getFeedData(user, cb) {
     var userData = readDocument('users', user);
-    var feedData = readDocument('feeds', userData.feed);
+    var feedData = readDocument('feedItems', userData.feed);
     feedData.contents = feedData.contents.map(getFeedItemSync);
     emulateServerReturn(feedData, cb);
 }
@@ -100,32 +100,9 @@ export function unlikeFeedItem(feedItemId, userId, cb) {
   readDocument('users', userId)), cb);
 }
 
-export function likeRecipe(recipeId, userId, cb) {
-  var recipeItem = readDocument('recipes', recipeId);
-  recipeItem.chefPoints.push(userId);
-  writeDocument('recipes', recipeItem);
-  emulateServerReturn(recipeItem.chefPoints.map((userId) =>
-  readDocument('recipes', recipeId)), cb);
-}
-
-export function dislikeRecipe(recipeId, userId, cb) {
-  var recipeItem = readDocument('recipes', recipeId);
-  var index;
-  for (var i = 0; i < recipeItem.chefPoints.length - 1; i++) {
-    if(recipeItem.chefPoints[i] === userId) {
-      index = i;
-      break;
-    }
-  }
-  recipeItem.chefPoints.splice(index, 1);
-  writeDocument('recipes', recipeItem);
-  emulateServerReturn(recipeItem.chefPoints.map((userId) =>
-  readDocument('recipes', recipeId)), cb);
-}
-
-export function getRecipePageSync(recipeID) {
+function getRecipePageSync(recipeID) {
 	var recipe = readDocument('recipes', recipeID);
-	return recipe;
+	return recipe;//placeholder
 }
 
 /**
