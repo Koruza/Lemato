@@ -48,7 +48,6 @@ var initialData = {
         "2":{
           "_id": 2,
           "name": "Brownie in an egg",
-          "postDate": 1453668780000,
           "chefPoints": [2],
           "ingredients":[
             "Flour", "Egg", "Cocoa Powder", "Sugar","Baking Powder"],
