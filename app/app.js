@@ -10,17 +10,14 @@ import AdvancedSearch from './components/advancedSearch';
 import NavBar from './components/navbar';
 import NewRecipe from './components/newRecipe';
 
-
 class FeedPage extends React.Component {
 	render() {
-		console.log("feedpageRendah :3");
 		return <Feed user={1}/>;
 	}
 }
 
 class Cookiebook extends React.Component {
 	render() {
-		console.log(">.< (╯°□°）╯︵ ┻━┻");
 		return <Cookbook user ={1}/>;
 	}
 }
@@ -49,7 +46,6 @@ class Setting extends React.Component{
 
 class App extends React.Component {
 	render() {
-		console.log("apprandeh :3");
 		return (
 			<div>
 				<NavBar/>
