@@ -12,7 +12,7 @@ export default class Results extends React.Component {
     var chefPoints = this.state.chefPoints;
     var liked = false;
     for (var i = 0; i < chefPoints.length; i++) {
-      if (chefPoints[i] === 1) {
+      if (chefPoints[i]._id === 1) {
         liked = true;
         break;
       }

@@ -104,23 +104,17 @@ export function likeRecipe(recipeId, userId, cb) {
   var recipeItem = readDocument('recipes', recipeId);
   recipeItem.chefPoints.push(userId);
   writeDocument('recipes', recipeItem);
-  emulateServerReturn(recipeItem.chefPoints.map((userId) =>
-  readDocument('recipes', recipeId)), cb);
+  emulateServerReturn(recipeItem.chefPoints.map((userId) => readDocument('recipes', recipeId)), cb);
 }
 
 export function dislikeRecipe(recipeId, userId, cb) {
   var recipeItem = readDocument('recipes', recipeId);
-  var index;
-  for (var i = 0; i < recipeItem.chefPoints.length - 1; i++) {
-    if(recipeItem.chefPoints[i] === userId) {
-      index = i;
-      break;
-    }
+  var recipeIndex = recipeItem.chefPoints.indexOf(userId);
+  if(recipeIndex !== -1) {
+    recipeItem.chefPoints.splice(recipeIndex, 1);
+    writeDocument('recipes', recipeItem);
   }
-  recipeItem.chefPoints.splice(index, 1);
-  writeDocument('recipes', recipeItem);
-  emulateServerReturn(recipeItem.chefPoints.map((userId) =>
-  readDocument('recipes', recipeId)), cb);
+  emulateServerReturn(recipeItem.chefPoints.map((userId) => readDocument('recipes', recipeId)), cb);
 }
 
 export function getRecipePageSync(recipeID) {

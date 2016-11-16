@@ -86,7 +86,7 @@ var initialData = {
               }
             ]
 
-          }
+          },
 
           "2": {
             "contents": {
