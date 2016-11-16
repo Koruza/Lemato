@@ -38,7 +38,7 @@ export default class NavBar extends React.Component {
                       <input type="text" className="form-control lemato-search" placeholder="Search Lemato"/>
                       <span className="input-group-btn">
                         <button type="submit" className="btn btn-default">
-                        <span className="glyphicon glyphicon-search"></span></button>
+                        <Link to="/results" className="glyphicon glyphicon-search"></Link></button>
                       </span>
                   </div>
               </form>

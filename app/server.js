@@ -64,7 +64,11 @@ function getFeedItemSync(feedItemId) {
 
 export function getFeedData(user, cb) {
     var userData = readDocument('users', user);
+<<<<<<< HEAD
     var feedData = readDocument('feedItems', userData.feed);
+=======
+    var feedData = readDocument('feedItems', userData);
+>>>>>>> d7c2b34057673e9ec7a0d3a787054256f041966d
     feedData.contents = feedData.contents.map(getFeedItemSync);
     emulateServerReturn(feedData, cb);
 }
@@ -100,7 +104,28 @@ export function unlikeFeedItem(feedItemId, userId, cb) {
   readDocument('users', userId)), cb);
 }
 
+<<<<<<< HEAD
 function getRecipePageSync(recipeID) {
+=======
+export function likeRecipe(recipeId, userId, cb) {
+  var recipeItem = readDocument('recipes', recipeId);
+  recipeItem.chefPoints.push(userId);
+  writeDocument('recipes', recipeItem);
+  emulateServerReturn(recipeItem.chefPoints.map((userId) => readDocument('recipes', recipeId)), cb);
+}
+
+export function dislikeRecipe(recipeId, userId, cb) {
+  var recipeItem = readDocument('recipes', recipeId);
+  var recipeIndex = recipeItem.chefPoints.indexOf(userId);
+  if(recipeIndex !== -1) {
+    recipeItem.chefPoints.splice(recipeIndex, 1);
+    writeDocument('recipes', recipeItem);
+  }
+  emulateServerReturn(recipeItem.chefPoints.map((userId) => readDocument('recipes', recipeId)), cb);
+}
+
+export function getRecipePageSync(recipeID) {
+>>>>>>> d7c2b34057673e9ec7a0d3a787054256f041966d
 	var recipe = readDocument('recipes', recipeID);
 	return recipe;//placeholder
 }
