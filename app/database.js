@@ -107,10 +107,9 @@ var initialData = {
                   "postDate": 1453790800000
                 }
               ]
-            }
           }
         }
-};
+}
 
 var data = JSON.parse(localStorage.getItem(startupName));
 if (data === null) {
