@@ -80,11 +80,11 @@ export default class Settings extends React.Component {
                   </div>
                 </div>
                 <label className="profile-label">Name</label>
-                <input type="text" className="form-control name-input" value={this.state.fullName} onKey={(e) => this.handleNameChange(e)}/>
+                <input type="text" className="form-control name-input" placeholder={this.state.fullName} onKey={(e) => this.handleNameChange(e)}/>
                 <br />
                 <label className="profile-label">Bio</label>
                 <textarea className="form-control bio-input" rows="3"
-                value={this.state.bio} onKey={(e) => this.handleBioChange(e)}></textarea>
+                placeholder={this.state.bio} onKey={(e) => this.handleBioChange(e)}></textarea>
               <br />
               <button type="button" className="btn btn-default update-button" onClick={(e) => this.handleUpdate(e)}>
                   Update Profile</button>
