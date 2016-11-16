@@ -36,7 +36,6 @@ export default class Feed extends React.Component {
    this.refresh()
   }
 
-
   render() {
     return (
       <div>

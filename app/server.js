@@ -34,6 +34,7 @@ export function postNewRecipe(user, location, contents, cb) {
 
 function getFeedItemSync(feedItemId) {
     var feedItem = readDocument('feedItems', feedItemId);
+    feedItem._id = feedItemId
     feedItem.contents.author = readDocument('users', feedItem.contents.author);
     feedItem.comments.forEach((comment) => {comment.author = readDocument('users', comment.author)});
     feedItem.recipe = readDocument('recipes', feedItem.contents._id)

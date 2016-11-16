@@ -45,10 +45,10 @@ export default class FeedItem extends React.Component {
     }
 
     didUserLike() {
-        var likeCounter = this.state.likeCounter;
+        var chefPoints = this.state.recipe.chefPoints;
         var liked = false;
-        for (var i = 0; i < likeCounter.length; i++) {
-            if (likeCounter[i]._id === 1) {
+        for (var i = 0; i < chefPoints.length; i++) {
+            if (chefPoints[i]._id === 1) {
                 liked = true;
                 break;
             }
@@ -66,24 +66,24 @@ export default class FeedItem extends React.Component {
 
         var data = this.state;
         var contents;
-        switch (data.type) {
-            case "statusUpdate":
-                contents = (
-                    <StatusUpdate key={data._id}
-                        author={data.contents.author}
-                        postDate={data.contents.postDate}
-                        location={data.contents.location}>
-                        {data.contents.contents.split("\n").map((line, i) => {
-                            return (
-                                <p key={"line" + i}>{line}</p>
-                            );
-                        })}
-                    </StatusUpdate>
-                );
-                break;
-            default:
-                throw new Error("Unknown FeedItem: " + data.type);
-        }
+        // switch (data.type) {
+        //     case "statusUpdate":
+        //         contents = (
+        //             <StatusUpdate key={data._id}
+        //                 author={data.contents.author}
+        //                 postDate={data.contents.postDate}
+        //                 location={data.contents.location}>
+        //                 {data.contents.contents.split("\n").map((line, i) => {
+        //                     return (
+        //                         <p key={"line" + i}>{line}</p>
+        //                     );
+        //                 })}
+        //             </StatusUpdate>
+        //         );
+        //         break;
+        //     default:
+        //         throw new Error("Unknown FeedItem: " + data.type);
+        // }
         return (
           <div>
             <div className="new-recipe panel panel-default">
