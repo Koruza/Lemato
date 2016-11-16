@@ -35,11 +35,9 @@ export default class Feed extends React.Component {
   componentDidMount() {
    this.refresh()
   }
-  //TODO Oscar pls change statusUpdate Entry
-  //Done
+
 
   render() {
-    console.log("feedRendah :p");
   //   return (
   //       <div>
   //           <FeedItem />
