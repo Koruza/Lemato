@@ -9,7 +9,6 @@ export default class Cookbook extends React.Component {
     this.state = {
       contents: []
     };
-    console.log(this.props.user);
   }
 
   refresh() {
