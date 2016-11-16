@@ -28,6 +28,7 @@ var initialData = {
         "1":{
           "_id": 1,
           "name": "Brownie",
+          "postDate": 1453668480000,
           "chefPoints": [1],
           "ingredients":[
             "Flour", "Egg", "Cocoa Powder", "Sugar","Butter"
@@ -47,6 +48,7 @@ var initialData = {
         "2":{
           "_id": 2,
           "name": "Brownie in an egg",
+          "postDate": 1453668780000,
           "chefPoints": [2],
           "ingredients":[
             "Flour", "Egg", "Cocoa Powder", "Sugar","Baking Powder"],
@@ -85,6 +87,29 @@ var initialData = {
             ]
 
           }
+
+          "2": {
+            "contents": {
+                    "_id":2,
+                    "author": 2,
+                    "postDate": 1453668780000,
+                    "contents": "Browniesss in eggshellsssssssss."
+                },
+            "comments":
+              [
+                {
+                  "author": 1,
+                  "contents": "Omg have you tried the brownies I posted?!",
+                  "postDate": 1453690800000
+                },
+                {
+                  "author": 2,
+                  "contents": "Yes, I did. The idea of it blew my tastebuds away!!!",
+                  "postDate": 1453790800000
+                }
+              ]
+
+            }
         }
 };
 
