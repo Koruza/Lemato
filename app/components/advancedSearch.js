@@ -217,14 +217,9 @@ export default class AdvancedSearch extends React.Component {
                   <br/>
                 </div>
               </div>
-              <a href="#/results">
-                <input
-                       type="submit"
-                       value="Submit"
-                       className="submit"
-                       id="subm"
-                       onClick={ (e) => this.handleSubmitClick( e ) } />
-              </a>
+              <Link to="results"
+                    className="btn btn-default">Submit
+              </Link>
             </form>
           </div>
           <div className="col-md-4">

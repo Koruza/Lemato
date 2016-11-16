@@ -107,7 +107,7 @@ var initialData = {
                 }
               ]
           }
-        }
+      }
 }
 
 var data = JSON.parse(localStorage.getItem(startupName));
