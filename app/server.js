@@ -117,6 +117,7 @@ export function updateSettings(user, newName, newBio, cb) {
 	var userData = readDocument('users', user);
 	userData.fullName = newName;
   userData.bio = newBio;
+  writeDocument('users', userData);
 	emulateServerReturn(userData, cb);
 }
 
