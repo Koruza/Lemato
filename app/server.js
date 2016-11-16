@@ -44,7 +44,7 @@ export function postNewRecipe(user, location, contents, cb) {
     };
     newStatusUpdate = addDocument('feedItems', newStatusUpdate);
     var userData = readDocument('users', user);
-    var feedData = readDocument('feedItems', userData.feed);
+    var feedData = readDocument('feedItems', userData);
     feedData.contents.unshift(newStatusUpdate._id);
     writeDocument('feeds', feedData);
     emulateServerReturn(newStatusUpdate, cb);
@@ -64,11 +64,7 @@ function getFeedItemSync(feedItemId) {
 
 export function getFeedData(user, cb) {
     var userData = readDocument('users', user);
-<<<<<<< HEAD
-    var feedData = readDocument('feedItems', userData.feed);
-=======
     var feedData = readDocument('feedItems', userData);
->>>>>>> d7c2b34057673e9ec7a0d3a787054256f041966d
     feedData.contents = feedData.contents.map(getFeedItemSync);
     emulateServerReturn(feedData, cb);
 }
