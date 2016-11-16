@@ -84,10 +84,31 @@ var initialData = {
                 "postDate": 1453790800000
               }
             ]
+          },
 
+          "2": {
+            "contents": {
+                    "_id":2,
+                    "author": 2,
+                    "postDate": 1453668780000,
+                    "contents": "Browniesss in eggshellsssssssss."
+                },
+            "comments":
+              [
+                {
+                  "author": 1,
+                  "contents": "Omg have you tried the brownies I posted?!",
+                  "postDate": 1453690800000
+                },
+                {
+                  "author": 2,
+                  "contents": "Yes, I did. The idea of it blew my tastebuds away!!!",
+                  "postDate": 1453790800000
+                }
+              ]
           }
         }
-};
+}
 
 var data = JSON.parse(localStorage.getItem(startupName));
 if (data === null) {
