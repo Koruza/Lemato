@@ -140,6 +140,13 @@ export function updateSettings(user, newName, newBio, cb) {
 	emulateServerReturn(userData, cb);
 }
 
+// export function updateSettings(userID, newName, newBio) {
+//   var user = readDocument('users', userID);
+//   user.fullName = newName;
+//   user.bio = newBio;
+//   writeDocument('users', user);
+// }
+
 export function updatePassword(user, newPassword, cb) {
 	var userData = readDocument('users', user);
 	userData.password = newPassword;
