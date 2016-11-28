@@ -9,17 +9,16 @@ export default class Settings extends React.Component {
     super(props)
     var user = readDocument('users', this.props.user);
     this.state = user;
-    console.log(this.state._id);
   }
 
   handleNameChange(e){
     e.preventDefault();
-    this.setState({newName: e.target.value});
+    this.setState({fullName: e.target.value});
   }
 
   handleBioChange(e){
     e.preventDefault();
-    this.setState({newBio: e.target.value});
+    this.setState({bio: e.target.value});
   }
 
 
@@ -44,7 +43,6 @@ export default class Settings extends React.Component {
   }
 
   render() {
-    console.log(this.state._id + " :)");
     return (
       <div>
       <div className="container">
@@ -84,11 +82,11 @@ export default class Settings extends React.Component {
                   </div>
                 </div>
                 <label className="profile-label">Name</label>
-                <input type="text" className="form-control name-input" placeholder={this.state.fullName} onKey={(e) => this.handleNameChange(e)}/>
+                <input type="text" className="form-control name-input" value={this.state.fullName} onChange={(e) => this.handleNameChange(e)}/>
                 <br />
                 <label className="profile-label">Bio</label>
                 <textarea className="form-control bio-input" rows="3"
-                placeholder={this.state.bio} onKey={(e) => this.handleBioChange(e)}></textarea>
+                value={this.state.bio} onChange={(e) => this.handleBioChange(e)}></textarea>
               <br />
               <button type="button" className="btn btn-default update-button" onClick={(e) => this.handleUpdate(e)}>
                   Update Profile</button>
