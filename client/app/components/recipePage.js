@@ -1,12 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router';
 import {readDocument} from '../database';
+import {getRecipePageSync} from '../server';
 
 export default class RecipePage extends React.Component {
   constructor(props) {
     super(props);
     this.state = props.data;
-    console.log(props.recipe);
+  }
+
+  fixThisList(someList) {
+    for(var index; index<someList.length; index++) {
+      someList[index] = this.state.ingredients[index] + "\n";
+    }
+    return someList;
   }
 
   render() {
