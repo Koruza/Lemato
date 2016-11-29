@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import SearchBar from './searchBar';
 
 export default class NavBar extends React.Component {
 
@@ -33,15 +34,7 @@ export default class NavBar extends React.Component {
               </Link>
           </div>
           <div className="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
-              <form className="navbar-form navbar-left" role="search">
-                  <div className="input-group">
-                      <input type="text" className="form-control lemato-search" placeholder="Search Lemato"/>
-                      <span className="input-group-btn">
-                        <button type="submit" className="btn btn-default">
-                        <Link to="/results" className="glyphicon glyphicon-search"></Link></button>
-                      </span>
-                  </div>
-              </form>
+            <SearchBar searchTerm={this.props.searchTerm} />
               <ul className="nav navbar-nav navbar-right">
                   <div className="nav navbar-nav navbar-right">
                       <div className="btn-toolbar pull-right" role="toolbar">

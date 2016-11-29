@@ -31,15 +31,33 @@ export default class Settings extends React.Component {
     updateSettings(this.state._id, this.state.fullName, this.state.bio, callbackFunction);
   }
 
+  handleOldPassword(e){
+    e.preventDefault();
+    this.setState({oldPassword: e.target.value});
+  }
+
+  handleNewPassword(e){
+  e.preventDefault();
+  this.setState({newPassword: e.target.value});
+}
 
   handlePasswordChange(e){
     e.preventDefault();
-    this.setState({password: e.target.value});
+    this.setState({newPassword2: e.target.value});
   }
 
   handlePasswordUpdate(clickEvent){
+    //if(this.state.oldPassword == this.state.password != this.state.newPassword && this.state.newPassword == this.state.newPassword2){
     clickEvent.preventDefault();
-    updatePassword(this.state.user, this.state.Password);
+    var callbackFunction = (updatedState) => {
+      this.setState({password: updatedState.password})
+    }
+    updatePassword(this.state._id, this.state.newPassword, callbackFunction);
+    console.log(this.state.password);
+//  }
+    ///else{
+    //  alert("Try Again!");
+    //}
   }
 
   render() {
@@ -95,21 +113,18 @@ export default class Settings extends React.Component {
             <div className="panel panel-default">
               <div className="panel-heading setting-label">Account Settings</div>
               <div className="panel-body account-settings">
-                <label>Change password</label>
-                <input className="form-control old-password" placeholder="Old password" />
+                <label>Change password</label> <br />
+                Old Password:
+                <input type="text" className="form-control old-password" value={this.state.oldPassword} onChange={(e) => this.handleOldPassword(e)}/>
                 <br />
-                <input className="form-control new-password" placeholder="New password" onKey={(e) => this.handlePasswordChange(e)}/>
+                New Password:
+                <input type="text" className="form-control new-password" value={this.state.newPassword} onChange={(e) => this.handleNewPassword(e)}/>
                 <br />
-                <input className="form-control cf-new-password" placeholder="Confirm New password" />
+                Confirm New Password:
+                <input type="text" className="form-control cf-new-password" value={this.state.newPassword2} onChange={(e) => this.handlePasswordChange(e)}/>
                 <br />
                 <button type="button" className="btn btn-default update-button" onClick={(e) => this.handlePasswordUpdate(e)}>Update password</button>
                 <hr />
-                <label>Delete account</label>
-                <br />Once you delete your account, there is no going back.
-                  Please be certain. <br />
-                <br />
-                <button type="button" className="btn btn-default delete-button">
-                  Delete your account</button>
               </div>
             </div>
           </div>
