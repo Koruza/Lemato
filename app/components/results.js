@@ -6,7 +6,6 @@ export default class Results extends React.Component {
   constructor(props) {
     super(props)
     this.state = getRecipePageSync(props.recipe)
-    console.log(props);
   }
 
   didUserLike() {
@@ -19,6 +18,11 @@ export default class Results extends React.Component {
       }
     }
     return liked;
+  }
+
+  handleSearchClick(clickEvent){
+    clickEvent.preventDefault();
+    console.log(clickEvent)
   }
 
   handleLikeClick(clickEvent) {
@@ -64,7 +68,7 @@ export default class Results extends React.Component {
                     </div>
                     <div className="media-body">
                       <h4 className="media-heading">
-                        <Link to={"/recipePage/" + data._id}>{data.name}</Link>
+                        <Link onClick={(e) => this.handleSearchClick(e)} to={"/recipePage/" + data._id}>{data.name}</Link>
                       </h4>
                       {data.description}
                     </div>

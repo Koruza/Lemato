@@ -13,10 +13,6 @@ export default class FeedItem extends React.Component {
       this.state = props.data;
     }
 
-    componentDidMount() {
-      this.refresh();
-    }
-
     handleCommentPost(commentText) {
         postComment(this.state._id, 1, commentText, (updatedFeedItem) => {
             this.setState(updatedFeedItem);
@@ -27,7 +23,7 @@ export default class FeedItem extends React.Component {
         clickEvent.preventDefault();
         if (clickEvent.button === 0) {
             var callbackFunction = (updatedLikeCounter) => {
-                this.setState({likeCounter: updatedLikeCounter});
+                this.setState({chefPoints: updatedLikeCounter});
             };
             if (this.didUserLike()) {
                 unlikeFeedItem(this.state._id, 1, callbackFunction);
@@ -37,12 +33,12 @@ export default class FeedItem extends React.Component {
         }
     }
 
-    //TODO: Change to Share
-    handleShareClick(clickEvent) {
-      clickEvent.preventDefault();
-      var popup = document.getElementById('myPopup');
-      popup.classList.toggle('show');
-    }
+    // //TODO: Change to Share
+    // handleShareClick(clickEvent) {
+    //   clickEvent.preventDefault();
+    //   var popup = document.getElementById('myPopup');
+    //   popup.classList.toggle('show');
+    // }
 
     didUserLike() {
         var chefPoints = this.state.recipe.chefPoints;
@@ -54,7 +50,6 @@ export default class FeedItem extends React.Component {
             }
         }
         return liked;
-
     }
 
     //TODO: Change up what it looks like here
@@ -66,26 +61,23 @@ export default class FeedItem extends React.Component {
 
         var data = this.state;
         var contents;
-        // switch (data.type) {
-        //     case "statusUpdate":
-        //         contents = (
-        //             <StatusUpdate key={data._id}
-        //                 author={data.contents.author}
-        //                 postDate={data.contents.postDate}
-        //                 location={data.contents.location}>
-        //                 {data.contents.contents.split("\n").map((line, i) => {
-        //                     return (
-        //                         <p key={"line" + i}>{line}</p>
-        //                     );
-        //                 })}
-        //             </StatusUpdate>
-        //         );
-        //         break;
-        //     default:
-        //         throw new Error("Unknown FeedItem: " + data.type);
-        // }
+        switch (data.type) {
+            case "statusUpdate":
+                contents = (
+                    <StatusUpdate key={data._id}
+                        author={data.contents.author}
+                        postDate={data.contents.postDate}
+                        location={data.contents.location}>
+                        {data.contents.contents.split("\n").map((line, i) => {
+                            return (
+                                <p key={"line" + i}>{line}</p>
+                            );
+                        })}
+                    </StatusUpdate>
+                );
+                break;
+        }
         return (
-          <div>
             <div className="new-recipe panel panel-default">
                 <div className="panel-body">
                     {contents}
@@ -106,35 +98,7 @@ export default class FeedItem extends React.Component {
                                     </a>
                                 </li>
                                 <li>
-                                    //button
-                                    <a href="#" onClick="document.getElementById('id01').style.display='block'" style="width:auto;">
-                                        <span className="glyphicon glyphicon-share-alt"></span>&nbsp; Share
-                                    </a>
-                                    //Box form
-                                    // <div id="id01" className="modal">
-                                    //   <form className="modal-content animate" action="action_page.php">
-                                    //     <div className="imgcontainer">
-                                    //       <span onClick="document.getElementById('id01').style.display='none'" className="close" title="Close Modal">&times;</span>
-                                    //       <img src="img_avatar2.png" alt="Avatar" className="avatar"/>
-                                    //     </div>
-                                    //
-                                    //     <div className="container">
-                                    //       <label><b>Username</b></label>
-                                    //       <input type="text" placeholder="Enter Username" name="uname" required/>
-                                    //
-                                    //       <label><b>Password</b></label>
-                                    //       <input type="password" placeholder="Enter Password" name="psw" required/>
-                                    //
-                                    //       <button type="submit">Login</button>
-                                    //       <input type="checkbox" checked="checked"/> Remember me
-                                    //     </div>
-                                    //
-                                    //     <div className="container" style="background-color:#f1f1f1">
-                                    //       <button type="button" onClick="document.getElementById('id01').style.display='none'" className="cancelbtn">Cancel</button>
-                                    //       <span className="psw">Forgot <a href="#">password?</a></span>
-                                    //     </div>
-                                    //   </form>
-                                    // </div>
+
 
                                 </li>
                             </ul>
@@ -144,10 +108,7 @@ export default class FeedItem extends React.Component {
                 <div className="panel-footer">
                     <div className="row">
                         <div className="col-md-12">
-                            <a href="#">{data.likeCounter.length}
-                                chef points
-                            </a>
-                            like this
+                            <a href="#">{data.recipe.chefPoints.length} </a> chef points
                         </div>
                     </div>
                     <hr/>
@@ -159,18 +120,16 @@ export default class FeedItem extends React.Component {
                                         commentIdx={i}
                                         data={comment}
                                         feedItemID={data._id}
-                                        likeCounter = {comment.likeCounter}
+                                        chefPoints = {comment.chefPoints}
                                         author={comment.author}
                                         postDate={comment.postDate}>
                                   {comment.contents}
                                 </Comment>
                             );
-                        })
-                    } < /CommentThread>
-               </div >
+                        })}
+                        </CommentThread>
+               </div>
              </div>
-           </div>
-
         )
     }
 

@@ -63,7 +63,7 @@ export default class NavBar extends React.Component {
                                     <span className="caret"></span>
                                   </button>
                                   <ul className="dropdown-menu">
-                                      <li><Link to="home">Log out...</Link></li>
+                                      <li><Link to="/">Log out...</Link></li>
                                   </ul>
                               </div>
                           </div>

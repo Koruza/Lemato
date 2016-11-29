@@ -27,8 +27,9 @@ export default class Feed extends React.Component {
 
   refresh() {
    getFeedData(this.props.user, (feedData) => {
-     // console.log(feedData);
+     console.log("Before");
      this.setState(feedData);
+     console.log("Hello");
    });
   }
 
@@ -41,7 +42,7 @@ export default class Feed extends React.Component {
       <div>
        {this.state.contents.map((feedItem) => {
           return (
-            <FeedItem 
+            <FeedItem
                       key={feedItem._id}
                       data={feedItem} />
           )
