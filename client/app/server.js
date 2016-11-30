@@ -11,6 +11,27 @@ function emulateServerReturn(data, cb) {
   }, 4);
 }
 
+export function postNewRecipe(name, ingredients, instructions, description, allergies,
+  meal, cb) {
+    var time = new Date().getTime();
+    var newRecipe = {
+        "name": name,
+        "postDate": time,
+        "chefPoints": [],
+        "ingredients": ingredients,
+        "pic": "None", // TODO
+        "instructions": instructions,
+        "description": description,
+        "allergies": allergies,
+        "meal": meal,
+        "dietary": [] // TODO
+    }
+
+    newRecipe = addDocument('recipes', newRecipe);
+    emulateServerReturn(newRecipe, cb);
+    console.log(newRecipe);
+    // cb(newRecipe);
+}
 
 /**
  * Properly configure+send an XMLHttpRequest with error handling,
@@ -73,28 +94,6 @@ function sendXHR(verb, resource, body, cb) {
         default:
             throw new Error('Unknown body type: ' + typeof(body));
     }
-}
-
-export function postNewRecipe(user, location, contents, cb) {
-    var time = new Date().getTime();
-    var newStatusUpdate = {
-        "likeCounter": [],
-        "type": "statusUpdate",
-        "contents": {
-            "author": user,
-            "postDate": time,
-            "location": location,
-            "contents": contents
-        },
-        // List of comments on the post
-        "comments": []
-    };
-    newStatusUpdate = addDocument('feedItems', newStatusUpdate);
-    var userData = readDocument('users', user);
-    var feedData = readDocument('feedItems', userData);
-    feedData.contents.unshift(newStatusUpdate._id);
-    writeDocument('feeds', feedData);
-    emulateServerReturn(newStatusUpdate, cb);
 }
 
 function getFeedItemSync(feedItemId) {
@@ -165,6 +164,22 @@ export function dislikeRecipe(recipeId, userId, cb) {
 export function getRecipePageSync(recipeID) {
 	var recipe = readDocument('recipes', recipeID);
 	return recipe;
+}
+
+export function getRecipePageData(user, cb) {
+  // TODO Anh or whoever in charge of Recipe page, update this code from workshop
+  // Get the User object with the id "user".
+  var userData = readDocument('users', user);
+  // Get the Feed object for the user.
+  var feedData = readDocument('feeds', userData.feed);
+  // Map the Feed's FeedItem references to actual FeedItem objects.
+  // Note: While map takes a callback function as an argument, it is
+  // synchronous, not asynchronous. It calls the callback immediately.
+  feedData.contents = feedData.contents.map(getFeedItemSync);
+  // Return FeedData with resolved references.
+  // emulateServerReturn will emulate an asynchronous server operation, which
+  // invokes (calls) the "cb" function some time in the future.
+  emulateServerReturn(feedData, cb);
 }
 
 /**
