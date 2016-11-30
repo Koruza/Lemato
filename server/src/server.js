@@ -43,7 +43,7 @@ function getUserIdFromToken(authorizationLine) {
     }
 }
 
-//new Buffer(JSON.stringify({ id: 4 })).toString('base64');
+//new Buffer(JSON.stringify({ id: 1 })).toString('base64');
 app.get('/user/:userid/feed', function(req, res) {
     var userid = req.params.userid;
     var fromUser = getUserIdFromToken(req.get('Authorization'));
