@@ -64,14 +64,22 @@ export default class RecipePage extends React.Component {
                 <div className="row">
                   <div className="col-md-12 side-padding">
                     <h2>Ingredients</h2>
-                    {this.state.ingredients}
+                    <ul>
+                      {this.state.ingredients.map(function(item){
+                        return <li>{item}</li>;
+                      })}
+                    </ul>
                   </div>
                 </div>
                 <hr />
                 <div className="row no-padding">
                   <div className="col-md-12 side-padding">
                     <h2>Instructions</h2>
-                    {this.state.instructions}
+                    <ul>
+                      {this.state.instructions.map(function(item){
+                        return <li>{item}</li>;
+                      })}
+                    </ul>
                   </div>
                 </div>
               </div>
