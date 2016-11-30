@@ -1,12 +1,14 @@
 import React from 'react';
 import {Link} from 'react-router';
 import {likeRecipe, dislikeRecipe, getRecipePageSync} from '../server';
+import {readDocument} from '../database';
 
 export default class Results extends React.Component {
   constructor(props) {
     super(props)
-    this.state = getRecipePageSync(props.recipe)
-    console.log(props);
+    //this.state = getRecipePageSync(props.recipe)
+    this.state = readDocument('recipes', 3)
+    console.log(this.state.name)
   }
 
   didUserLike() {
