@@ -77,41 +77,37 @@ export default class FeedItem extends React.Component {
                 );
                 break;
         }
+
         return (
-            <div className="new-recipe panel panel-default">
-                <div className="panel-body">
-                    {contents}
-                    <hr/>
-                    <div className="row">
+          <div>
+          <div className="col-md-1">
+          </div>
+            <div className="panel panel-default col-md-6 outline" id="home">
+                <div className="recipe-share">
+                      <div className="row">
                         <div className="col-md-12">
-                            <ul className="list-inline pagination">
-                                <li>
-                                    <a href="#" onClick={(e) => this.handleLikeClick(e)}>
-                                        <span className="glyphicon glyphicon-cutlery"></span>
-                                        {likeButtonText}
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span className="glyphicon glyphicon-comment">
-                                        </span>&nbsp; Comment
-                                    </a>
-                                </li>
-                                <li>
-
-
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                          <hr/>
+                    {contents}
                 </div>
+              </div>
+            </div>
+          <div className="row">
+            <div className="col-md-2">
+              <a href="#" onClick={(e) => this.handleLikeClick(e)}>
+                  <span className="glyphicon glyphicon-cutlery"></span> {likeButtonText}
+              </a>
+            </div>
+          </div>
+
                 <div className="panel-footer">
                     <div className="row">
                         <div className="col-md-12">
                             <a href="#">{data.recipe.chefPoints.length} </a> chef points
                         </div>
                     </div>
-                    <hr/>
+                </div>
+              <div className="panel-footer">
+
                     <CommentThread onPost={(commentText) => this.handleCommentPost(commentText)}>
                         {data.comments.map((comment, i) => {
                             // i is comment's index in comments array
@@ -130,7 +126,7 @@ export default class FeedItem extends React.Component {
                         </CommentThread>
                </div>
              </div>
+             </div>
         )
     }
-
 }
