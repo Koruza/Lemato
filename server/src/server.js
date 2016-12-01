@@ -115,6 +115,50 @@ app.use(function(err, req, res, next) {
     }
 });
 
+
+//updateSettings
+app.put('/settings/users/:userid', function(req, res) {
+  var userid = req.params.userid;
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  var userData = readDocument('users', userid);
+	var newName = readDocument('users', userData.fullName);
+  var newBio = readDocument('users', userData.bio);
+
+  // userid is a string. We need it to be a number.
+  // Parameters are always strings.
+  var useridNumber = parseInt(userid, 10);
+  if (fromUser === useridNumber) {
+  writeDocument('users', newName);
+  writeDocument('users', newBio);
+      // Send response.
+  res.send(getFeedData(userid));
+} else {
+      // 401: Unauthorized request.
+      res.status(401).end();
+    }
+  });
+
+
+//updatePassword
+app.put('/settings/users/:userid', function(req, res) {
+  var userid = req.params.userid;
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+	var userData = readDocument('users', userid);
+	var newPassword = readDocument('users', userData.password);
+  // userid is a string. We need it to be a number.
+  // Parameters are always strings.
+  var useridNumber = parseInt(userid, 10);
+  if (fromUser === useridNumber) {
+  writeDocument('users', newPassword);
+      // Send response.
+  res.send(getFeedData(userid));
+} else {
+      // 401: Unauthorized request.
+      res.status(401).end();
+    }
+  });
+
+
 // Starts the server on port 3000!
 app.listen(3000, function() {
     console.log('Lemato app listening on port 3000!');
