@@ -105,17 +105,13 @@ function getFeedItemSync(feedItemId) {
     return feedItem;
 }
 
-/**
-* Emulates a REST call to get the feed data for a particular user.
-*/
 export function getFeedData(user, cb) {
-  // We don't need to send a body, so pass in 'undefined' for the body.
-  sendXHR('GET', '/user/1/feed', undefined, (xhr) => {
-  // Call the callback with the data.
-  cb(JSON.parse(xhr.responseText));
-  });
+    var userData = readDocument('users', user);
+    var feedData = readDocument('feeds', userData.feed);
+    emulateServerReturn(feedData, cb);
+    feedData.contents = feedData.contents.map(getFeedItemSync);
+    emulateServerReturn(feedData, cb);
 }
-
 
 export function postComment(feedItemId, author, contents, cb) {
   var feedItem = readDocument('feedItems', feedItemId);

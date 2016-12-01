@@ -4,12 +4,15 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var database = require('./database');
-// var writeDocument = database.writeDocument;
-// var addDocument = database.addDocument;
+var writeDocument = database.writeDocument;
+var addDocument = database.addDocument;
 var readDocument = database.readDocument;
 
+var commentSchema = require('./schemas/comment.json');
+var validate = require('express-jsonschema').validate;
 // Creates an Express server.
 var app = express();
+
 
 // Support receiving text in HTTP request bodies
 app.use(bodyParser.text());
@@ -43,22 +46,6 @@ function getUserIdFromToken(authorizationLine) {
     }
 }
 
-//new Buffer(JSON.stringify({ id: 1 })).toString('base64');
-app.get('/user/:userid/feed', function(req, res) {
-    var userid = req.params.userid;
-    var fromUser = getUserIdFromToken(req.get('Authorization'));
-    // userid is a string. We need it to be a number.
-    // Parameters are always strings.
-    var useridNumber = parseInt(userid, 10);
-    if (fromUser === useridNumber) {
-        // Send response.
-        res.send(getFeedData(userid));
-    } else {
-        // 401: Unauthorized request.
-        res.status(401).end();
-    }
-});
-
 
 /**
  * Get the feed data for a particular user.
@@ -79,7 +66,6 @@ function getFeedData(user) {
 function getFeedItemSync(feedItemId) {
     var feedItem = readDocument('feedItems', feedItemId);
     // Resolve 'like' counter.
-    feedItem.likeCounter = feedItem.likeCounter.map((id) => readDocument('users', id));
     // Assuming a StatusUpdate. If we had other types of FeedItems in the DB, we would
     // need to check the type and have logic for each type.
     feedItem.contents.author = readDocument('users', feedItem.contents.author);
@@ -90,6 +76,21 @@ function getFeedItemSync(feedItemId) {
     return feedItem;
 }
 
+//new Buffer(JSON.stringify({ id: 1 })).toString('base64');
+app.get('/user/:userid/feed', function(req, res) {
+    var userid = req.params.userid;
+    var fromUser = getUserIdFromToken(req.get('Authorization'));
+    // userid is a string. We need it to be a number.
+    // Parameters are always strings.
+    var useridNumber = parseInt(userid, 10);
+    if (fromUser === useridNumber) {
+        // Send response.
+        res.send(getFeedData(userid));
+    } else {
+        // 401: Unauthorized request.
+        res.status(401).end();
+    }
+});
 
 
 // Reset database.

@@ -42,6 +42,7 @@ export default class FeedItem extends React.Component {
 
     didUserLike() {
         var chefPoints = this.state.recipe.chefPoints;
+        console.log(chefPoints);
         var liked = false;
         for (var i = 0; i < chefPoints.length; i++) {
             if (chefPoints[i]._id === 1) {
