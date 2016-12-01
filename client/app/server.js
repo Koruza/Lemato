@@ -222,3 +222,14 @@ export function updatePassword(user, newPassword, cb) {
       cb(JSON.parse(xhr.responseText));
     });
 }
+
+
+/**
+* Searches for feed items with the given text.
+*/
+export function searchForFeedItems(userID, queryText, cb) {
+  // userID is not needed; it's included in the JSON web token.
+  sendXHR('POST', '/search', queryText, (xhr) => {
+    cb(JSON.parse(xhr.responseText));
+  });
+}

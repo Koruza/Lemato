@@ -92,15 +92,37 @@ app.get('/user/:userid/feed', function(req, res) {
     }
 });
 
-
-// Reset database.
-app.post('/resetdb', function(req, res) {
-  console.log("Resetting database...");
-  // This is a debug route, so don't do any validation.
-  database.resetDatabase();
-  // res.send() sends an empty response with status code 200
-  res.send();
+// Search for feed item
+app.post('/search', function(req, res) {
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  var user = readDocument('users', fromUser);
+  if (typeof(req.body) === 'string') {
+    // trim() removes whitespace before and after the query.
+    // toLowerCase() makes the query lowercase.
+    var queryText = req.body.trim().toLowerCase();
+    // Search the user's feed.
+    var feedItemIDs = readDocument('feeds', user.feed).contents;
+    // "filter" is like "map" in that it is a magic method for
+    // arrays. It takes an anonymous function, which it calls
+    // with each item in the array. If that function returns 'true',
+    // it will include the item in a return array. Otherwise, it will
+    // not.
+    // Here, we use filter to return only feedItems that contain the
+    // query text.
+    // Since the array contains feed item IDs, we later map the filtered
+    // IDs to actual feed item objects.
+    res.send(feedItemIDs.filter((feedItemID) => {
+      var feedItem = readDocument('feedItems', feedItemID);
+      return feedItem.contents.contents
+      .toLowerCase()
+      .indexOf(queryText) !== -1;
+    }).map(getFeedItemSync));
+  } else {
+    // 400: Bad Request.
+    res.status(400).end();
+  }
 });
+
 
 /**
  * Translate JSON Schema Validation failures into error 400s.
@@ -156,6 +178,16 @@ app.put('/settings/users/:userid', function(req, res) {
       // 401: Unauthorized request.
       res.status(401).end();
     }
+  });
+
+
+  // Reset database.
+  app.post('/resetdb', function(req, res) {
+    console.log("Resetting database...");
+    // This is a debug route, so don't do any validation.
+    database.resetDatabase();
+    // res.send() sends an empty response with status code 200
+    res.send();
   });
 
 
