@@ -193,7 +193,7 @@ export function getCookbookData(user, cb) {
 	emulateServerReturn(userData, cb);
 }
 
-export function updateSettings(user, newName, newBio, cb) {
+/*export function updateSettings(user, newName, newBio, cb) {
 	var userData = readDocument('users', user);
 	userData.fullName = newName;
   userData.bio = newBio;
@@ -201,15 +201,24 @@ export function updateSettings(user, newName, newBio, cb) {
 	emulateServerReturn(userData, cb);
 }
 
-// export function updateSettings(userID, newName, newBio) {
-//   var user = readDocument('users', userID);
-//   user.fullName = newName;
-//   user.bio = newBio;
-//   writeDocument('users', user);
-// }
 
 export function updatePassword(user, newPassword, cb) {
 	var userData = readDocument('users', user);
 	userData.password = newPassword;
 	emulateServerReturn(userData, cb);
+}*/
+
+export function updateSettings(user, newName, newBio, cb) {
+  sendXHR('PUT', '/settings' + '/users/' + user, undefined, (xhr) => {
+      // Call the callback with the data.
+      cb(JSON.parse(xhr.responseText));
+    });
+}
+
+
+export function updatePassword(user, newPassword, cb) {
+  sendXHR('PUT', '/settings' + '/users/' + user, undefined, (xhr) => {
+      // Call the callback with the data.
+      cb(JSON.parse(xhr.responseText));
+    });
 }
