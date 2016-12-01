@@ -87,7 +87,7 @@ export default class FeedItem extends React.Component {
                       <div className="row">
                         <div className="col-md-12">
                           <hr/>
-                    {contents}
+                    {this.state.contents.contents}
                 </div>
               </div>
             </div>
