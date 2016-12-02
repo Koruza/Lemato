@@ -63,13 +63,13 @@ export default class ResultsItem extends React.Component {
                 <div className="panel-body">
                   <div className="media">
                     <div className="media-left">
-                      <Link to={"/recipes/" + data._id}>
+                      <Link to={"/recipePage/" + data._id}>
                         <img className="media-object result-pic" src={data.pic} alt="brownie-egg"></img>
                       </Link>
                     </div>
                     <div className="media-body">
                       <h4 className="media-heading">
-                        <Link onClick={(e) => this.handleSearchClick(e)} to={"/recipePage/" + data._id}>{data.name}</Link>
+                        <Link to={"/recipePage/" + data._id}>{data.name}</Link>
                       </h4>
                       {data.description}
                     </div>
