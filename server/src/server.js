@@ -123,6 +123,12 @@ app.post('/search', function(req, res) {
   }
 });
 
+// Go to Recipe Page
+app.get('/recipePage/:recipeid', function(req, res) {
+  var reacipeid = parseInt(req.params.recipeid, 10);
+  var recipeData = readDocument('recipes', recipeid);
+  res.send(recipeData);
+});
 
 /**
  * Translate JSON Schema Validation failures into error 400s.
