@@ -164,7 +164,6 @@ export function getRecipePageData(recipeID, cb) {
     cb(JSON.parse(xhr.responseText));
   });
 }
-}
 
 /**
   * Emulates a REST call to get the cookbook data for a particular user.
