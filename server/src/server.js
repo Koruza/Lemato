@@ -7,6 +7,7 @@ var database = require('./database');
 var writeDocument = database.writeDocument;
 var addDocument = database.addDocument;
 var readDocument = database.readDocument;
+var getCollection = database.getCollection;
 
 var commentSchema = require('./schemas/comment.json');
 var validate = require('express-jsonschema').validate;
@@ -92,37 +93,66 @@ app.get('/user/:userid/feed', function(req, res) {
     }
 });
 
+
 // Search for feed item
-app.post('/search', function(req, res) {
-  var fromUser = getUserIdFromToken(req.get('Authorization'));
-  var user = readDocument('users', fromUser);
+app.post('/results', function(req, res) {
   if (typeof(req.body) === 'string') {
-    // trim() removes whitespace before and after the query.
-    // toLowerCase() makes the query lowercase.
     var queryText = req.body.trim().toLowerCase();
     // Search the user's feed.
-    var feedItemIDs = readDocument('feeds', user.feed).contents;
-    // "filter" is like "map" in that it is a magic method for
-    // arrays. It takes an anonymous function, which it calls
-    // with each item in the array. If that function returns 'true',
-    // it will include the item in a return array. Otherwise, it will
-    // not.
-    // Here, we use filter to return only feedItems that contain the
-    // query text.
-    // Since the array contains feed item IDs, we later map the filtered
-    // IDs to actual feed item objects.
-    res.send(feedItemIDs.filter((feedItemID) => {
-      var feedItem = readDocument('feedItems', feedItemID);
-      return feedItem.contents.contents
+    var recipe= getCollection("recipes");
+    console.log(recipe);
+    res.send(recipe.filter((recipeNames) => {
+      var name = readDocument('name', recipeNames);
+      console.log(name);
+      return name
       .toLowerCase()
       .indexOf(queryText) !== -1;
     }).map(getFeedItemSync));
+    // res.send("Bai");
   } else {
-    // 400: Bad Request.
     res.status(400).end();
   }
 });
 
+
+
+//
+// // Search for feed item
+// app.post('/results', function(req, res) {
+//   /**
+//   * Post data: {
+//     receipe: "recipe search term",
+//     ing: "ingredient search term"
+//   }
+//   var recipe_search_term = req.get("recipe")
+//   var ing_search_term = req.get("ing")
+//   */
+//   var recipe = readDocument('recipes', recipe);
+//   if (typeof(req.body) === 'string') {
+//     var queryText = req.body.trim().toLowerCase();
+//     // Search the user's feed.
+//     var ing = readDocument('ingredients', recipe);
+//     // "filter" is like "map" in that it is a magic method for
+//     // arrays. It takes an anonymous function, which it calls
+//     // with each item in the array. If that function returns 'true',
+//     // it will include the item in a return array. Otherwise, it will
+//     // not.
+//     // Here, we use filter to return only feedItems that contain the
+//     // query text.
+//     // Since the array contains feed item IDs, we later map the filtered
+//     // IDs to actual feed item objects.
+//     res.send(feedItemIDs.filter((feedItemID) => {
+//       var feedItem = readDocument('feedItems', feedItemID);
+//       return feedItem.contents.contents
+//       .toLowerCase()
+//       .indexOf(queryText) !== -1;
+//     }).map(getFeedItemSync));
+//   } else {
+//     // 400: Bad Request.
+//     res.status(400).end();
+//   }
+// });
+//
 
 /**
  * Translate JSON Schema Validation failures into error 400s.
@@ -135,6 +165,10 @@ app.use(function(err, req, res, next) {
         // It's some other sort of error; pass it to next error middleware handler
         next(err);
     }
+});
+
+app.get('/search', function(req,res){
+  res.send();
 });
 
 

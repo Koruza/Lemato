@@ -224,13 +224,20 @@ export function updatePassword(user, newPassword, cb) {
     });
 }
 
+export function advSearch(userID,cb) {
+  sendXHR('GET', '/search', undefined, (xhr) => {
+      // Call the callback with the data.
+      cb(JSON.parse(xhr.responseText));
+    });
+}
+
 
 /**
 * Searches for feed items with the given text.
 */
-export function searchForFeedItems(userID, queryText, cb) {
+export function searchForRecipes(userID, queryText, cb) {
   // userID is not needed; it's included in the JSON web token.
-  sendXHR('POST', '/search', queryText, (xhr) => {
+  sendXHR('POST', '/results', queryText, (xhr) => {
     cb(JSON.parse(xhr.responseText));
   });
 }
