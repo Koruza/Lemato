@@ -9,6 +9,7 @@ import {IndexRoute, Router, Route, browserHistory, hashHistory} from 'react-rout
 import AdvancedSearch from './components/advancedSearch';
 import NavBar from './components/navbar';
 import NewRecipe from './components/newRecipe';
+import ErrorBanner from './components/errorbanner';
 
 class FeedPage extends React.Component {
 	render() {
@@ -33,7 +34,7 @@ class Setting extends React.Component{
 		return <Settings user = {1}/>
 	}
 }
-// 
+//
 // /**
 //  * Search results page.
 //  */
@@ -65,6 +66,11 @@ class App extends React.Component {
 	render() {
 		return (
 			<div>
+				<div className="row">
+            <div className="col-md-12">
+              <ErrorBanner />
+            </div>
+          </div>
 				<NavBar/>
 				{this.props.children}
 			</div>
