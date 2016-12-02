@@ -45,6 +45,7 @@ function sendXHR(verb, resource, body, cb) {
     // Otherwise, ESLint would complain about it! (See what happens in Atom if
     // you remove the comment...)
     /* global FacebookError */
+
     // Response received from server. It could be a failure, though!
     xhr.addEventListener('load', function() {
         var statusCode = xhr.status;
@@ -106,42 +107,34 @@ function getFeedItemSync(feedItemId) {
 }
 
 export function getFeedData(user, cb) {
-    var userData = readDocument('users', user);
-    var feedData = readDocument('feeds', userData.feed);
-    emulateServerReturn(feedData, cb);
-    feedData.contents = feedData.contents.map(getFeedItemSync);
-    emulateServerReturn(feedData, cb);
+  sendXHR('GET', '/user/1/feed', undefined, (xhr) => {
+  // Call the callback with the data.
+  cb(JSON.parse(xhr.responseText));
+  });
 }
 
-export function postComment(feedItemId, author, contents, cb) {
-  var feedItem = readDocument('feedItems', feedItemId);
-  feedItem.comments.push({
-  "author": author,
-  "contents": contents,
-  "postDate": new Date().getTime(),
-  "likeCounter": []
+export function postComment(feedItemId, user, contents, cb) {
+  sendXHR('POST', '/feeditem/'+feedItemId+'/comments', {
+  author: user,
+  contents: contents
+  }, (xhr) => {
+  // Return the new status update.
+  cb(JSON.parse(xhr.responseText));
   });
-  writeDocument('feedItems', feedItem);
-  emulateServerReturn(getFeedItemSync(feedItemId), cb);
 }
 
 export function likeFeedItem(feedItemId, userId, cb) {
-  var feedItem = readDocument('feedItems', feedItemId);
-  feedItem.likeCounter.push(userId);
-  writeDocument('feedItems', feedItem);
-  emulateServerReturn(feedItem.likeCounter.map((userId) =>
-  readDocument('users', userId)), cb);
+  sendXHR('PUT', '/feeditem/' + feedItemId + '/likelist/' + userId,
+  undefined, (xhr) => {
+    cb(JSON.parse(xhr.responseText));
+  });
 }
 
 export function unlikeFeedItem(feedItemId, userId, cb) {
-  var feedItem = readDocument('feedItems', feedItemId);
-  var userIndex = feedItem.likeCounter.indexOf(userId);
-  if (userIndex !== -1) {
-  feedItem.likeCounter.splice(userIndex, 1);
-  writeDocument('feedItems', feedItem);
-  }
-  emulateServerReturn(feedItem.likeCounter.map((userId) =>
-  readDocument('users', userId)), cb);
+  sendXHR('DELETE', '/feeditem/' + feedItemId + '/likelist/' + userId,
+  undefined, (xhr) => {
+    cb(JSON.parse(xhr.responseText));
+  });
 }
 
 export function likeRecipe(recipeId, userId, cb) {
@@ -214,13 +207,20 @@ export function updatePassword(user, newPassword, cb) {
     });
 }
 
+export function advSearch(userID,cb) {
+  sendXHR('GET', '/search', undefined, (xhr) => {
+      // Call the callback with the data.
+      cb(JSON.parse(xhr.responseText));
+    });
+}
+
 
 /**
 * Searches for feed items with the given text.
 */
-export function searchForFeedItems(userID, queryText, cb) {
+export function searchForRecipes(userID, queryText, cb) {
   // userID is not needed; it's included in the JSON web token.
-  sendXHR('POST', '/search', queryText, (xhr) => {
+  sendXHR('POST', '/results', queryText, (xhr) => {
     cb(JSON.parse(xhr.responseText));
   });
 }

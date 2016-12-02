@@ -9,6 +9,7 @@ import {IndexRoute, Router, Route, browserHistory, hashHistory} from 'react-rout
 import AdvancedSearch from './components/advancedSearch';
 import NavBar from './components/navbar';
 import NewRecipe from './components/newRecipe';
+import ErrorBanner from './components/errorbanner';
 
 class FeedPage extends React.Component {
 	render() {
@@ -33,24 +34,7 @@ class Setting extends React.Component{
 		return <Settings user = {1}/>
 	}
 }
-// 
-// /**
-//  * Search results page.
-//  */
-// class SearchResultsPage extends React.Component {
-//   getSearchTerm() {
-//     // If there's no query input to this page (e.g. /foo instead of /foo?bar=4),
-//     // query may be undefined. We have to check for this, otherwise
-//     // JavaScript will throw an exception and die!
-//     var queryVars = this.props.location.query;
-//     var searchTerm = "";
-//     if (queryVars && queryVars.q) {
-//       searchTerm = queryVars.q;
-//       // Remove extraneous whitespace.
-//       searchTerm.trim();
-//     }
-//     return searchTerm;
-//   }
+
 
 // class RecipePage extends React.Component {
 // 	render() {
@@ -65,6 +49,11 @@ class App extends React.Component {
 	render() {
 		return (
 			<div>
+				<div className="row">
+            <div className="col-md-12">
+              <ErrorBanner />
+            </div>
+          </div>
 				<NavBar/>
 				{this.props.children}
 			</div>
@@ -79,7 +68,7 @@ ReactDOM.render((
 			{/* Show the Feed at / */}
 			<IndexRoute component={FeedPage}/>
 			<Route path="/" component={FeedPage}/>
-			<Route path="/results" component={Result}/>
+			<Route path="/results" component={SearchResultsPage}/>
 			<Route path="/settings" component={Setting}/>
 			<Route path="/search" component={AdvancedSearch}/>
 			<Route path="/recipePage/:id" component={RecipePage}/>

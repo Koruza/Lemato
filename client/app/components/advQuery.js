@@ -92,7 +92,6 @@ export default class AdvQuery extends React.Component {
          Ingredient 1: <input type="text" name="ingredient1" className="ing" maxLength="25"/><br/><br/>
          Ingredient 2: <input type="text" name="ingredient2" className="ing" maxLength="25"/><br/><br/>
          Ingredient 3: <input type="text" name="ingredient3" className="ing" maxLength="25"/>
-          <span className="glyphicon glyphicon-plus-sign"></span><br/>
           <br/>
           <h4>Allergies:</h4>
           <div className="col-md-12">
