@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "_id": {
+      "id": "_id",
+      "type": "integer"
+    },
+    "name": {
+      "id": "name",
+      "type": "string"
+    },
+    "postDate": {
+      "id": "postDate",
+      "type": "integer"
+    },
+    "chefPoints": {
+      "id": "chefPoints",
+      "type": "array",
+      "items": {
+        "type": "integer"
+      }
+    },
+    "ingredients": {
+      "id": "ingredients",
+      "type": "string"
+    },
+    "pic": {
+      "id": "pic",
+      "type": "string"
+    },
+    "instructions": {
+      "id": "instructions",
+      "type": "string"
+    },
+    "description": {
+      "id": "description",
+      "type": "string"
+    },
+    "allergies": {
+      "id": "allergies",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "meal": {
+      "id": "meal",
+      "type": "string"
+    },
+    "dietary": {
+      "id": "dietary",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "_id",
+    "name",
+    "postDate",
+    "chefPoints",
+    "ingredients",
+    "pic",
+    "instructions",
+    "description",
+    "allergies",
+    "meal",
+    "dietary"
+  ]
+}
