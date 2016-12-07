@@ -107,42 +107,34 @@ function getFeedItemSync(feedItemId) {
 }
 
 export function getFeedData(user, cb) {
-    var userData = readDocument('users', user);
-    var feedData = readDocument('feeds', userData.feed);
-    emulateServerReturn(feedData, cb);
-    feedData.contents = feedData.contents.map(getFeedItemSync);
-    emulateServerReturn(feedData, cb);
+  sendXHR('GET', '/user/1/feed', undefined, (xhr) => {
+  // Call the callback with the data.
+  cb(JSON.parse(xhr.responseText));
+  });
 }
 
-export function postComment(feedItemId, author, contents, cb) {
-  var feedItem = readDocument('feedItems', feedItemId);
-  feedItem.comments.push({
-  "author": author,
-  "contents": contents,
-  "postDate": new Date().getTime(),
-  "likeCounter": []
+export function postComment(feedItemId, user, contents, cb) {
+  sendXHR('POST', '/feeditem/'+feedItemId+'/comments', {
+  author: user,
+  contents: contents
+  }, (xhr) => {
+  // Return the new status update.
+  cb(JSON.parse(xhr.responseText));
   });
-  writeDocument('feedItems', feedItem);
-  emulateServerReturn(getFeedItemSync(feedItemId), cb);
 }
 
 export function likeFeedItem(feedItemId, userId, cb) {
-  var feedItem = readDocument('feedItems', feedItemId);
-  feedItem.likeCounter.push(userId);
-  writeDocument('feedItems', feedItem);
-  emulateServerReturn(feedItem.likeCounter.map((userId) =>
-  readDocument('users', userId)), cb);
+  sendXHR('PUT', '/feeditem/' + feedItemId + '/likelist/' + userId,
+  undefined, (xhr) => {
+    cb(JSON.parse(xhr.responseText));
+  });
 }
 
 export function unlikeFeedItem(feedItemId, userId, cb) {
-  var feedItem = readDocument('feedItems', feedItemId);
-  var userIndex = feedItem.likeCounter.indexOf(userId);
-  if (userIndex !== -1) {
-  feedItem.likeCounter.splice(userIndex, 1);
-  writeDocument('feedItems', feedItem);
-  }
-  emulateServerReturn(feedItem.likeCounter.map((userId) =>
-  readDocument('users', userId)), cb);
+  sendXHR('DELETE', '/feeditem/' + feedItemId + '/likelist/' + userId,
+  undefined, (xhr) => {
+    cb(JSON.parse(xhr.responseText));
+  });
 }
 
 export function likeRecipe(recipeId, userId, cb) {
@@ -167,20 +159,10 @@ export function getRecipePageSync(recipeID) {
 	return recipe;
 }
 
-export function getRecipePageData(user, cb) {
-  // TODO Anh or whoever in charge of Recipe page, update this code from workshop
-  // Get the User object with the id "user".
-  var userData = readDocument('users', user);
-  // Get the Feed object for the user.
-  var feedData = readDocument('feeds', userData.feed);
-  // Map the Feed's FeedItem references to actual FeedItem objects.
-  // Note: While map takes a callback function as an argument, it is
-  // synchronous, not asynchronous. It calls the callback immediately.
-  feedData.contents = feedData.contents.map(getFeedItemSync);
-  // Return FeedData with resolved references.
-  // emulateServerReturn will emulate an asynchronous server operation, which
-  // invokes (calls) the "cb" function some time in the future.
-  emulateServerReturn(feedData, cb);
+export function getRecipePageData(recipeID, cb) {
+  sendXHR('GET', '/recipePage/' + recipeID, undefined, (xhr) => {
+    cb(JSON.parse(xhr.responseText));
+  });
 }
 
 /**

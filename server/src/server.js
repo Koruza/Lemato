@@ -21,6 +21,97 @@ app.use(bodyParser.text());
 app.use(bodyParser.json());
 app.use(express.static('../client/build'));
 
+//???
+app.put('/feeditem/:feeditemid/content', function(req, res) {
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  var feedItemId = req.params.feeditemid;
+  var feedItem = readDocument('feedItems', feedItemId);
+  // Check that the requester is the author of this feed item.
+  if (fromUser === feedItem.contents.author) {
+    // Check that the body is a string, and not something like a JSON object.
+    // We can't use JSON validation here, since the body is simply text!
+    if (typeof(req.body) !== 'string') {
+    // 400: Bad request.
+    res.status(400).end();
+    return;
+    }
+    // Update text content of update.
+    feedItem.contents.contents = req.body;
+    writeDocument('feedItems', feedItem);
+    res.send(getFeedItemSync(feedItemId));
+  } else {
+    // 401: Unauthorized.
+    res.status(401).end();
+  }
+});
+
+// Like a feed item.
+app.put('/feeditem/:feeditemid/likelist/:userid', function(req, res) {
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  // Convert params from string to number.
+  var feedItemId = parseInt(req.params.feeditemid, 10);
+  var userId = parseInt(req.params.userid, 10);
+  if (fromUser === userId) {
+    var feedItem = readDocument('feedItems', feedItemId);
+    // Add to likeCounter if not already present.
+    if (feedItem.likeCounter.indexOf(userId) === -1) {
+      feedItem.likeCounter.push(userId);
+      writeDocument('feedItems', feedItem);
+    }
+    // Return a resolved version of the likeCounter
+    res.send(feedItem.likeCounter.map((userId) =>
+    readDocument('users', userId)));
+  } else {
+  // 401: Unauthorized.
+  res.status(401).end();
+  }
+});
+
+app.delete('/feeditem/:feeditemid/likelist/:userid', function(req, res) {
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  // Convert params from string to number.
+  var feedItemId = parseInt(req.params.feeditemid, 10);
+  var userId = parseInt(req.params.userid, 10);
+  if (fromUser === userId) {
+    var feedItem = readDocument('feedItems', feedItemId);
+    var likeIndex = feedItem.likeCounter.indexOf(userId);
+    // Remove from likeCounter if present
+    if (likeIndex !== -1) {
+      feedItem.likeCounter.splice(likeIndex, 1);
+      writeDocument('feedItems', feedItem);
+    }
+    // Return a resolved version of the likeCounter
+    // Note that this request succeeds even if the
+    // user already unliked the request!
+    res.send(feedItem.likeCounter.map((userId) =>
+    readDocument('users', userId)));
+  } else {
+  // 401: Unauthorized.
+  res.status(401).end();
+  }
+});
+
+// `put /feeditem/:feedItemId/comments { userId: user, contents: contents }`
+app.put('/feeditem/:feedItemId/comments', validate({
+    body: commentSchema
+}), function(req, res) {
+    // If this function runs, `req.body` passed JSON validation!
+    var body = req.body;
+    var fromUser = getUserIdFromToken(req.get('Authorization'));
+    // Check if requester is authorized to post this status update.
+    // (The requester must be the author of the update.)
+    if (fromUser === body.author) {
+        var comment = postComment(req.params.feedItemId, body.userId, body.contents);
+        // When POST creates a new resource, we should tell the client about it
+        // in the 'Location' header and use status code 201.
+        res.status(201);
+        // Send the update!
+        res.send(comment);
+    } else {
+        // 401: Unauthorized.
+        res.status(401).end();
+    }
+});
 
 /**
  * Get the user ID from a token. Returns -1 (an invalid ID) if it fails.
@@ -93,6 +184,22 @@ app.get('/user/:userid/feed', function(req, res) {
     }
 });
 
+function postComment(feedItemId, user, contents) {
+    var time = new Date().getTime();
+    var feedItem = readDocument('feedItems',feedItemId)
+    feedItem.comments.push({
+            "author": user,
+            "postDate": time,
+            "contents": contents,
+            "likeCounter": []
+    });
+    // Add the status update to the database.
+    // Returns the status update w/ an ID assigned.
+    writeDocument('feedItems', feedItem);
+    // Return the newly-posted object.
+    return getFeedItemSync(feedItemId);
+}
+
 
 // Search for feed item
 app.post('/results', function(req, res) {
@@ -114,7 +221,12 @@ app.post('/results', function(req, res) {
   }
 });
 
-
+// Go to Recipe Page
+app.get('/recipePage/:recipeid', function(req, res) {
+  var reacipeid = parseInt(req.params.recipeid, 10);
+  var recipeData = readDocument('recipes', recipeid);
+  res.send(recipeData);
+});
 
 //
 // // Search for feed item
@@ -189,10 +301,10 @@ app.put('/settings/users/:userid', function(req, res) {
       // Send response.
   res.send(getFeedData(userid));
 } else {
-      // 401: Unauthorized request.
-      res.status(401).end();
-    }
-  });
+    // 401: Unauthorized request.
+    res.status(401).end();
+  }
+});
 
 
 //updatePassword
@@ -209,21 +321,19 @@ app.put('/settings/users/:userid', function(req, res) {
       // Send response.
   res.send(getFeedData(userid));
 } else {
-      // 401: Unauthorized request.
-      res.status(401).end();
-    }
-  });
+    // 401: Unauthorized request.
+    res.status(401).end();
+  }
+});
 
-
-  // Reset database.
-  app.post('/resetdb', function(req, res) {
-    console.log("Resetting database...");
-    // This is a debug route, so don't do any validation.
-    database.resetDatabase();
-    // res.send() sends an empty response with status code 200
-    res.send();
-  });
-
+// Reset database.
+app.post('/resetdb', function(req, res) {
+  console.log("Resetting database...");
+  // This is a debug route, so don't do any validation.
+  database.resetDatabase();
+  // res.send() sends an empty response with status code 200
+  res.send();
+});
 
 // Starts the server on port 3000!
 app.listen(3000, function() {
