@@ -68,7 +68,7 @@ ReactDOM.render((
 			{/* Show the Feed at / */}
 			<IndexRoute component={FeedPage}/>
 			<Route path="/" component={FeedPage}/>
-			<Route path="/results" component={SearchResultsPage}/>
+			<Route path="/results" component={Result}/>
 			<Route path="/settings" component={Setting}/>
 			<Route path="/search" component={AdvancedSearch}/>
 			<Route path="/recipePage/:id" component={RecipePage}/>
