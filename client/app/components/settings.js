@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import {updateSettings} from '../server';
 import {updatePassword} from '../server';
 import {readDocument} from '../database'
+import {getUserData} from '../server'
 
 export default class Settings extends React.Component {
   constructor(props) {

@@ -187,6 +187,12 @@ export function updatePassword(user, newPassword, cb) {
 	emulateServerReturn(userData, cb);
 }*/
 
+export function getUserData(user, cb) {
+  sendXHR('GET', '/settings/' + '/users/',  + user, undefined, (xhr) => {
+    cb(JSON.parse(xhr.responseText));
+  });
+}
+
 export function updateSettings(user, newName, newBio, cb) {
   sendXHR('PUT', '/settings' + '/users/' + user, {
     name: newName,
