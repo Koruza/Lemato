@@ -10,6 +10,7 @@ var readDocument = database.readDocument;
 var getCollection = database.getCollection;
 
 var commentSchema = require('./schemas/comment.json');
+var RecipeSchema = require('./schemas/recipe.json');
 var validate = require('express-jsonschema').validate;
 // Creates an Express server.
 var app = express();
@@ -112,6 +113,54 @@ app.put('/feeditem/:feedItemId/comments', validate({
         res.status(401).end();
     }
 });
+
+// post new recipe
+function postNewRecipe(userId, name, ingredients, pic, instructions, description, allergies,
+  meal, dietary) {
+  var time = new Date().getTime();
+  var newRecipe = {
+    "userId": userId,
+    "name": name,
+    "postDate": time,
+    "chefPoints": [],
+    "ingredients": ingredients,
+    "pic": pic,
+    "instructions": instructions,
+    "description": description,
+    "allergies": allergies,
+    "meal": meal,
+    "dietary": dietary
+  }
+
+  newRecipe = addDocument('recipes', newRecipe);
+  return newRecipe;
+}
+
+// `POST /recipe {userId: userId, name: name, ingredients: ingredients, pic: pic,
+// instructions: instructions, description: description, allergies: allergies,
+//  meal: meal, dietary: dietary} `
+app.post('/recipe',
+  validate({ body: RecipeSchema }), function(req, res) {
+  // If this function runs, `req.body` passed JSON validation!
+  var body = req.body;
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  // Check if requester is authorized to post this status update.
+  // (The requester must be the author of the update.)
+  if (fromUser === body.userId) {
+    var newRecipe = postNewRecipe(body.userId, body.name, body.ingredients, body.pic,
+      body.instructions, body.description, body.allergies, body.meal, body.dietary);
+      // When POST creates a new resource, we should tell the client about it
+      // in the 'Location' header and use status code 201.
+      res.status(201);
+      res.set('Location', '/recipePage/' + newRecipe._id);
+      console.log("halloooo" + newRecipe._id);
+      // Send the update!
+      res.send(newRecipe);
+    } else {
+      // 401: Unauthorized.
+      res.status(401).end();
+    }
+  });
 
 /**
  * Get the user ID from a token. Returns -1 (an invalid ID) if it fails.
@@ -223,7 +272,7 @@ app.post('/results', function(req, res) {
 
 // Go to Recipe Page
 app.get('/recipePage/:recipeid', function(req, res) {
-  var reacipeid = parseInt(req.params.recipeid, 10);
+  var recipeid = parseInt(req.params.recipeid, 10);
   var recipeData = readDocument('recipes', recipeid);
   res.send(recipeData);
 });

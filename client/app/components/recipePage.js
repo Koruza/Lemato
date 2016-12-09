@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router';
 import {readDocument} from '../database';
-import {getRecipePageData, postNewRecipe, getRecipePageSync} from '../server';
+import {getRecipePageData, getRecipePageSync} from '../server';
 
 export default class RecipePage extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = getRecipePageData(props.params.id);
+		this.state = getRecipePageSync(props.params.id);
 	}
 
 	render() {
@@ -67,9 +67,9 @@ export default class RecipePage extends React.Component {
 								</ul>
 							</div>
 						</div>
-				
+
 						<hr />
-				
+
 						<div className="row no-padding">
 							<div className="col-md-12 side-padding">
 								<h2>Instructions</h2>
