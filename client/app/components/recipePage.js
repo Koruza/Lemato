@@ -6,7 +6,7 @@ import {getRecipePageData, postNewRecipe, getRecipePageSync} from '../server';
 export default class RecipePage extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = getRecipePageData(props.params.id);
+		this.state = getRecipePageSync(props.params.id);
 	}
 
 	render() {
