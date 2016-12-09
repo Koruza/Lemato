@@ -6,7 +6,7 @@ import {getRecipePageData, postNewRecipe, getRecipePageSync} from '../server';
 export default class RecipePage extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = props.data;
+		this.state = getRecipePageData(props.params.id);
 	}
 
 	render() {
@@ -53,15 +53,6 @@ export default class RecipePage extends React.Component {
 										</div>
 									</div>
 								</div>
-								<hr className="small-bot-padding" />
-							</div>
-						</div>
-						<div className="row">
-							<div className="col-md-12">
-								<img
-									src={this.state.pic}
-									className="center-block"
-									alt="" />
 							</div>
 						</div>
 					</div>

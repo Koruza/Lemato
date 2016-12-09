@@ -120,7 +120,7 @@ var initialData = {
           "contents": [1]
         }
       }
-};
+}
 
 var data = JSON.parse(localStorage.getItem(startupName));
 if (data === null) {

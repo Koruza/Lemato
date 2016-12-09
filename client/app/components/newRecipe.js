@@ -5,6 +5,7 @@ import {hashHistory} from 'react-router';
 
 // import { Link } from 'react-router';
 
+
 export default class NewRecipe extends React.Component {
   constructor(props) {
     super(props)
@@ -23,8 +24,8 @@ export default class NewRecipe extends React.Component {
     e.preventDefault();
     var titleText = this.state.title.trim();
     var descriptionText = this.state.description.trim();
-    var ingredientText = this.state.ingredients.trim();
-    var instructionText = this.state.instructions.trim();
+    var ingredientText = this.state.ingredients.trim().split("\n");
+    var instructionText = this.state.instructions.trim().split("\n");
 
     if (titleText !== "" && descriptionText !== "" && ingredientText !== ""
         && instructionText !== "") {
