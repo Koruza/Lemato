@@ -12,7 +12,10 @@
     },
     "ingredients": {
       "id": "ingredients",
-      "type": "string"
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     },
     "pic": {
       "id": "pic",
@@ -20,7 +23,10 @@
     },
     "instructions": {
       "id": "instructions",
-      "type": "string"
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     },
     "description": {
       "id": "description",
