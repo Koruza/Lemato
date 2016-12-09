@@ -22,11 +22,42 @@ export function postNewRecipe(userId, name, ingredients, pic, instructions, desc
       description: description,
       allergies: allergies,
       meal: meal,
-      dietary:dietary
+      dietary: dietary
     }, (xhr) => {
+      // console.log(JSON.parse(xhr.responseText));
       // Return the new status update.
       cb(JSON.parse(xhr.responseText));
     });
+
+    // var time = new Date().getTime();
+    // var newRecipe = {
+    //   "userId": userId,
+    //   "name": name,
+    //   "postDate": time,
+    //   "chefPoints": [],
+    //   "ingredients": ingredients,
+    //   "pic": pic,
+    //   "instructions": instructions,
+    //   "description": description,
+    //   "allergies": allergies,
+    //   "meal": meal,
+    //   "dietary": dietary
+    // }
+    //
+    // newRecipe = addDocument('recipes', newRecipe);
+    // // debug
+    // var recipe1 = readDocument('recipes', 1);
+    // var recipe2 = readDocument('recipes', 2);
+    // var recipe3 = readDocument('recipes', 3);
+    // console.log(recipe1);
+    // console.log(recipe2);
+    // console.log(recipe3);
+    //
+    // console.log(newRecipe);
+    // //
+    // emulateServerReturn(newRecipe, cb);
+
+
 }
 
 /**
@@ -34,6 +65,7 @@ export function postNewRecipe(userId, name, ingredients, pic, instructions, desc
  * authorization token, and other needed properties.
  */
 function sendXHR(verb, resource, body, cb) {
+    console.log(body);
     var xhr = new XMLHttpRequest();
     xhr.open(verb, resource);
     xhr.setRequestHeader('Authorization', 'Bearer ' + token);

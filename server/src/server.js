@@ -132,6 +132,15 @@ function postNewRecipe(userId, name, ingredients, pic, instructions, description
   }
 
   newRecipe = addDocument('recipes', newRecipe);
+  // debug
+  var recipes = getCollection('recipes');
+  var recipeid;
+  for (recipeid in recipes) {
+    var recipe = readDocument('recipes', recipeid);
+    console.log(recipe);
+  }
+  console.log(newRecipe);
+  //
   return newRecipe;
 }
 
@@ -150,6 +159,7 @@ app.post('/recipe',
       // in the 'Location' header and use status code 201.
       res.status(201);
       res.set('Location', '/recipePage/' + newRecipe._id);
+      console.log("halloooo" + newRecipe._id);
       // Send the update!
       res.send(newRecipe);
     } else {
@@ -268,7 +278,7 @@ app.post('/results', function(req, res) {
 
 // Go to Recipe Page
 app.get('/recipePage/:recipeid', function(req, res) {
-  var reacipeid = parseInt(req.params.recipeid, 10);
+  var recipeid = parseInt(req.params.recipeid, 10);
   var recipeData = readDocument('recipes', recipeid);
   res.send(recipeData);
 });
