@@ -2,24 +2,13 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "properties": {
-    "_id": {
-      "id": "_id",
+    "userId": {
+      "id": "userId",
       "type": "integer"
     },
     "name": {
       "id": "name",
       "type": "string"
-    },
-    "postDate": {
-      "id": "postDate",
-      "type": "integer"
-    },
-    "chefPoints": {
-      "id": "chefPoints",
-      "type": "array",
-      "items": {
-        "type": "integer"
-      }
     },
     "ingredients": {
       "id": "ingredients",
@@ -57,10 +46,8 @@
     }
   },
   "required": [
-    "_id",
+    "userId",
     "name",
-    "postDate",
-    "chefPoints",
     "ingredients",
     "pic",
     "instructions",

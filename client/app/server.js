@@ -11,26 +11,22 @@ function emulateServerReturn(data, cb) {
   }, 4);
 }
 
-export function postNewRecipe(name, ingredients, instructions, description, allergies,
-  meal, cb) {
-    var time = new Date().getTime();
-    var newRecipe = {
-        "name": name,
-        "postDate": time,
-        "chefPoints": [],
-        "ingredients": ingredients,
-        "pic": "None", // TODO
-        "instructions": instructions,
-        "description": description,
-        "allergies": allergies,
-        "meal": meal,
-        "dietary": [] // TODO
-    }
-
-    newRecipe = addDocument('recipes', newRecipe);
-    emulateServerReturn(newRecipe, cb);
-    console.log(newRecipe);
-    // cb(newRecipe);
+export function postNewRecipe(userId, name, ingredients, pic, instructions, description, allergies,
+  meal, dietary, cb) {
+    sendXHR('POST', '/recipe', {
+      userId: userId,
+      name: name,
+      ingredients: ingredients,
+      pic: pic,
+      instructions: instructions,
+      description: description,
+      allergies: allergies,
+      meal: meal,
+      dietary:dietary
+    }, (xhr) => {
+      // Return the new status update.
+      cb(JSON.parse(xhr.responseText));
+    });
 }
 
 /**

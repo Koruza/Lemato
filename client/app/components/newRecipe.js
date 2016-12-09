@@ -32,9 +32,11 @@ export default class NewRecipe extends React.Component {
 
       var allergies = "None"; //TODO
       var meal = "None"; //TODO
-
-      postNewRecipe(titleText, ingredientText, instructionText, descriptionText, allergies,
-        meal, (newRecipe) => {
+      var pic = "None";
+      var dietary = [];
+      
+      postNewRecipe(4, titleText, ingredientText, pic, instructionText, descriptionText, allergies,
+        meal, dietary, (newRecipe) => {
         // refresh();
         // this.setState({_id: newRecipeID});
         hashHistory.push("/recipePage/" + newRecipe._id);
