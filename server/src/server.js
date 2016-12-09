@@ -114,6 +114,7 @@ app.put('/feeditem/:feedItemId/comments', validate({
     }
 });
 
+// post new recipe
 function postNewRecipe(userId, name, ingredients, pic, instructions, description, allergies,
   meal, dietary) {
   var time = new Date().getTime();
@@ -132,19 +133,12 @@ function postNewRecipe(userId, name, ingredients, pic, instructions, description
   }
 
   newRecipe = addDocument('recipes', newRecipe);
-  // debug
-  var recipes = getCollection('recipes');
-  var recipeid;
-  for (recipeid in recipes) {
-    var recipe = readDocument('recipes', recipeid);
-    console.log(recipe);
-  }
-  console.log(newRecipe);
-  //
   return newRecipe;
 }
 
-// `POST /feeditem { userId: user, location: location, contents: contents }`
+// `POST /recipe {userId: userId, name: name, ingredients: ingredients, pic: pic,
+// instructions: instructions, description: description, allergies: allergies,
+//  meal: meal, dietary: dietary} `
 app.post('/recipe',
   validate({ body: RecipeSchema }), function(req, res) {
   // If this function runs, `req.body` passed JSON validation!

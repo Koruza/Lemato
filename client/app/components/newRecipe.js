@@ -1,17 +1,11 @@
 import React from 'react';
 import {postNewRecipe} from '../server';
-import {refresh} from './recipePage';
 import {hashHistory} from 'react-router';
-
-// import { Link } from 'react-router';
-
 
 export default class NewRecipe extends React.Component {
   constructor(props) {
     super(props)
-    // this.state = props.data;
     this.state = {
-        // _id: NaN,
         title: "",
         //photo: "", TODO
         description: "",
@@ -29,7 +23,6 @@ export default class NewRecipe extends React.Component {
 
     if (titleText !== "" && descriptionText !== "" && ingredientText !== ""
         && instructionText !== "") {
-      // console.log("in handlePost", titleText);
 
       var allergies = ["None"]; //TODO
       var meal = "None"; //TODO
@@ -38,11 +31,9 @@ export default class NewRecipe extends React.Component {
 
       postNewRecipe(1, titleText, ingredientText, pic, instructionText, descriptionText, allergies,
         meal, dietary, (newRecipe) => {
-        // refresh();
-        // this.setState({_id: newRecipeID});
         hashHistory.push("/recipePage/" + newRecipe._id);
       });
-      // onPost(titleText, descriptionText, ingredientText, instructionText);
+
       this.setState({title: ""});
       this.setState({description: ""});
       this.setState({ingredients: ""});
