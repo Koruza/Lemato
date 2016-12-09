@@ -288,14 +288,14 @@ app.get('/search', function(req,res){
 app.put('/settings/users/:userid', function(req, res) {
   var userid = req.params.userid;
   var fromUser = getUserIdFromToken(req.get('Authorization'));
-  var userData = readDocument('users', userid);
-	var newName = readDocument('users', userData.fullName);
-  var newBio = readDocument('users', userData.bio);
+
+
 
   // userid is a string. We need it to be a number.
   // Parameters are always strings.
   var useridNumber = parseInt(userid, 10);
   if (fromUser === useridNumber) {
+  var userData = readDocument('users', userid);
   writeDocument('users', newName);
   writeDocument('users', newBio);
       // Send response.

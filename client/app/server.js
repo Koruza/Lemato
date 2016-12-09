@@ -195,6 +195,7 @@ export function updateSettings(user, newName, newBio, cb) {
   sendXHR('PUT', '/settings' + '/users/' + user, undefined, (xhr) => {
       // Call the callback with the data.
       cb(JSON.parse(xhr.responseText));
+      console.log(newName);
     });
 }
 
