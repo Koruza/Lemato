@@ -29,6 +29,7 @@ export default class Settings extends React.Component {
       this.setState({bio: updatedState.bio})
     }
     updateSettings(this.state._id, this.state.fullName, this.state.bio, callbackFunction);
+    console.log(this.state.fullName);
   }
 
   handleOldPassword(e){
@@ -61,6 +62,7 @@ export default class Settings extends React.Component {
   }
 
   render() {
+    console.log(this.state);
     return (
       <div>
       <div className="container">

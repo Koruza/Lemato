@@ -188,16 +188,20 @@ export function updatePassword(user, newPassword, cb) {
 }*/
 
 export function updateSettings(user, newName, newBio, cb) {
-  sendXHR('PUT', '/settings' + '/users/' + user, undefined, (xhr) => {
+  sendXHR('PUT', '/settings' + '/users/' + user, {
+    name: newName,
+    bio: newBio
+  }, (xhr) => {
       // Call the callback with the data.
       cb(JSON.parse(xhr.responseText));
-      console.log(newName);
     });
 }
 
 
 export function updatePassword(user, newPassword, cb) {
-  sendXHR('PUT', '/settings' + '/users/' + user, undefined, (xhr) => {
+  sendXHR('PUT', '/settings' + '/users/' + user, {
+    password: newPassword
+  }, (xhr) => {
       // Call the callback with the data.
       cb(JSON.parse(xhr.responseText));
     });

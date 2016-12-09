@@ -337,18 +337,22 @@ app.get('/search', function(req,res){
 app.put('/settings/users/:userid', function(req, res) {
   var userid = req.params.userid;
   var fromUser = getUserIdFromToken(req.get('Authorization'));
-
-
-
   // userid is a string. We need it to be a number.
   // Parameters are always strings.
   var useridNumber = parseInt(userid, 10);
   if (fromUser === useridNumber) {
   var userData = readDocument('users', userid);
-  writeDocument('users', newName);
-  writeDocument('users', newBio);
+  var newName = req.body.name;
+  var newBio = req.body.bio;
+  console.log(newName);
+  console.log(newBio);
+  userData.fullName = newName;
+  console.log(userData.fullName);
+  userData.bio = newBio;
+  writeDocument('users', userData);
+  console.log(userData.fullName);
       // Send response.
-  res.send(getFeedData(userid));
+  res.send(userData);
 } else {
     // 401: Unauthorized request.
     res.status(401).end();
@@ -360,13 +364,15 @@ app.put('/settings/users/:userid', function(req, res) {
 app.put('/settings/users/:userid', function(req, res) {
   var userid = req.params.userid;
   var fromUser = getUserIdFromToken(req.get('Authorization'));
-	var userData = readDocument('users', userid);
-	var newPassword = readDocument('users', userData.password);
   // userid is a string. We need it to be a number.
   // Parameters are always strings.
   var useridNumber = parseInt(userid, 10);
   if (fromUser === useridNumber) {
-  writeDocument('users', newPassword);
+  var userData = readDocument('users', userid);
+  var newPassword = req.body.password;
+  console.log(newPassword);
+  userData.password = newPassword
+  writeDocument('users', userData);
       // Send response.
   res.send(getFeedData(userid));
 } else {
