@@ -223,7 +223,7 @@ app.post('/results', function(req, res) {
 
 // Go to Recipe Page
 app.get('/recipePage/:recipeid', function(req, res) {
-  var reacipeid = parseInt(req.params.recipeid, 10);
+  var recipeid = parseInt(req.params.recipeid, 10);
   var recipeData = readDocument('recipes', recipeid);
   res.send(recipeData);
 });
