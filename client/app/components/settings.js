@@ -9,12 +9,12 @@ export default class Settings extends React.Component {
   constructor(props) {
     super(props)
     var callback = (user) => {
-      this.state = user;
+      user;
     }
     //var user = readDocument('users', this.props.user);
-    getUserData(this.props._id, callback);
+    this.state = getUserData(this.props.user, callback);
     //this.state = user;
-    //console.log(this.state);
+    console.log(this.state);
   }
 
 

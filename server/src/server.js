@@ -397,18 +397,26 @@ app.put('/settings/users/:userid', function(req, res) {
 
 //getUserData
 /*app.get('/settings/users/:userid', function(req, res) {
-  var userId = req.params.userid;
+  var userid = req.params.userid;
+  var user = req.body;
   var fromUser = getUserIdFromToken(req.get('Authorization'));
-  if (fromUser === useridNumber) {
-  db.collection('users').updateOne({_id: userId},
-  {
-    $get: {
-      users:user
+  if (fromUser === userid) {
+  db.collection('users').findOne({
+  _id: userid
+  }, function(err){
+    if(err){
+      return sendDatabaseError(res, err);
+    } else if else if (user === null) {
+      return sendDatabaseError(res, err);
     }
-  },
-  var userData = readDocument('users', userid);
+      res.send(user);
+    });
   }
-  res.send(userData);
+);
+}else{
+// Unauthorized.
+res.status(401).end();
+}
 });
 
 
@@ -423,21 +431,15 @@ app.put('/settings/users/:userid', function(req, res) {
       newName:req.body.name;
       newBio:req.body.bio;
   },
-  var userData = readDocument('users', userid);
-  userData.fullName = newName;
-  console.log(userData.fullName);
-  userData.bio = newBio;
-  writeDocument('users', userData);
-  console.log(userData.fullName);
   function(err){
     if(err){
       return sendDatabaseError(res, err);
     }
-    getUserData(userid, function(err, feedItem){
+    getUserData(userid, function(err, user){
       if(err){
         return sendDatabaseError(res, err);
       }
-      res.send(feedItem);
+      res.send(user);
     });
   }
 );
@@ -450,24 +452,30 @@ res.status(401).end();
 
 //updatePassword
 app.put('/settings/users/:userid', function(req, res) {
-  var userid = req.params.userid;
-  var fromUser = getUserIdFromToken(req.get('Authorization'));
-  // userid is a string. We need it to be a number.
-  // Parameters are always strings.
-  var useridNumber = parseInt(userid, 10);
-  if (fromUser === useridNumber) {
-  var userData = readDocument('users', userid);
-  var newPassword = req.body.password;
-  console.log(newPassword);
-  userData.password = newPassword
-  writeDocument('users', userData);
-  console.log(userData.password);
-      // Send response.
-  res.send(getFeedData(userid));
-} else {
-    // 401: Unauthorized request.
-    res.status(401).end();
+var userid = req.params.userid;
+var fromUser = getUserIdFromToken(req.get('Authorization'));
+if (fromUser === useridNumber) {
+db.collection('users').updateOne({_id: userId},
+{
+  $push: {
+    newPassword:req.body.password;
+},
+function(err){
+  if(err){
+    return sendDatabaseError(res, err);
   }
+  getUserData(userid, function(err, user){
+    if(err){
+      return sendDatabaseError(res, err);
+    }
+    res.send(user);
+  });
+}
+);
+}else{
+// Unauthorized.
+res.status(401).end();
+}
 });*/
 
 
