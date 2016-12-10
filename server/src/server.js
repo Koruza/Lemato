@@ -188,33 +188,57 @@ function getUserIdFromToken(authorizationLine) {
 }
 
 
+// /**
+//  * Get the feed data for a particular user.
+//  */
+// function getFeedData(user) {
+//     var userData = readDocument('users', user);
+//     var feedData = readDocument('feeds', userData.feed);
+//     // While map takes a callback, it is synchronous, not asynchronous.
+//     // It calls the callback immediately.
+//     feedData.contents = feedData.contents.map(getFeedItemSync);
+//     // Return FeedData with resolved references.
+//     return feedData;
+// }
+//
+// /**
+//  * Resolves a feed item. Internal to the server, since it's synchronous.
+//  */
+// function getFeedItemSync(feedItemId) {
+//     var feedItem = readDocument('feedItems', feedItemId);
+//     // Resolve 'like' counter.
+//     // Assuming a StatusUpdate. If we had other types of FeedItems in the DB, we would
+//     // need to check the type and have logic for each type.
+//     feedItem.contents.author = readDocument('users', feedItem.contents.author);
+//     // Resolve comment author.
+//     feedItem.comments.forEach((comment) => {
+//         comment.author = readDocument('users', comment.author);
+//     });
+//     return feedItem;
+// }
+
 /**
  * Get the feed data for a particular user.
  */
-function getFeedData(user) {
+function getRecipeData(user) {
     var userData = readDocument('users', user);
-    var feedData = readDocument('feeds', userData.feed);
+    var recipeData = readDocument('recipes', userData.feed);
     // While map takes a callback, it is synchronous, not asynchronous.
     // It calls the callback immediately.
-    feedData.contents = feedData.contents.map(getFeedItemSync);
+    recipeData.contents = recipeData.contents.map(getRecipeItemSync);
     // Return FeedData with resolved references.
-    return feedData;
+    return recipeData;
 }
 
 /**
  * Resolves a feed item. Internal to the server, since it's synchronous.
  */
-function getFeedItemSync(feedItemId) {
-    var feedItem = readDocument('feedItems', feedItemId);
-    // Resolve 'like' counter.
-    // Assuming a StatusUpdate. If we had other types of FeedItems in the DB, we would
-    // need to check the type and have logic for each type.
-    feedItem.contents.author = readDocument('users', feedItem.contents.author);
-    // Resolve comment author.
-    feedItem.comments.forEach((comment) => {
-        comment.author = readDocument('users', comment.author);
-    });
-    return feedItem;
+function getRecipeItemSync(recipeItemId) {
+    var recipeItem = readDocument('recipes', recipeItemId);
+    // feedItem.comments.forEach((comment) => {
+    //     comment.author = readDocument('users', comment.author);
+    // });
+    return recipeItem;
 }
 
 //new Buffer(JSON.stringify({ id: 1 })).toString('base64');
@@ -226,7 +250,7 @@ app.get('/user/:userid/feed', function(req, res) {
     var useridNumber = parseInt(userid, 10);
     if (fromUser === useridNumber) {
         // Send response.
-        res.send(getFeedData(userid));
+        res.send(getRecipeData(userid));
     } else {
         // 401: Unauthorized request.
         res.status(401).end();
@@ -388,7 +412,7 @@ app.put('/settings/users/:userid', function(req, res) {
   writeDocument('users', userData);
   console.log(userData.password);
       // Send response.
-  res.send(getFeedData(userid));
+  res.send(getRecipeData(userid));
 } else {
     // 401: Unauthorized request.
     res.status(401).end();
