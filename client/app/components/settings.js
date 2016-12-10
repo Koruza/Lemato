@@ -8,9 +8,16 @@ import {getUserData} from '../server'
 export default class Settings extends React.Component {
   constructor(props) {
     super(props)
-    var user = readDocument('users', this.props.user);
-    this.state = user;
+    var callback = (user) => {
+      this.state = user;
+    }
+    //var user = readDocument('users', this.props.user);
+    getUserData(this.props._id, callback);
+    //this.state = user;
+    //console.log(this.state);
   }
+
+
 
   handleNameChange(e){
     e.preventDefault();
@@ -30,7 +37,6 @@ export default class Settings extends React.Component {
       this.setState({bio: updatedState.bio})
     }
     updateSettings(this.state._id, this.state.fullName, this.state.bio, callbackFunction);
-    console.log(this.state.fullName);
   }
 
   handleOldPassword(e){
@@ -55,7 +61,6 @@ export default class Settings extends React.Component {
       this.setState({password: updatedState.password})
     }
     updatePassword(this.state._id, this.state.newPassword, callbackFunction);
-    console.log(this.state.password);
 //  }
     ///else{
     //  alert("Try Again!");
@@ -63,7 +68,6 @@ export default class Settings extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <div>
       <div className="container">
@@ -93,15 +97,6 @@ export default class Settings extends React.Component {
             <div className="panel panel-default">
               <div className="panel-heading setting-label">Profile Settings</div>
               <div className="panel-body">
-                <label>Profile Picture</label>
-                <div className="media">
-                  <div className="media-left">
-                    PIC
-                  </div>
-                  <div className="media-body">
-                    <button type="button" className="btn btn-default photo-button">Upload new picture</button>
-                  </div>
-                </div>
                 <label className="profile-label">Name</label>
                 <input type="text" className="form-control name-input" value={this.state.fullName} onChange={(e) => this.handleNameChange(e)}/>
                 <br />

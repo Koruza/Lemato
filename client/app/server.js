@@ -188,7 +188,7 @@ export function updatePassword(user, newPassword, cb) {
 }*/
 
 export function getUserData(user, cb) {
-  sendXHR('GET', '/settings/' + '/users/',  + user, undefined, (xhr) => {
+  sendXHR('GET', '/settings' + '/users/'  +  user, undefined, (xhr) => {
     cb(JSON.parse(xhr.responseText));
   });
 }

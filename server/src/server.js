@@ -340,9 +340,9 @@ app.get('/settings/users/:userid', function(req, res) {
   // Parameters are always strings.
   var useridNumber = parseInt(userid, 10);
   if (fromUser === useridNumber) {
-    var user = readDocument('users', this.props.user);
+  var userData = readDocument('users', userid);
   }
-  res.send(user);
+  res.send(userData);
 });
 
 
@@ -386,6 +386,7 @@ app.put('/settings/users/:userid', function(req, res) {
   console.log(newPassword);
   userData.password = newPassword
   writeDocument('users', userData);
+  console.log(userData.password);
       // Send response.
   res.send(getFeedData(userid));
 } else {
@@ -393,6 +394,70 @@ app.put('/settings/users/:userid', function(req, res) {
     res.status(401).end();
   }
 });
+
+//getUserData
+/*app.get('/settings/users/:userid', function(req, res) {
+  var userid = req.params.userid;
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  // userid is a string. We need it to be a number.
+  // Parameters are always strings.
+  var useridNumber = parseInt(userid, 10);
+  if (fromUser === useridNumber) {
+  var userData = readDocument('users', userid);
+  }
+  res.send(userData);
+});
+
+
+//updateSettings
+app.put('/settings/users/:userid', function(req, res) {
+  var userid = req.params.userid;
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  // userid is a string. We need it to be a number.
+  // Parameters are always strings.
+  var useridNumber = parseInt(userid, 10);
+  if (fromUser === useridNumber) {
+  var userData = readDocument('users', userid);
+  var newName = req.body.name;
+  var newBio = req.body.bio;
+  console.log(newName);
+  console.log(newBio);
+  userData.fullName = newName;
+  console.log(userData.fullName);
+  userData.bio = newBio;
+  writeDocument('users', userData);
+  console.log(userData.fullName);
+      // Send response.
+  res.send(userData);
+} else {
+    // 401: Unauthorized request.
+    res.status(401).end();
+  }
+});
+
+
+//updatePassword
+app.put('/settings/users/:userid', function(req, res) {
+  var userid = req.params.userid;
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  // userid is a string. We need it to be a number.
+  // Parameters are always strings.
+  var useridNumber = parseInt(userid, 10);
+  if (fromUser === useridNumber) {
+  var userData = readDocument('users', userid);
+  var newPassword = req.body.password;
+  console.log(newPassword);
+  userData.password = newPassword
+  writeDocument('users', userData);
+  console.log(userData.password);
+      // Send response.
+  res.send(getFeedData(userid));
+} else {
+    // 401: Unauthorized request.
+    res.status(401).end();
+  }
+});*/
+
 
 // Reset database.
 app.post('/resetdb', function(req, res) {
