@@ -220,20 +220,20 @@ function getUserIdFromToken(authorizationLine) {
 /**
  * Get the feed data for a particular user.
  */
-function getRecipeData(user) {
+function getFeedData(user) {
     var userData = readDocument('users', user);
-    var recipeData = readDocument('recipes', userData.feed);
+    var feedData = readDocument('feeds', userData.feed);
     // While map takes a callback, it is synchronous, not asynchronous.
     // It calls the callback immediately.
-    recipeData.contents = recipeData.contents.map(getRecipeItemSync);
+    feedData.contents = feedData.contents.map(getFeedItemSync);
     // Return FeedData with resolved references.
-    return recipeData;
+    return feedData;
 }
 
 /**
  * Resolves a feed item. Internal to the server, since it's synchronous.
  */
-function getRecipeItemSync(recipeItemId) {
+function getFeedItemSync(recipeItemId) {
     var recipeItem = readDocument('recipes', recipeItemId);
     // feedItem.comments.forEach((comment) => {
     //     comment.author = readDocument('users', comment.author);
@@ -250,7 +250,7 @@ app.get('/user/:userid/feed', function(req, res) {
     var useridNumber = parseInt(userid, 10);
     if (fromUser === useridNumber) {
         // Send response.
-        res.send(getRecipeData(userid));
+        res.send(getFeedData(userid));
     } else {
         // 401: Unauthorized request.
         res.status(401).end();
@@ -412,7 +412,7 @@ app.put('/settings/users/:userid', function(req, res) {
   writeDocument('users', userData);
   console.log(userData.password);
       // Send response.
-  res.send(getRecipeData(userid));
+  res.send(getFeedData(userid));
 } else {
     // 401: Unauthorized request.
     res.status(401).end();

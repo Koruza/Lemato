@@ -41,7 +41,7 @@ export default class FeedItem extends React.Component {
     // }
 
     didUserLike() {
-        var chefPoints = this.state.recipe.chefPoints;
+        var chefPoints = this.state.chefPoints;
         //console.log(chefPoints);
         var liked = false;
         for (var i = 0; i < chefPoints.length; i++) {
@@ -88,7 +88,10 @@ export default class FeedItem extends React.Component {
                       <div className="row">
                         <div className="col-md-12">
                           <hr/>
-                    {this.state.contents.contents}
+                    {this.state.name}
+                    {this.state.postDate}
+                    {this.state.pic}
+                    {this.state.description}
                 </div>
               </div>
             </div>
@@ -103,7 +106,7 @@ export default class FeedItem extends React.Component {
                 <div className="panel-footer">
                     <div className="row">
                         <div className="col-md-12">
-                            <a href="#">{data.recipe.chefPoints.length} </a> chef points
+                            <a href="#">{data.chefPoints.length} </a> chef points
                         </div>
                     </div>
                 </div>

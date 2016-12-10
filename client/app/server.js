@@ -93,14 +93,14 @@ function sendXHR(verb, resource, body, cb) {
     }
 }
 
-function getFeedItemSync(feedItemId) {
-    var feedItem = readDocument('feedItems', feedItemId);
-    feedItem._id = feedItemId
-    feedItem.contents.author = readDocument('users', feedItem.contents.author);
-    feedItem.comments.forEach((comment) => {comment.author = readDocument('users', comment.author)});
-    feedItem.recipe = readDocument('recipes', feedItem.contents._id)
-    return feedItem;
-}
+// function getFeedItemSync(feedItemId) {
+//     var feedItem = readDocument('feedItems', feedItemId);
+//     feedItem._id = feedItemId
+//     feedItem.contents.author = readDocument('users', feedItem.contents.author);
+//     feedItem.comments.forEach((comment) => {comment.author = readDocument('users', comment.author)});
+//     feedItem.recipe = readDocument('recipes', feedItem.contents._id)
+//     return feedItem;
+// }
 
 export function getFeedData(user, cb) {
   sendXHR('GET', '/user/1/feed', undefined, (xhr) => {
