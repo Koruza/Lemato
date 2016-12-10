@@ -55,7 +55,7 @@ var initialData = {
     },
     "2": {
       "_id": 2,
-      "author": 3,
+      "author": 1,
       "name": "Brownie in an egg",
       "chefPoints": [2],
       "ingredients": ["Flour", "Egg", "Cocoa Powder", "Sugar","Baking Powder"],
