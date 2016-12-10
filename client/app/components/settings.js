@@ -7,14 +7,23 @@ import {getUserData} from '../server'
 
 export default class Settings extends React.Component {
   constructor(props) {
-    super(props)
-    var callback = (user) => {
-      user;
-    }
+    super( props );
     //var user = readDocument('users', this.props.user);
-    this.state = getUserData(this.props.user, callback);
+    //this.state = getUserData(this.props.user, callback);
     //this.state = user;
-    console.log(this.state);
+    this.state = {
+      contents: []
+    };
+  }
+
+  refresh() {
+   getUserData(this.props.user, (user) => {
+     this.setState(user);
+   });
+  }
+
+  componentDidMount() {
+   this.refresh()
   }
 
 
