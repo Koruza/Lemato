@@ -11,10 +11,10 @@ function emulateServerReturn(data, cb) {
   }, 4);
 }
 
-export function postNewRecipe(userId, name, ingredients, pic, instructions, description, allergies,
+export function postNewRecipe(author, name, ingredients, pic, instructions, description, allergies,
   meal, dietary, cb) {
     sendXHR('POST', '/recipe', {
-      userId: userId,
+      author: author,
       name: name,
       ingredients: ingredients,
       pic: pic,

@@ -29,6 +29,7 @@ var initialData = {
     "recipes":{
         "1":{
           "_id": 1,
+          "author": 2,
           "name": "Brownie",
           "postDate": 1453668480000,
           "chefPoints": [1],
@@ -50,6 +51,7 @@ var initialData = {
         },
         "2":{
           "_id": 2,
+          "author": 3,
           "name": "Brownie in an egg",
           "chefPoints": [2],
           "ingredients":[

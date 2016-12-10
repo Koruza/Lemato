@@ -2,8 +2,8 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "properties": {
-    "userId": {
-      "id": "userId",
+    "author": {
+      "id": "author",
       "type": "integer"
     },
     "name": {
@@ -52,7 +52,7 @@
     }
   },
   "required": [
-    "userId",
+    "author",
     "name",
     "ingredients",
     "pic",

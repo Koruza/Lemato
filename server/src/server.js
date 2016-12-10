@@ -115,11 +115,11 @@ app.put('/feeditem/:feedItemId/comments', validate({
 });
 
 // post new recipe
-function postNewRecipe(userId, name, ingredients, pic, instructions, description, allergies,
+function postNewRecipe(author, name, ingredients, pic, instructions, description, allergies,
   meal, dietary) {
   var time = new Date().getTime();
   var newRecipe = {
-    "userId": userId,
+    "author": author,
     "name": name,
     "postDate": time,
     "chefPoints": [],
@@ -146,8 +146,8 @@ app.post('/recipe',
   var fromUser = getUserIdFromToken(req.get('Authorization'));
   // Check if requester is authorized to post this status update.
   // (The requester must be the author of the update.)
-  if (fromUser === body.userId) {
-    var newRecipe = postNewRecipe(body.userId, body.name, body.ingredients, body.pic,
+  if (fromUser === body.author) {
+    var newRecipe = postNewRecipe(body.author, body.name, body.ingredients, body.pic,
       body.instructions, body.description, body.allergies, body.meal, body.dietary);
       // When POST creates a new resource, we should tell the client about it
       // in the 'Location' header and use status code 201.
