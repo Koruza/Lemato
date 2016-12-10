@@ -82,7 +82,7 @@ export default class AdvQuery extends React.Component {
     // from happening.
     return (
       <form onSubmit={(evt) => evt.preventDefault()} className="a-search" id="formy">
-            Category:
+            Category:&nbsp;
           <select className="dropdown" id="opt">
             <option value="breakfast">Breakfast</option>
             <option value="lunch">Lunch</option>
@@ -105,7 +105,7 @@ export default class AdvQuery extends React.Component {
                   <input type="checkbox" name="allergies5" value="Soy"/> Soy<br/>
                   <input type="checkbox" name="allergies6" value="Fish"/> Fish<br/>
 
-                  <input type="checkbox" name="allergies7" value="Other"/> Other
+                  <input type="checkbox" name="allergies7" value="Other"/> Other&nbsp;
                   <input type="text" name="allergies8" className="other" maxLength="25"/><br/><br/>
                   <br/></div>
           </div>
@@ -113,11 +113,11 @@ export default class AdvQuery extends React.Component {
           <div className="col-md-12">
               <div className="col-md-4">
                   <input type="checkbox" name="diet1" value="Gluten"/> Gluten<br/>
-                  <input type="checkbox" name="diet2" value="Vegetarian"/>Vegetarian<br/>
+                  <input type="checkbox" name="diet2" value="Vegetarian"/> Vegetarian<br/>
               </div>
               <div className="col-md-8">
-                  <input type="checkbox" name="diet3" value="Vegan"/>Vegan<br/>
-                  <input type="checkbox" name="diet4" value="Other"/> Other
+                  <input type="checkbox" name="diet3" value="Vegan"/> Vegan<br/>
+                  <input type="checkbox" name="diet4" value="Other"/> Other&nbsp;
                   <input type="text" name="diet5" className="other" maxLength="25"/><br/><br/>
               </div>
           </div>
