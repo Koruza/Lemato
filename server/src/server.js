@@ -15,6 +15,12 @@ var validate = require('express-jsonschema').validate;
 // Creates an Express server.
 var app = express();
 
+var mongo_express = require('mongo-express/lib/middleware');
+// Import the default Mongo Express configuration
+var mongo_express_config = require('mongo-express/config.default.js');
+
+app.use('/mongo_express', mongo_express(mongo_express_config));
+
 
 // Support receiving text in HTTP request bodies
 app.use(bodyParser.text());
