@@ -412,7 +412,7 @@ app.put('/settings/users/:userid', function(req, res) {
   writeDocument('users', userData);
   console.log(userData.password);
       // Send response.
-  res.send(getFeedData(userid));
+  res.send(userData);
 } else {
     // 401: Unauthorized request.
     res.status(401).end();
