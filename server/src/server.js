@@ -274,21 +274,21 @@ function postComment(feedItemId, user, contents) {
 }
 
 
-// Search for feed item
+// Search for recipe item
 app.post('/results', function(req, res) {
   if (typeof(req.body) === 'string') {
     var queryText = req.body.trim().toLowerCase();
-    // Search the user's feed.
-    var recipe= getCollection("recipes");
-    console.log(recipe);
-    res.send(recipe.filter((recipeNames) => {
-      var name = readDocument('name', recipeNames);
-      console.log(name);
-      return name
-      .toLowerCase()
-      .indexOf(queryText) !== -1;
-    }).map(getFeedItemSync));
-    // res.send("Bai");
+    var recipeCollection = getCollection("recipes");
+    
+    var results = []; //parse through recipes to find matches
+    var i = 1;
+    while(recipeCollection[i] != undefined) {
+      if(recipeCollection[i].name.toLowerCase().indexOf(queryText) !== -1) { //if name contains the queryText
+        results.push(i);
+      }
+      i++;
+    }
+    res.send(results);
   } else {
     res.status(400).end();
   }

@@ -220,12 +220,7 @@ export function advSearch(userID,cb) {
     });
 }
 
-
-/**
-* Searches for feed items with the given text.
-*/
-export function searchForRecipes(userID, queryText, cb) {
-  // userID is not needed; it's included in the JSON web token.
+export function searchForRecipes(queryText, cb) {
   sendXHR('POST', '/results', queryText, (xhr) => {
     cb(JSON.parse(xhr.responseText));
   });
