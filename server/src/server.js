@@ -19,6 +19,14 @@ var mongo_express = require('mongo-express/lib/middleware');
 // Import the default Mongo Express configuration
 var mongo_express_config = require('mongo-express/config.default.js');
 
+var MongoDB = require('mongodb');
+var MongoClient = MongoDB.MongoClient;
+var ObjectID = MongoDB.ObjectID;
+var url = 'mongodb://localhost:27017/facebook';
+var ResetDatabase = require('./resetdatabase');
+
+MongoClient.connect(url, function(err, db) {
+
 app.use('/mongo_express', mongo_express(mongo_express_config));
 
 
@@ -285,7 +293,7 @@ app.post('/results', function(req, res) {
   if (typeof(req.body) === 'string') {
     var queryText = req.body.trim().toLowerCase();
     var recipeCollection = getCollection("recipes");
-    
+
     var results = []; //parse through recipes to find matches
     var i = 1;
     while(recipeCollection[i] != undefined) {
@@ -363,7 +371,7 @@ app.get('/search', function(req,res){
 });
 
 //getUserData
-app.get('/settings/users/:userid', function(req, res) {
+/*app.get('/settings/users/:userid', function(req, res) {
   var userid = req.params.userid;
   var fromUser = getUserIdFromToken(req.get('Authorization'));
   // userid is a string. We need it to be a number.
@@ -423,10 +431,10 @@ app.put('/settings/users/:userid', function(req, res) {
     // 401: Unauthorized request.
     res.status(401).end();
   }
-});
+});*/
 
 //getUserData
-/*app.get('/settings/users/:userid', function(req, res) {
+app.get('/settings/users/:userid', function(req, res) {
   var userid = req.params.userid;
   var user = req.body;
   var fromUser = getUserIdFromToken(req.get('Authorization'));
@@ -436,13 +444,11 @@ app.put('/settings/users/:userid', function(req, res) {
   }, function(err){
     if(err){
       return sendDatabaseError(res, err);
-    } else if else if (user === null) {
+    } else if  (user === null) {
       return sendDatabaseError(res, err);
     }
       res.send(user);
     });
-  }
-);
 }else{
 // Unauthorized.
 res.status(401).end();
@@ -454,12 +460,12 @@ res.status(401).end();
 app.put('/settings/users/:userid', function(req, res) {
   var userid = req.params.userid;
   var fromUser = getUserIdFromToken(req.get('Authorization'));
-  if (fromUser === useridNumber) {
-  db.collection('users').updateOne({_id: userId},
+  if (fromUser === userid) {
+  db.collection('users').updateOne({_id: userid},
   {
     $push: {
-      newName:req.body.name;
-      newBio:req.body.bio;
+      newName:req.body.name,
+      newBio:req.body.bio
   },
   function(err){
     if(err){
@@ -471,6 +477,7 @@ app.put('/settings/users/:userid', function(req, res) {
       }
       res.send(user);
     });
+    }
   }
 );
 }else{
@@ -484,11 +491,11 @@ res.status(401).end();
 app.put('/settings/users/:userid', function(req, res) {
 var userid = req.params.userid;
 var fromUser = getUserIdFromToken(req.get('Authorization'));
-if (fromUser === useridNumber) {
-db.collection('users').updateOne({_id: userId},
+if (fromUser === userid) {
+db.collection('users').updateOne({_id: userid},
 {
   $push: {
-    newPassword:req.body.password;
+    newPassword:req.body.password
 },
 function(err){
   if(err){
@@ -500,13 +507,23 @@ function(err){
     }
     res.send(user);
   });
+  }
 }
 );
 }else{
 // Unauthorized.
 res.status(401).end();
 }
-});*/
+});
+
+/**
+* Helper function: Sends back HTTP response with error code 500 due to
+* a database error.
+*/
+function sendDatabaseError(res, err) {
+  res.status(500).send("A database error occurred: " + err);
+}
+
 
 
 // Reset database.
@@ -521,4 +538,6 @@ app.post('/resetdb', function(req, res) {
 // Starts the server on port 3000!
 app.listen(3000, function() {
     console.log('Lemato app listening on port 3000!');
+});
+
 });
