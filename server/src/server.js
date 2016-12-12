@@ -4,11 +4,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var database = require('./database');
-var writeDocument = database.writeDocument;
-var addDocument = database.addDocument;
-var readDocument = database.readDocument;
-var getCollection = database.getCollection;
-
 var commentSchema = require('./schemas/comment.json');
 var RecipeSchema = require('./schemas/recipe.json');
 var validate = require('express-jsonschema').validate;
@@ -22,9 +17,9 @@ var mongo_express_config = require('mongo-express/config.default.js');
 var MongoDB = require('mongodb');
 var MongoClient = MongoDB.MongoClient;
 var ObjectID = MongoDB.ObjectID;
-var url = 'mongodb://localhost:27017/:Lemato';
+var url = 'mongodb://localhost:27017/Lemato';
 var ResetDatabase = require('./resetdatabase');
-var getUserData = require('../src/server')
+var getUserData = require('../src/server');
 
 MongoClient.connect(url, function(err, db) {
 
@@ -539,5 +534,9 @@ app.post('/resetdb', function(req, res) {
 app.listen(3000, function() {
     console.log('Lemato app listening on port 3000!');
 });
+var writeDocument = database.writeDocument;
+var addDocument = database.addDocument;
+var readDocument = database.readDocument;
+var getCollection = database.getCollection;
 
 });
