@@ -24,6 +24,7 @@ var MongoClient = MongoDB.MongoClient;
 var ObjectID = MongoDB.ObjectID;
 var url = 'mongodb://localhost:27017/:Lemato';
 var ResetDatabase = require('./resetdatabase');
+var getUserData = require('../src/server')
 
 MongoClient.connect(url, function(err, db) {
 
