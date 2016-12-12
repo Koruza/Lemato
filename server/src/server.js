@@ -22,7 +22,7 @@ var mongo_express_config = require('mongo-express/config.default.js');
 var MongoDB = require('mongodb');
 var MongoClient = MongoDB.MongoClient;
 var ObjectID = MongoDB.ObjectID;
-var url = 'mongodb://localhost:27017/facebook';
+var url = 'mongodb://localhost:27017/:Lemato';
 var ResetDatabase = require('./resetdatabase');
 
 MongoClient.connect(url, function(err, db) {
