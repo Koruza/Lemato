@@ -3,7 +3,98 @@ var ObjectID = require('mongodb').ObjectID;
 // Put your startup's name here (only letters and numbers -- no spaces, apostrophes, or special characters!)
 var databaseName = null;
 // Put the initial mock objects here.
-var initialData = null;
+var initialData = {
+  "users": {
+    "1": {
+      "_id": new ObjectID("000000000000000000000001"),
+      "fullName": "Someone",
+      "bio": "brownie enthusiast",
+      "username":"BrownieKing",
+      "password":"chocolate",
+      "cookbook":[1],
+      "feed": new ObjectID("000000000000000000000001")
+    },
+    "2": {
+      "_id": new ObjectID("000000000000000000000002"),
+      "fullName": "Someone Else",
+      "bio": "brownie hater",
+      "username":"BrownieMaster",
+      "password":"fudge",
+      "cookbook":[2],
+      "feed": new ObjectID("000000000000000000000002")
+    }
+  },
+  "recipes":{
+    "1":{
+      "_id": new ObjectID("000000000000000000000001"),
+      "author": new ObjectID("000000000000000000000002"),
+      "name": "Brownie",
+      "postDate": 1453668480000,
+      "chefPoints": [1],
+      "ingredients": ["Flour", "Egg", "Cocoa Powder", "Sugar","Butter"],
+      "pic":"../../img/brownie-egg.jpg",
+      "instructions":[
+        "1. Combine the butter and sugar",
+        "2. Mix the flour and cocoa powder together in a seperate bowl",
+        "3. Whisk the egg into the flour and cocoa powder mixture",
+        "4. Add the butter and sugar to the mix",
+        "5. Pour it into a 9x9 tray"
+      ],
+      "description": "Homestyle brownies",
+      "allergies": ["dairy"],
+      "meal": "dessert",
+      "dietary": ["vegetarian"],
+      "comments": [
+        {
+          "author": new ObjectID("000000000000000000000001"),
+          "contents": "Omg have you tried the brownies I posted?!",
+          "postDate": 1453690800000
+        },
+        {
+          "author": new ObjectID("000000000000000000000002"),
+          "contents": "Yes, I did. The idea of it blew my tastebuds away!!!",
+          "postDate": 1453790800000
+        }
+      ]
+    },
+    "2": {
+      "_id": new ObjectID("000000000000000000000002"),
+      "author": new ObjectID("000000000000000000000001"),
+      "name": "Brownie in an egg",
+      "chefPoints": [2],
+      "ingredients": ["Flour", "Egg", "Cocoa Powder", "Sugar","Baking Powder"],
+      "pic":"None",
+      "instructions": [
+        "1. Mix dry ingredients together",
+        "2. Mix wet ingredients together",
+        "3. Combine the dry ingredients into the wet ones",
+        "4. Pour the mixture into the empty eggshells"
+      ],
+      "description":"Brownies makes inside an egg shell!",
+      "allergies": ["dairy"],
+      "meal": "dessert",
+      "dietary":["vegetarian"],
+      "comments": [
+        {
+          "author": new ObjectID("000000000000000000000002"),
+          "contents": "Omg have you tried the brownie in an egg?!",
+          "postDate": 1453690800000
+        },
+        {
+          "author": new ObjectID("000000000000000000000001"),
+          "contents": "Yes, I did. The idea of it blew my mind!!!",
+          "postDate": 1453790800000
+        }
+      ]
+    }
+  },
+  "feeds": {
+    "1": {
+      "_id": new ObjectID("000000000000000000000001"),
+      "contents": [1]
+    }
+  }
+};
 
 /**
  * Resets a collection.
