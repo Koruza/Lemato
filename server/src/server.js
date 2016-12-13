@@ -329,52 +329,26 @@ if (req.body !== '') {
          for(var i=0; i< ing.length; i++){
            for (var j =0; j<ingredients.length; j++){
              if (ing[i] !== null){
-               if (ing[i] === ingredients[j]){
-                 if (resultRecipes.indexOf(doc.name) > -1){
-                    break;
+               if (ing[i] === ingredients[j] && doc.meal === meal){
+                  if (resultRecipes.indexOf(doc.name) > -1){
+                     break;
+                  }
+                  else{
+                    resultRecipes.push(doc.name);
+                    console.log(resultRecipes);
                  }
-                 else{
-                   resultRecipes.push(doc.name);
                   //  console.log(resultRecipes);
                  }
                }
              }
            }
-         }
-      }
-      else{
-        res.send(resultRecipes);
+      }else{
+        console.log(res.send(resultRecipes));
       }
    });
   //  console.log(resultRecipes);
 
 
-  // .find({'ingredients'}, function(err, userData) {
-  //   if (err) {
-  //     return sendDatabaseError(res, err);
-  //   } else if (userData === null) {
-  //     // User not found.
-  //     // 400: Bad request.
-  //     res.status(400).end();
-  //   }
-
-    // Get the user's feed.
-  //   db.collection('feeds').findOne({ _id: userData.feed }, function(err, feedData) {
-  //     if (err) {
-  //       return sendDatabaseError(res, err);
-  //     }
-  //
-  //     // Look for feed items within the feed that contain queryText.
-  //     db.collection('feedItems').find({
-  //       $or: feedData.contents.map((id) => { return { _id: id  }}),
-  //       $text: {
-  //         $search: queryText
-  //       }
-  //     }).toArray(function(err, items) {
-  //       if (err) {
-  //         return sendDatabaseError(res, err);
-  //       }
-  //
   //       // Resolve all of the feed items.
   //       var resolvedItems = [];
   //       var errored = false;
@@ -393,13 +367,13 @@ if (req.body !== '') {
   //         }
   //       }
   //
-  //       // Resolve all of the matched feed items in parallel.
-  //       for (var i = 0; i < items.length; i++) {
-  //         // Would be more efficient if we had a separate helper that
-  //         // resolved feed items from their objects and not their IDs.
-  //         // Not a big deal in our small applications, though.
-  //         getFeedItem(items[i]._id, onResolve);
-  //       }
+        // Resolve all of the matched feed items in parallel.
+        // for (var i = 0; i < items.length; i++) {
+        //   // Would be more efficient if we had a separate helper that
+        //   // resolved feed items from their objects and not their IDs.
+        //   // Not a big deal in our small applications, though.
+        //   getFeedItem(items[i]._id, onResolve);
+        // }
   //
   //       // Special case: No results.
   //       if (items.length === 0) {
