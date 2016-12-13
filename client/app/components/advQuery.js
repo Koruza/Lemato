@@ -1,4 +1,6 @@
 import React from 'react';
+import ResultsPage from './resultsPage';
+import { searchForRecipes } from '../server';
 
 export default class AdvQuery extends React.Component {
   constructor(props) {
@@ -53,9 +55,15 @@ export default class AdvQuery extends React.Component {
 
   search(obj) {
     var trimmedTerm = obj;
+    // var trimmedTerm = "Hi nub";
     if (trimmedTerm !== "") {
       // Navigate to /search?q=[trimmedTerm]
-      this.context.router.push({ pathname: "/results", query: { q: trimmedTerm } });
+
+      searchForRecipes(trimmedTerm, function(res){
+          console.log(res);
+      });
+      // this.context.router.push({ pathname: "/results", query: { q: trimmedTerm } });
+      // <ResultsPage key={trimmedTerm} searchTerm={trimmedTerm} />
     }
   }
 

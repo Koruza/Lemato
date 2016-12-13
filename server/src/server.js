@@ -284,24 +284,135 @@ function postComment(feedItemId, user, contents) {
 }
 
 
-// Search for recipe item
-app.post('/results', function(req, res) {
-  if (typeof(req.body) === 'string') {
-    var queryText = req.body.trim().toLowerCase();
-    var recipeCollection = getCollection("recipes");
+// // Search for recipe item
+// app.post('/results', function(req, res) {
+//   if (typeof(req.body) === 'string') {
+//     var queryText = req.body.trim().toLowerCase();
+//     var recipeCollection = getCollection("recipes");
+//
+//     var results = []; //parse through recipes to find matches
+//     var i = 1;
+//     while(recipeCollection[i] != undefined) {
+//       if(recipeCollection[i].name.toLowerCase().indexOf(queryText) !== -1) { //if name contains the queryText
+//         results.push(i);
+//       }
+//       i++;
+//     }
+//     res.send(results);
+//   } else {
+//     res.status(400).end();
+//   }
+// });
 
-    var results = []; //parse through recipes to find matches
-    var i = 1;
-    while(recipeCollection[i] != undefined) {
-      if(recipeCollection[i].name.toLowerCase().indexOf(queryText) !== -1) { //if name contains the queryText
-        results.push(i);
+//`POST /search queryText`
+app.post('/results', function(req, res) {
+// var fromUser = new ObjectID(getUserId?FromToken(req.get('Authorization')));
+if (req.body !== '') {
+  // trim() removes whitespace before and after the query.
+  // toLowerCase() makes the query lowercase.
+  var meal = req.body.meal;
+  var ing = req.body.ingredient;
+  var allergies = req.body.allergies;
+  var diet = req.body.dietary;
+// console.log(req.body);
+  // var queryText = req.body.trim().toLowerCase();
+  // console.log(queryText);
+  // Get the recipes.
+  var resultRecipes = new Array();
+  var cursor = db.collection('recipes').find( );
+   cursor.each(function(err, doc) {
+      // assert.equal(err, null);
+      if (doc != null) {
+        //  console.dir(doc);
+        //  console.log(doc);
+         var ingredients = doc.ingredients;
+         for(var i=0; i< ing.length; i++){
+           for (var j =0; j<ingredients.length; j++){
+             if (ing[i] !== null){
+               if (ing[i] === ingredients[j]){
+                 if (resultRecipes.indexOf(doc.name) > -1){
+                    break;
+                 }
+                 else{
+                   resultRecipes.push(doc.name);
+                  //  console.log(resultRecipes);
+                 }
+               }
+             }
+           }
+         }
       }
-      i++;
-    }
-    res.send(results);
-  } else {
-    res.status(400).end();
-  }
+      else{
+        res.send(resultRecipes);
+      }
+   });
+  //  console.log(resultRecipes);
+
+
+  // .find({'ingredients'}, function(err, userData) {
+  //   if (err) {
+  //     return sendDatabaseError(res, err);
+  //   } else if (userData === null) {
+  //     // User not found.
+  //     // 400: Bad request.
+  //     res.status(400).end();
+  //   }
+
+    // Get the user's feed.
+  //   db.collection('feeds').findOne({ _id: userData.feed }, function(err, feedData) {
+  //     if (err) {
+  //       return sendDatabaseError(res, err);
+  //     }
+  //
+  //     // Look for feed items within the feed that contain queryText.
+  //     db.collection('feedItems').find({
+  //       $or: feedData.contents.map((id) => { return { _id: id  }}),
+  //       $text: {
+  //         $search: queryText
+  //       }
+  //     }).toArray(function(err, items) {
+  //       if (err) {
+  //         return sendDatabaseError(res, err);
+  //       }
+  //
+  //       // Resolve all of the feed items.
+  //       var resolvedItems = [];
+  //       var errored = false;
+  //       function onResolve(err, feedItem) {
+  //         if (errored) {
+  //           return;
+  //         } else if (err) {
+  //           errored = true;
+  //           sendDatabaseError(res, err);
+  //         } else {
+  //           resolvedItems.push(feedItem);
+  //           if (resolvedItems.length === items.length) {
+  //             // Send resolved items to the client!
+  //             res.send(resolvedItems);
+  //           }
+  //         }
+  //       }
+  //
+  //       // Resolve all of the matched feed items in parallel.
+  //       for (var i = 0; i < items.length; i++) {
+  //         // Would be more efficient if we had a separate helper that
+  //         // resolved feed items from their objects and not their IDs.
+  //         // Not a big deal in our small applications, though.
+  //         getFeedItem(items[i]._id, onResolve);
+  //       }
+  //
+  //       // Special case: No results.
+  //       if (items.length === 0) {
+  //         res.send([]);
+  //       }
+  //     });
+  //   });
+  // }
+// );
+} else {
+  // 400: Bad Request.
+  res.status(400).end();
+}
 });
 
 // Go to Recipe Page

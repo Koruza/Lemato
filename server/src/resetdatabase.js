@@ -11,7 +11,7 @@ var initialData = {
       "bio": "brownie enthusiast",
       "username":"BrownieKing",
       "password":"chocolate",
-      "cookbook":[1],
+      "cookbook":[new ObjectID("000000000000000000000001")],
       "feed": new ObjectID("000000000000000000000001")
     },
     "2": {
@@ -20,7 +20,7 @@ var initialData = {
       "bio": "brownie hater",
       "username":"BrownieMaster",
       "password":"fudge",
-      "cookbook":[2],
+      "cookbook":[new ObjectID("000000000000000000000002")],
       "feed": new ObjectID("000000000000000000000002")
     }
   },
@@ -30,8 +30,8 @@ var initialData = {
       "author": new ObjectID("000000000000000000000002"),
       "name": "Brownie",
       "postDate": 1453668480000,
-      "chefPoints": [1],
-      "ingredients": ["Flour", "Egg", "Cocoa Powder", "Sugar","Butter"],
+      "chefPoints": [new ObjectID("000000000000000000000001")],
+      "ingredients": ["flour", "egg", "cocoa powder", "sugar","butter"],
       "pic":"../../img/brownie-egg.jpg",
       "instructions":[
         "1. Combine the butter and sugar",
@@ -61,8 +61,8 @@ var initialData = {
       "_id": new ObjectID("000000000000000000000002"),
       "author": new ObjectID("000000000000000000000001"),
       "name": "Brownie in an egg",
-      "chefPoints": [2],
-      "ingredients": ["Flour", "Egg", "Cocoa Powder", "Sugar","Baking Powder"],
+      "chefPoints": [new ObjectID("000000000000000000000002")],
+      "ingredients": ["flour", "egg", "cocoa powder", "sugar","baking powder"],
       "pic":"None",
       "instructions": [
         "1. Mix dry ingredients together",
@@ -91,7 +91,7 @@ var initialData = {
   "feeds": {
     "1": {
       "_id": new ObjectID("000000000000000000000001"),
-      "contents": [1]
+      "contents": [new ObjectID("000000000000000000000001")]
     }
   }
 };
