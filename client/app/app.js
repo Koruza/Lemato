@@ -15,13 +15,13 @@ import ResultsPage from './components/resultsPage';
 
 class FeedPage extends React.Component {
 	render() {
-		return <Feed user={1}/>;
+		return <Feed user={"000000000000000000000001"}/>;
 	}
 }
 
 class Cookiebook extends React.Component {
 	render() {
-		return <Cookbook user ={1}/>;
+		return <Cookbook user ={"000000000000000000000001"}/>;
 	}
 }
 
@@ -98,7 +98,7 @@ class Results extends React.Component {
 
 class Setting extends React.Component{
 	render(){
-		return <Settings user = {1}/>
+		return <Settings user = {"000000000000000000000001"}/>
 	}
 }
 
