@@ -334,7 +334,7 @@ if (req.body !== '') {
                      break;
                   }
                   else{
-                    resultRecipes.push(doc.name);
+                    resultRecipes.push(doc._id);
                     console.log(resultRecipes);
                  }
                   //  console.log(resultRecipes);
@@ -343,7 +343,7 @@ if (req.body !== '') {
              }
            }
       }else{
-        console.log(res.send(resultRecipes));
+        res.send(resultRecipes);
       }
    });
   //  console.log(resultRecipes);
