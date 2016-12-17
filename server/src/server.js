@@ -34,27 +34,26 @@ app.use(express.static('../client/build'));
 
 //???
 app.put('/feeditem/:feeditemid/content', function(req, res) {
-  var fromUser = getUserIdFromToken(req.get('Authorization'));
-  var feedItemId = req.params.feeditemid;
-  var feedItem = readDocument('feedItems', feedItemId);
-  // Check that the requester is the author of this feed item.
-  if (fromUser === feedItem.contents.author) {
-    // Check that the body is a string, and not something like a JSON object.
-    // We can't use JSON validation here, since the body is simply text!
-    if (typeof(req.body) !== 'string') {
-    // 400: Bad request.
-    res.status(400).end();
-    return;
-    }
-    // Update text content of update.
-    feedItem.contents.contents = req.body;
-    writeDocument('feedItems', feedItem);
-    res.send(getFeedItemSync(feedItemId));
-  } else {
-    // 401: Unauthorized.
-    res.status(401).end();
-  }
-});
+    var fromUser = new ObjectID(getUserIdFromToken(req.get('Authorization')));
+    var feedItemId = new ObjectID(req.params.feeditemid);
+    db.collection('feedItems').updateOne({
+      _id: feedItemId,
+      "contents.author": fromUser
+    }, { $set: { "contents.contents": req.body } }, function(err, result) {
+      if (err) {
+        return sendDatabaseError(res, err);
+      } else if (result.modifiedCount === 0) {
+        // Could not find the specified feed item.
+        return res.status(400).end();
+      }
+      getFeedItem(feedItemId, function(err, feedItem) {
+        if (err) {
+          return sendDatabaseError(res, err);
+        }
+        res.send(feedItem);
+      });
+    });
+  });
 
 // Like a feed item.
 app.put('/feeditem/:feeditemid/likelist/:userid', function(req, res) {
@@ -102,26 +101,39 @@ app.delete('/feeditem/:feeditemid/likelist/:userid', function(req, res) {
   }
 });
 
-// `put /feeditem/:feedItemId/comments { userId: user, contents: contents }`
-app.put('/feeditem/:feedItemId/comments', validate({
-    body: commentSchema
-}), function(req, res) {
-    // If this function runs, `req.body` passed JSON validation!
-    var body = req.body;
-    var fromUser = getUserIdFromToken(req.get('Authorization'));
-    // Check if requester is authorized to post this status update.
-    // (The requester must be the author of the update.)
-    if (fromUser === body.author) {
-        var comment = postComment(req.params.feedItemId, body.userId, body.contents);
-        // When POST creates a new resource, we should tell the client about it
-        // in the 'Location' header and use status code 201.
-        res.status(201);
-        // Send the update!
-        res.send(comment);
-    } else {
-        // 401: Unauthorized.
-        res.status(401).end();
-    }
+// Post a comment
+app.post('/feeditem/:feeditemid/comments', validate({ body: commentSchema }), function(req, res) {
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  var comment = req.body;
+  var author = req.body.author;
+  comment.likeCounter = [];
+  var feedItemId = new ObjectID(req.params.feeditemid);
+  if (fromUser === author) {
+    // Only update the feed item if the author matches the currently authenticated
+    // user.
+    db.collection('feedItems').updateOne({
+      _id: feedItemId
+    }, { $push: { comments: comment} }, function(err, result) {
+      if (err) {
+        return sendDatabaseError(res, err);
+      } else if (result.modifiedCount === 0) {
+        // Could not find the specified feed item. Perhaps it does not exist, or
+        // is not authored by the user.
+        // 400: Bad request.
+        return res.status(400).end();
+      }
+      // Update succeeded! Return the resolved feed item.
+      getFeedItem(feedItemId, function(err, feedItem) {
+        if (err) {
+          return sendDatabaseError(res, err);
+        }
+        res.send(feedItem);
+      });
+    });
+  } else {
+    // Unauthorized.
+    res.status(401).end();
+  }
 });
 
 // post new recipe
@@ -229,59 +241,219 @@ function getUserIdFromToken(authorizationLine) {
 
 /**
  * Get the feed data for a particular user.
+ * @param user The ObjectID of the user document.
  */
-function getFeedData(user) {
-    var userData = readDocument('users', user);
-    var feedData = readDocument('feeds', userData.feed);
-    // While map takes a callback, it is synchronous, not asynchronous.
-    // It calls the callback immediately.
-    feedData.contents = feedData.contents.map(getFeedItemSync);
-    // Return FeedData with resolved references.
-    return feedData;
+function getFeedData(user, callback) {
+  db.collection('users').findOne({
+    _id: user
+  }, function(err, userData) {
+    if (err) {
+      return callback(err);
+    } else if (userData === null) {
+      // User not found.
+      return callback(null, null);
+    }
+
+    db.collection('feeds').findOne({
+      _id: userData.feed
+    }, function(err, feedData) {
+      if (err) {
+        return callback(err);
+      } else if (feedData === null) {
+        // Feed not found.
+        return callback(null, null);
+      }
+      var resolvedContents = [];
+      function processNextFeedItem(i) {
+        // Asynchronously resolve a feed item.
+        getFeedItem(feedData.contents[i], function(err, feedItem) {
+          if (err) {
+            // Pass an error to the callback.
+            callback(err);
+          } else {
+            // Success!
+            resolvedContents.push(feedItem);
+            if (resolvedContents.length === feedData.contents.length) {
+              // I am the final feed item; all others are resolved.
+              // Pass the resolved feed document back to the callback.
+              feedData.contents = resolvedContents;
+              callback(null, feedData);
+            } else {
+              // Process the next feed item.
+              processNextFeedItem(i + 1);
+            }
+          }
+        });
+      }
+
+      // Special case: Feed is empty.
+      if (feedData.contents.length === 0) {
+        callback(null, feedData);
+      } else {
+        processNextFeedItem(0);
+      }
+    });
+  });
+}
+
+/**
+ * Resolves a list of user objects. Returns an object that maps user IDs to
+ * user objects.
+ */
+function resolveUserObjects(userList, callback) {
+  // Special case: userList is empty.
+  // It would be invalid to query the database with a logical OR
+  // query with an empty array.
+  if (userList.length === 0) {
+    callback(null, {});
+  } else {
+    // Build up a MongoDB "OR" query to resolve all of the user objects
+    // in the userList.
+    var query = {
+      $or: userList.map((id) => { return {_id: id } })
+    };
+    // Resolve 'like' counter
+    db.collection('users').find(query).toArray(function(err, users) {
+      if (err) {
+        return callback(err);
+      }
+      // Build a map from ID to user object.
+      // (so userMap["4"] will give the user with ID 4)
+      var userMap = {};
+      users.forEach((user) => {
+        userMap[user._id] = user;
+      });
+      callback(null, userMap);
+    });
+  }
 }
 
 /**
  * Resolves a feed item. Internal to the server, since it's synchronous.
  */
-function getFeedItemSync(recipeItemId) {
-    var recipeItem = readDocument('recipes', recipeItemId);
-    // feedItem.comments.forEach((comment) => {
-    //     comment.author = readDocument('users', comment.author);
-    // });
-    return recipeItem;
+// function getFeedItem(recipeItemId) {
+//     var recipeItem = readDocument('recipes', recipeItemId);
+//     // feedItem.comments.forEach((comment) => {
+//     //     comment.author = readDocument('users', comment.author);
+//     // });
+//     return recipeItem;
+// }
+
+/**
+ * Resolves a feed item. Internal to the server, since it's synchronous.
+ * @param feedItemId The feed item's ID. Must be an ObjectID.
+ * @param callback Called when the operation finishes. First argument is an error object,
+ *   which is null if the operation succeeds, and the second argument is the
+ *   resolved feed item.
+ */
+function getFeedItem(recipeItemId, callback) {
+  // Get the feed item with the given ID.
+  db.collection('recipes').findOne({
+    _id: recipeItemId
+  }, function(err, feedItem) {
+    if (err) {
+      // An error occurred.
+      return callback(err);
+    } else if (feedItem === null) {
+      // Feed item not found!
+      return callback(null, null);
+    }
+
+    // Build a list of all of the user objects we need to resolve.
+    // Start off with the author of the feedItem.
+    var userList = [feedItem.recipe.author];
+    // Add all of the authors of the comments.
+    feedItem.comments.forEach((comment) => userList.push(comment.author));
+    // Resolve all of the user objects!
+    resolveUserObjects(userList, function(err, userMap) {
+      if (err) {
+        return callback(err);
+      }
+      // Use the userMap to look up the author's user object
+      feedItem.contents.author = userMap[feedItem.contents.author];
+      // Look up each comment's author's user object.
+      feedItem.comments.forEach((comment) => {
+        comment.author = userMap[comment.author];
+      });
+      // Return the resolved feedItem!
+      callback(null, feedItem);
+    });
+  });
 }
 
-//new Buffer(JSON.stringify({ id: 1 })).toString('base64');
+// //new Buffer(JSON.stringify({ id: 1 })).toString('base64');
+// app.get('/user/:userid/feed', function(req, res) {
+//   var userid = req.params.userid;
+//   var fromUser = getUserIdFromToken(req.get('Authorization'));
+//   if (fromUser === userid) {
+//         // Send response.
+//         res.send(getFeedData(userid));
+//     } else {
+//         // 401: Unauthorized request.
+//         res.status(401).end();
+//     }
+// });
+
+/**
+ * Get the feed data for a particular user.
+ */
 app.get('/user/:userid/feed', function(req, res) {
-    var userid = req.params.userid;
-    var fromUser = getUserIdFromToken(req.get('Authorization'));
-    // userid is a string. We need it to be a number.
-    // Parameters are always strings.
-    var useridNumber = parseInt(userid, 10);
-    if (fromUser === useridNumber) {
-        // Send response.
-        res.send(getFeedData(userid));
-    } else {
-        // 401: Unauthorized request.
-        res.status(401).end();
-    }
+  var userid = req.params.userid;
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  if (fromUser === userid) {
+    // Convert userid into an ObjectID before passing it to database queries.
+    getFeedData(new ObjectID(userid), function(err, feedData) {
+      if (err) {
+        // A database error happened.
+        // Internal Error: 500.
+        res.status(500).send("Database error: " + err);
+      } else if (feedData === null) {
+        // Couldn't find the feed in the database.
+        res.status(400).send("Could not look up feed for user " + userid);
+      } else {
+        // Send data.
+        res.send(feedData);
+      }
+    });
+  } else {
+    // 403: Unauthorized request.
+    res.status(403).end();
+  }
 });
 
-function postComment(feedItemId, user, contents) {
-    var time = new Date().getTime();
-    var feedItem = readDocument('feedItems',feedItemId)
-    feedItem.comments.push({
-            "author": user,
-            "postDate": time,
-            "contents": contents,
-            "likeCounter": []
+// Post a comment
+app.post('/feeditem/:feeditemid/comments', validate({ body: commentSchema }), function(req, res) {
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  var comment = req.body;
+  var author = req.body.author;
+  var feedItemId = new ObjectID(req.params.feeditemid);
+  if (fromUser === author) {
+    // Only update the feed item if the author matches the currently authenticated
+    // user.
+    db.collection('feedItems').updateOne({
+      _id: feedItemId
+    }, { $push: { comments: comment} }, function(err, result) {
+      if (err) {
+        return sendDatabaseError(res, err);
+      } else if (result.modifiedCount === 0) {
+        // Could not find the specified feed item. Perhaps it does not exist, or
+        // is not authored by the user.
+        // 400: Bad request.
+        return res.status(400).end();
+      }
+      // Update succeeded! Return the resolved feed item.
+      getFeedItem(feedItemId, function(err, feedItem) {
+        if (err) {
+          return sendDatabaseError(res, err);
+        }
+        res.send(feedItem);
+      });
     });
-    // Add the status update to the database.
-    // Returns the status update w/ an ID assigned.
-    writeDocument('feedItems', feedItem);
-    // Return the newly-posted object.
-    return getFeedItemSync(feedItemId);
-}
+  } else {
+    // Unauthorized.
+    res.status(401).end();
+  }
+});
 
 
 // // Search for recipe item
