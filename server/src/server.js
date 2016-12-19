@@ -573,9 +573,14 @@ if (req.body !== '') {
 
 // Go to Recipe Page
 app.get('/recipePage/:recipeid', function(req, res) {
-  var recipeid = parseInt(req.params.recipeid, 10);
-  var recipeData = readDocument('recipes', recipeid);
-  res.send(recipeData);
+  var recipeid = new ObjectID(req.params.recipeid);
+  db.collection('recipes').findOne({ _id: recipeid}, function (err, recipeData) {
+    if (err) {
+      return sendDatabaseError(res, err);
+    }
+
+    res.send(recipeData);
+  });
 });
 
 //
