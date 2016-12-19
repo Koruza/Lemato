@@ -1,7 +1,7 @@
 import React from 'react';
 import {postNewRecipe} from '../server';
 import {hashHistory} from 'react-router';
-import {hideElement} from '../util';
+import {hideElement, unixTimeToString} from '../util';
 
 export default class NewRecipe extends React.Component {
   constructor(props) {
@@ -118,7 +118,7 @@ export default class NewRecipe extends React.Component {
                   <div className="media-left">
                     PIC
                   </div>
-                  <div className="media-body"> You · Wednesday, October 5, 2016</div>
+                  <div className="media-body"> Someone · {unixTimeToString(new Date().getTime())}</div>
                 </div>
                 <hr/>
                 <div style={{ height: 0, overflow: "hidden" }}>
