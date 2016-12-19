@@ -51,6 +51,18 @@ export default class NewRecipe extends React.Component {
     }
   }
 
+  handleDelete(e) {
+    e.preventDefault();
+    document.getElementById("title").value = "";
+    document.getElementById("description").value = "";
+    document.getElementById("ingredients").value = "";
+    document.getElementById("instructions").value = "";
+
+    this.setState({
+      title: "", description: "", ingredients: "", instructions: "", pic: null
+    });
+  }
+
   handleTitleChange(e) {
     e.preventDefault();
     this.setState({title: e.target.value});
@@ -71,34 +83,20 @@ export default class NewRecipe extends React.Component {
     this.setState({instructions: e.target.value});
   }
 
-  /**
-   * Called when the user selects a file to upload.
-   */
   uploadImage(e) {
     e.preventDefault();
-
-    // Read the first file that the user selected (if the user selected multiple
-    // files, we ignore the others).
     var reader = new FileReader();
     var file = e.target.files[0];
-
-    // Called once the browser finishes loading the image.
     reader.onload = (upload) => {
       this.setState({
         pic: upload.target.result
       });
     };
-
-    // Tell the brower to read the image in as a data URL!
     reader.readAsDataURL(file);
   }
 
-  /**
-   * Tells the browser to request a file from the user.
-   */
   triggerImageUpload(e) {
     e.preventDefault();
-    // Click the input HTML element to trigger a file selection dialog.
     this.refs.file.click();
   }
 
@@ -110,7 +108,7 @@ export default class NewRecipe extends React.Component {
           <div className="col-md-8 col-md-offset-2">
             <div className="panel panel-default">
               <div className="panel-body">
-                <input type="text" className="form-control title"
+                <input type="text" className="form-control title" id="title"
                   placeholder="New Recipe"
                   value={this.state.title}
                   onChange={(e) => this.handleTitleChange(e)}/>
@@ -122,38 +120,41 @@ export default class NewRecipe extends React.Component {
                 </div>
                 <hr/>
                 <div style={{ height: 0, overflow: "hidden" }}>
-                  <input ref="file" type="file" name="file" accept=".jpg,.jpeg,.png,.gif" onChange={(e) => this.uploadImage(e)}/>
+                  <input ref="file" type="file" name="file" accept=".jpg,.jpeg,.png,.gif"
+                    onChange={(e) => this.uploadImage(e)}/>
                 </div>
                 <a className="photo-input" onClick={(e) => this.triggerImageUpload(e)}>
                   <span className="glyphicon glyphicon-camera"></span> &nbsp;Add Photo
                 </a>
                 <div className="row">
                   <div className="col-md-12">
-                    <img className={hideElement(this.state.pic === null)} src={this.state.pic} style={{width: "100%"}} />
+                    <img className={hideElement(this.state.pic === null)}
+                      src={this.state.pic} style={{width: "50%"}} />
                   </div>
                 </div>
                 <div className="description-input">
-                  <textarea type="text" className="form-control" rows="2"
+                  <textarea type="text" className="form-control" rows="2" id="description"
                       placeholder="Give a brief description"
                       value={this.state.description}
                       onChange={(e) => this.handleDescriptionChange(e)}></textarea>
-                  <span className="description-count pull-right">Character Limit: 140<br/></span>
                 </div>
                 <h3 className="ingredient-title">Ingredients</h3>
-                <textarea type="text" className="form-control ingredient-input" rows="8"
-                  placeholder="What are the ingredients?"
+                <textarea type="text" className="form-control ingredient-input" id="ingredients"
+                  rows="8" placeholder="What are the ingredients?"
                   value={this.state.ingredients}
                   onChange={(e) => this.handleIngredientsChange(e)}></textarea>
                 <h3 className="instruction-title">Instructions</h3>
-                <textarea type="text" className="form-control instruction-input" rows="12"
-                  placeholder="How do you make it?"
+                <textarea type="text" className="form-control instruction-input" id="instructions"
+                  rows="12" placeholder="How do you make it?"
                   value={this.state.instructions}
                   onChange={(e) => this.handleInstructionsChange(e)}></textarea>
               </div>
               <div className="panel-footer">
                 <div className="row">
                   <div className="col-md-9">
-                    <button type="button" className="btn btn-default">Delete</button>
+                    <button type="button"
+                      className="btn btn-default"
+                      onClick={(e) => this.handleDelete(e)}>Delete</button>
                   </div>
                   <div className="col-md-3">
                     <div className="pull-right">
