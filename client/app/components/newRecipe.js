@@ -29,7 +29,7 @@ export default class NewRecipe extends React.Component {
       var pic = "None";
       var dietary = ["None"];
 
-      postNewRecipe(1, titleText, ingredientText, pic, instructionText, descriptionText, allergies,
+      postNewRecipe("000000000000000000000001", titleText, ingredientText, pic, instructionText, descriptionText, allergies,
         meal, dietary, (newRecipe) => {
         hashHistory.push("/recipePage/" + newRecipe._id);
       });

@@ -1,6 +1,6 @@
 import {readDocument, writeDocument, addDocument} from './database.js';
 // new Buffer(JSON.stringify({ id: 1 })).toString('base64');
-var token = 'eyJpZCI6MX0=';
+var token = 'eyJpZCI6IjAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMSJ9';
 /**
  * Emulates how a REST call is *asynchronous* -- it calls your function back
  * some time in the future with data.

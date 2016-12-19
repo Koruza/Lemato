@@ -138,7 +138,7 @@ app.post('/feeditem/:feeditemid/comments', validate({ body: commentSchema }), fu
 
 // post new recipe
 function postNewRecipe(author, name, ingredients, pic, instructions, description, allergies,
-  meal, dietary) {
+  meal, dietary, cb) {
   var time = new Date().getTime();
   var newRecipe = {
     "author": author,
@@ -154,8 +154,13 @@ function postNewRecipe(author, name, ingredients, pic, instructions, description
     "dietary": dietary
   }
 
-  newRecipe = addDocument('recipes', newRecipe);
-  return newRecipe;
+  db.collection('recipes').insertOne(newRecipe, function(err, result) {
+    if (err) {
+      return cb(err);
+    }
+    newRecipe._id = result.insertedId;
+    cb(null, newRecipe);
+  })
 }
 
 // `POST /recipe {userId: userId, name: name, ingredients: ingredients, pic: pic,
@@ -169,15 +174,20 @@ app.post('/recipe',
   // Check if requester is authorized to post this status update.
   // (The requester must be the author of the update.)
   if (fromUser === body.author) {
-    var newRecipe = postNewRecipe(body.author, body.name, body.ingredients, body.pic,
-      body.instructions, body.description, body.allergies, body.meal, body.dietary);
-      // When POST creates a new resource, we should tell the client about it
-      // in the 'Location' header and use status code 201.
-      res.status(201);
-      res.set('Location', '/recipePage/' + newRecipe._id);
-      console.log("halloooo" + newRecipe._id);
-      // Send the update!
-      res.send(newRecipe);
+    postNewRecipe(new ObjectID(fromUser), body.name, body.ingredients, body.pic,
+      body.instructions, body.description, body.allergies, body.meal, body.dietary,
+      function(err, newRecipe) {
+        if (err) {
+          return sendDatabaseError(res, err);
+        } else {
+          // When POST creates a new resource, we should tell the client about it
+          // in the 'Location' header and use status code 201.
+          res.status(201);
+          res.set('Location', '/recipePage/' + newRecipe._id);
+          // Send the update!
+          res.send(newRecipe);
+        }
+      });
     } else {
       // 401: Unauthorized.
       res.status(401).end();
@@ -197,11 +207,11 @@ function getUserIdFromToken(authorizationLine) {
         var tokenObj = JSON.parse(regularString);
         var id = tokenObj['id'];
         // Check that id is a number.
-        if (typeof id === 'number') {
+        if (typeof id === 'string') {
             return id;
         } else {
             // Not a number. Return -1, an invalid ID.
-            return -1;
+            return "";
         }
     } catch (e) {
         // Return an invalid ID.
