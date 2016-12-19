@@ -1,6 +1,7 @@
 import React from 'react';
 import {postNewRecipe} from '../server';
 import {hashHistory} from 'react-router';
+import {hideElement} from '../util';
 
 export default class NewRecipe extends React.Component {
   constructor(props) {
@@ -10,7 +11,8 @@ export default class NewRecipe extends React.Component {
         //photo: "", TODO
         description: "",
         ingredients: "",
-        instructions: ""
+        instructions: "",
+        pic: null
     };
   }
 
@@ -21,23 +23,30 @@ export default class NewRecipe extends React.Component {
     var ingredientText = this.state.ingredients.trim().split("\n");
     var instructionText = this.state.instructions.trim().split("\n");
 
-    if (titleText !== "" && descriptionText !== "" && ingredientText !== ""
-        && instructionText !== "") {
+    if (titleText === "") {
+      alert("Please give your recipe a name");
+    } else if (this.state.pic === null) {
+      alert("Please add a photo");
+    } else if (descriptionText === "") {
+      alert("Please give a brief description");
+    } else if (ingredientText[0] === "") {
+      alert("You forgot to add the ingredient list");
+    } else if (instructionText[0] === "") {
+      alert("How can we cook without instructions? Please add them!");
 
+    } else {
       var allergies = ["None"]; //TODO
       var meal = "None"; //TODO
-      var pic = "None";
+      // var pic = "None";
       var dietary = ["None"];
 
-      postNewRecipe("000000000000000000000001", titleText, ingredientText, pic, instructionText, descriptionText, allergies,
+      postNewRecipe("000000000000000000000001", titleText, ingredientText, this.state.pic, instructionText, descriptionText, allergies,
         meal, dietary, (newRecipe) => {
         hashHistory.push("/recipePage/" + newRecipe._id);
       });
 
-      this.setState({title: ""});
-      this.setState({description: ""});
-      this.setState({ingredients: ""});
-      this.setState({instructions: ""});
+      this.setState({title: "", description: "", ingredients: "",
+        instructions: "", pic: null});
 
     }
   }
@@ -45,8 +54,6 @@ export default class NewRecipe extends React.Component {
   handleTitleChange(e) {
     e.preventDefault();
     this.setState({title: e.target.value});
-    // console.log("in handleTitleChange", e.target.value);
-
   }
 
   handleDescriptionChange(e) {
@@ -62,6 +69,37 @@ export default class NewRecipe extends React.Component {
   handleInstructionsChange(e) {
     e.preventDefault();
     this.setState({instructions: e.target.value});
+  }
+
+  /**
+   * Called when the user selects a file to upload.
+   */
+  uploadImage(e) {
+    e.preventDefault();
+
+    // Read the first file that the user selected (if the user selected multiple
+    // files, we ignore the others).
+    var reader = new FileReader();
+    var file = e.target.files[0];
+
+    // Called once the browser finishes loading the image.
+    reader.onload = (upload) => {
+      this.setState({
+        pic: upload.target.result
+      });
+    };
+
+    // Tell the brower to read the image in as a data URL!
+    reader.readAsDataURL(file);
+  }
+
+  /**
+   * Tells the browser to request a file from the user.
+   */
+  triggerImageUpload(e) {
+    e.preventDefault();
+    // Click the input HTML element to trigger a file selection dialog.
+    this.refs.file.click();
   }
 
   render() {
@@ -83,9 +121,17 @@ export default class NewRecipe extends React.Component {
                   <div className="media-body"> You · Wednesday, October 5, 2016</div>
                 </div>
                 <hr/>
-                <a className="photo-input" href="#">
+                <div style={{ height: 0, overflow: "hidden" }}>
+                  <input ref="file" type="file" name="file" accept=".jpg,.jpeg,.png,.gif" onChange={(e) => this.uploadImage(e)}/>
+                </div>
+                <a className="photo-input" onClick={(e) => this.triggerImageUpload(e)}>
                   <span className="glyphicon glyphicon-camera"></span> &nbsp;Add Photo
                 </a>
+                <div className="row">
+                  <div className="col-md-12">
+                    <img className={hideElement(this.state.pic === null)} src={this.state.pic} style={{width: "100%"}} />
+                  </div>
+                </div>
                 <div className="description-input">
                   <textarea type="text" className="form-control" rows="2"
                       placeholder="Give a brief description"
